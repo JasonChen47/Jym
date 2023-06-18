@@ -6,15 +6,31 @@
 //
 
 import SwiftUI
+import Charts
 
 struct WorkoutChartView: View {
     @Binding var workoutDay: WorkoutDay
     var body: some View {
         NavigationView {
-            VStack {
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            ScrollView {
                 ForEach(workoutDay.workouts) { workout in
-                    Text(workout.name)
+                    VStack {
+                        HStack {
+                            Text(workout.name)
+                                .font(.system(size: 20))
+                            Spacer()
+                        }
+                        
+                        Chart {
+                            ForEach(workout.records) { record in
+                                BarMark(x: .value("Date", record.date, unit: .day), y: .value("Count", record.weight))
+                            }
+                        }
+                        .chartXAxis {
+                            AxisMarks(values: .stride(by: .day))
+                        }
+                    }
+                    .padding()
                 }
             }
             .navigationTitle(workoutDay.name)

@@ -26,11 +26,11 @@ struct WorkoutDay: Identifiable {
 
 extension WorkoutDay {
     static let records: [Record] = [
-        Record(date: Date("2023-06-18"), weight: 90, reps: 10, sets: 4),
-        Record(date: Date("2023-06-17"), weight: 100, reps: 10, sets: 4),
+        Record(date: Date("2023-06-14"), weight: 90, reps: 10, sets: 4),
+        Record(date: Date("2023-06-15"), weight: 100, reps: 10, sets: 4),
         Record(date: Date("2023-06-16"), weight: 110, reps: 10, sets: 4),
-        Record(date: Date("2023-06-15"), weight: 120, reps: 10, sets: 4),
-        Record(date: Date("2023-06-14"), weight: 120, reps: 10, sets: 4)
+        Record(date: Date("2023-06-17"), weight: 120, reps: 10, sets: 4),
+        Record(date: Date("2023-06-18"), weight: 120, reps: 10, sets: 4)
     ]
     static let sampleData: [WorkoutDay] =
     [
