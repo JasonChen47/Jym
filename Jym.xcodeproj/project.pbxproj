@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F6292C1E2A0B1C8F0050C7E4 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6292C1D2A0B1C8F0050C7E4 /* WorkoutView.swift */; };
+		F6292C212A0B1D020050C7E4 /* WorkoutTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6292C202A0B1D020050C7E4 /* WorkoutTabView.swift */; };
+		F634A1DD2A1ED4C200742182 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634A1DC2A1ED4C100742182 /* CardView.swift */; };
+		F634A1DF2A20293500742182 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634A1DE2A20293400742182 /* MainChartView.swift */; };
+		F634A1E12A202C5700742182 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634A1E02A202C5700742182 /* Record.swift */; };
+		F650F0B92A39771900F61A85 /* Sets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F650F0B82A39771900F61A85 /* Sets.swift */; };
+		F65B06B62A2EB34B0094307E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65B06B52A2EB34B0094307E /* ProfileView.swift */; };
+		F6E729732A3DF36500C8C09D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E729722A3DF36500C8C09D /* Date.swift */; };
+		F6E729752A3F95C000C8C09D /* WorkoutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E729742A3F95C000C8C09D /* WorkoutChartView.swift */; };
 		F6FED62E2A048015001F3B8C /* JymApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FED62D2A048015001F3B8C /* JymApp.swift */; };
 		F6FED6302A048015001F3B8C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FED62F2A048015001F3B8C /* ContentView.swift */; };
 		F6FED6322A04801C001F3B8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6FED6312A04801C001F3B8C /* Assets.xcassets */; };
@@ -16,6 +25,9 @@
 		F6FED6442A04801C001F3B8C /* JymTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FED6432A04801C001F3B8C /* JymTests.swift */; };
 		F6FED64E2A04801C001F3B8C /* JymUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FED64D2A04801C001F3B8C /* JymUITests.swift */; };
 		F6FED6502A04801C001F3B8C /* JymUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FED64F2A04801C001F3B8C /* JymUITestsLaunchTests.swift */; };
+		F6FED65F2A048427001F3B8C /* WorkoutDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FED65E2A048427001F3B8C /* WorkoutDaysView.swift */; };
+		F6FED6612A04868A001F3B8C /* WorkoutDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FED6602A04868A001F3B8C /* WorkoutDay.swift */; };
+		F6FED6632A0486BD001F3B8C /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FED6622A0486BD001F3B8C /* Workout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +48,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F6292C1D2A0B1C8F0050C7E4 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
+		F6292C202A0B1D020050C7E4 /* WorkoutTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTabView.swift; sourceTree = "<group>"; };
+		F634A1DC2A1ED4C100742182 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		F634A1DE2A20293400742182 /* MainChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChartView.swift; sourceTree = "<group>"; };
+		F634A1E02A202C5700742182 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		F650F0B82A39771900F61A85 /* Sets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sets.swift; sourceTree = "<group>"; };
+		F65B06B52A2EB34B0094307E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		F6E729722A3DF36500C8C09D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		F6E729742A3F95C000C8C09D /* WorkoutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutChartView.swift; sourceTree = "<group>"; };
 		F6FED62A2A048015001F3B8C /* Jym.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jym.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6FED62D2A048015001F3B8C /* JymApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JymApp.swift; sourceTree = "<group>"; };
 		F6FED62F2A048015001F3B8C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -48,6 +69,9 @@
 		F6FED6492A04801C001F3B8C /* JymUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JymUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6FED64D2A04801C001F3B8C /* JymUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JymUITests.swift; sourceTree = "<group>"; };
 		F6FED64F2A04801C001F3B8C /* JymUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JymUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F6FED65E2A048427001F3B8C /* WorkoutDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDaysView.swift; sourceTree = "<group>"; };
+		F6FED6602A04868A001F3B8C /* WorkoutDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDay.swift; sourceTree = "<group>"; };
+		F6FED6622A0486BD001F3B8C /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +99,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F6292C1F2A0B1CA60050C7E4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F6FED6622A0486BD001F3B8C /* Workout.swift */,
+				F6FED6602A04868A001F3B8C /* WorkoutDay.swift */,
+				F634A1E02A202C5700742182 /* Record.swift */,
+				F650F0B82A39771900F61A85 /* Sets.swift */,
+				F6E729722A3DF36500C8C09D /* Date.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		F6FED6212A048015001F3B8C = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +136,14 @@
 			children = (
 				F6FED62D2A048015001F3B8C /* JymApp.swift */,
 				F6FED62F2A048015001F3B8C /* ContentView.swift */,
+				F6292C1F2A0B1CA60050C7E4 /* Models */,
+				F6FED65E2A048427001F3B8C /* WorkoutDaysView.swift */,
+				F634A1DC2A1ED4C100742182 /* CardView.swift */,
+				F6292C202A0B1D020050C7E4 /* WorkoutTabView.swift */,
+				F65B06B52A2EB34B0094307E /* ProfileView.swift */,
+				F634A1DE2A20293400742182 /* MainChartView.swift */,
+				F6292C1D2A0B1C8F0050C7E4 /* WorkoutView.swift */,
+				F6E729742A3F95C000C8C09D /* WorkoutChartView.swift */,
 				F6FED6312A04801C001F3B8C /* Assets.xcassets */,
 				F6FED6362A04801C001F3B8C /* Persistence.swift */,
 				F6FED6382A04801C001F3B8C /* Jym.xcdatamodeld */,
@@ -263,10 +307,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6FED65F2A048427001F3B8C /* WorkoutDaysView.swift in Sources */,
+				F6E729732A3DF36500C8C09D /* Date.swift in Sources */,
+				F65B06B62A2EB34B0094307E /* ProfileView.swift in Sources */,
 				F6FED63A2A04801C001F3B8C /* Jym.xcdatamodeld in Sources */,
+				F634A1E12A202C5700742182 /* Record.swift in Sources */,
+				F6292C1E2A0B1C8F0050C7E4 /* WorkoutView.swift in Sources */,
+				F6FED6632A0486BD001F3B8C /* Workout.swift in Sources */,
+				F634A1DD2A1ED4C200742182 /* CardView.swift in Sources */,
+				F6FED6612A04868A001F3B8C /* WorkoutDay.swift in Sources */,
+				F6E729752A3F95C000C8C09D /* WorkoutChartView.swift in Sources */,
 				F6FED6372A04801C001F3B8C /* Persistence.swift in Sources */,
+				F634A1DF2A20293500742182 /* MainChartView.swift in Sources */,
 				F6FED6302A048015001F3B8C /* ContentView.swift in Sources */,
 				F6FED62E2A048015001F3B8C /* JymApp.swift in Sources */,
+				F650F0B92A39771900F61A85 /* Sets.swift in Sources */,
+				F6292C212A0B1D020050C7E4 /* WorkoutTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
