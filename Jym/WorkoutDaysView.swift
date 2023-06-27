@@ -10,102 +10,174 @@ import SwiftUI
 struct WorkoutDaysView: View {
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
-    let sampleWorkoutDays = WorkoutDay.sampleData
-    let mainWorkoutDay = WorkoutDay.sampleData[3]
-    let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
+    @Binding var sampleWorkoutDays: [WorkoutDay]
+    @Binding var mainWorkoutDay: WorkoutDay
+    let cornerRadius: CGFloat = 10
+    let subtitleSize: CGFloat = 20
+    let dateSize: CGFloat = 15
+    let outlineSize: CGFloat = 2
+    let emojiSize: CGFloat = 30
 
     var body: some View {
+        let spacing: CGFloat = width*0.05
+        let columns = [
+            GridItem(.flexible(), spacing: spacing),
+            GridItem(.flexible(), spacing: spacing)
+        ]
+        let df: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.setLocalizedDateFormatFromTemplate("M/dd")
+            return formatter
+        }()
+        let dfLong: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.setLocalizedDateFormatFromTemplate("M/dd/yy")
+            return formatter
+        }()
+        
         NavigationView {
             ScrollView {
                 HStack {
-                    Text("Hey John, \nLet's get to it")
-                        .font(.system(size: 37))
+                    Text(Date.now, style: .date)
+                        .font(.system(size: dateSize))
+                        .foregroundColor(Color.gray)
+                    Spacer()
+                }
+                Spacer()
+                HStack {
+                    Text("Good afternoon John. \nLet's get to it.")
+                        .font(.system(size: 25))
                         .bold()
+                        .foregroundColor(Color.white)
                     Spacer()
                 }
                 .padding([.bottom])
                 HStack {
-                    Text("Recommended Next Workout:")
+                    Text("Recommended Next Workout")
                         .bold()
+                        .foregroundColor(Color("backText"))
+                        .font(.system(size: subtitleSize))
                     Spacer()
                 }
                 NavigationLink {
-                    Text("hi")
+                    WorkoutView(workoutDay: $mainWorkoutDay)
                 } label: {
-                    Color.black
-                        .aspectRatio(1.618, contentMode: .fit)
-                        .cornerRadius(5)
+                    Rectangle()
+                        .fill(.linearGradient(
+                            Gradient(colors:[Color("gold").opacity(0.9), Color("gold").opacity(0.7)]),
+                        startPoint: UnitPoint(x: 0, y: 0.5),
+                        endPoint: UnitPoint(x: 1, y: 0.5)
+                    ))
+                        .cornerRadius(cornerRadius)
+                        .aspectRatio(4, contentMode: .fit)
                         .overlay(
-                            VStack {
-                                HStack {
-                                    Text(mainWorkoutDay.name)
-                                        .font(.system(size: 37))
-                                        .foregroundColor(.white)
-                                        .bold()
-                                    Spacer()
-                                }
-                                .padding([.leading, .top])
-                                
-                                Spacer()
-                            }
-                                .background(
-                                    HStack {
-                                        Spacer()
-                                        Spacer()
-                                        Spacer()
-                                        ZStack {
+                            RoundedRectangle(cornerRadius: cornerRadius)
+                                .strokeBorder(Color("angelYellow"), lineWidth: outlineSize)
+                        )
+                        .overlay(
+                            HStack {
+                                ZStack {
+                                    Circle()
+                                        .foregroundColor(Color("royalBlue"))
+                                        .frame(width: width*0.15, height: width*0.15, alignment: .center)
+                                        .overlay(
                                             Circle()
-                                                .foregroundColor(.white)
-                                                .frame(width: width*0.4, height: width*0.4, alignment: .center)
-                                                .opacity(0.1)
-                                            Text(mainWorkoutDay.emoji)
-                                                .font(.system(size: 120))
-                                        }
-                                        .padding()
+                                                .stroke(Color("angelYellow"), lineWidth: outlineSize)
+                                        )
+                                    Text(mainWorkoutDay.emoji)
+                                        .font(.system(size: 30))
+                                }
+                                VStack {
+                                    HStack {
+                                        Text(mainWorkoutDay.name)
+                                            .font(.system(size: subtitleSize))
+                                            .foregroundColor(Color("blueText"))
+                                            .bold()
+                                        Spacer()
+                                    }
+                                    Spacer()
+                                    HStack {
+                                        Image(systemName: "flame")
+                                        Text(String(mainWorkoutDay.streak))
+                                            
+                                        + Text(" Weeks")
+                                        Spacer()
+                                        Image(systemName: "dumbbell")
+                                        Text(dfLong.string(from: mainWorkoutDay.lastWorkoutDay))
                                         Spacer()
                                     }
                                     
-                                )
+                                }
+                                .padding([.leading])
+                                Spacer()
+                            }
+                                .padding()
+                            
                         )
-
-                }
+                                        }
                                 HStack {
                     Text("Browse Workouts")
                         .padding([.top], width*0.05)
                         .bold()
+                        .foregroundColor(Color("backText"))
+                        .font(.system(size: subtitleSize))
                     Spacer()
                 }
-                LazyVGrid(columns: columns) {
-                    ForEach(sampleWorkoutDays) { workoutDay in
+                LazyVGrid(columns: columns, spacing: spacing) {
+                    ForEach($sampleWorkoutDays) { $workoutDay in
                         NavigationLink {
-                            Text("hi")
+                            WorkoutView(workoutDay: $workoutDay)
                         } label: {
-                            Color.black
-                                .aspectRatio(contentMode: .fill)
-                                .cornerRadius(5)
+                            Rectangle()
+                                .fill(.linearGradient(
+                                    Gradient(colors:[Color("royalBlueLight"), Color("royalBlueLight").opacity(0.5)]),
+                                startPoint: UnitPoint(x: 0, y: 0.5),
+                                endPoint: UnitPoint(x: 1, y: 0.5)
+                            ))
+                                .aspectRatio(1.5, contentMode: .fill)
+                                .cornerRadius(cornerRadius)
                                 .overlay(
-                                    VStack {
-                                        HStack {
-                                            Text(workoutDay.name)
-                                                .foregroundColor(.white)
-                                                .bold()
+                                        VStack {
+                                            HStack {
+                                                Text(workoutDay.name)
+                                                    .foregroundColor(Color("yellowText"))
+                                                    .bold()
+                                                Spacer()
+                                            }
+                                            HStack {
+                                                ZStack {
+                                                    Circle()
+                                                        .foregroundColor(Color("royalBlue"))
+                                                        .frame(width: width*0.15, height: width*0.15, alignment: .center)
+//                                                        .overlay(
+//                                                            Circle()
+//                                                                .stroke(Color("angelYellow"), lineWidth: outlineSize)
+//                                                        )
+                                                    Text(workoutDay.emoji)
+                                                        .font(.system(size: 30))
+                                                }
+                                                Spacer()
+                                                VStack {
+                                                    HStack {
+                                                        Spacer()
+                                                        Image(systemName: "flame")
+                                                        Text(String(mainWorkoutDay.streak))
+                                                    }
+                                                    HStack {
+                                                        Spacer()
+                                                        Text(df.string(from: mainWorkoutDay.lastWorkoutDay))
+                                                    }
+                                                }
+                                                Spacer()
+                                            }
                                             Spacer()
                                         }
-                                        .padding([.leading, .top])
-                                        ZStack {
-                                            Circle()
-                                                .foregroundColor(.white)
-                                                .frame(width: width*0.25, height: width*0.25, alignment: .center)
-                                                .opacity(0.1)
-                                            Text(workoutDay.emoji)
-                                                .font(.system(size: 70))
-                                        }
-                                        Spacer()
-                                    }
+                                            .padding()
                                 )
+//                                .overlay(
+//                                    RoundedRectangle(cornerRadius: cornerRadius)
+//                                        .strokeBorder(Color("angelYellow"), lineWidth: outlineSize)
+//                                )
                         }
                         
                     }
@@ -116,23 +188,31 @@ struct WorkoutDaysView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
+                        .foregroundColor(Color("angelYellow"))
                 }
                 ToolbarItem {
                     Button{
                         print("hi")
                     } label: {
                         Label("Add Item", systemImage: "plus")
+                            .foregroundColor(Color("angelYellow"))
                     }
                 }
             }
             .padding([.leading, .trailing], width*0.05)
+            .background(Color("royalBlue"))
+            .toolbarBackground(Color("royalBlue"), for: .navigationBar)
         }
+    }
+    
+    private func getStreak(workoutDay: WorkoutDay) {
         
     }
+    
 }
 
 struct AllWorkoutsView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutDaysView()
+        WorkoutDaysView(sampleWorkoutDays: .constant(WorkoutDay.sampleData), mainWorkoutDay: .constant(WorkoutDay.sampleData[3]))
     }
 }

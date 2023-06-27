@@ -52,7 +52,6 @@ struct MainChartView: View {
                         NavigationLink {
                             VStack {
                                 WorkoutChartView(workoutDay: $workoutDay)
-                                
                             }
                             .navigationTitle($workoutDay.name)
                         } label: {

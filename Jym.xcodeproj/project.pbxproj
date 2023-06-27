@@ -12,6 +12,7 @@
 		F634A1DD2A1ED4C200742182 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634A1DC2A1ED4C100742182 /* CardView.swift */; };
 		F634A1DF2A20293500742182 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634A1DE2A20293400742182 /* MainChartView.swift */; };
 		F634A1E12A202C5700742182 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634A1E02A202C5700742182 /* Record.swift */; };
+		F638282D2A41300E002209A6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F638282C2A41300E002209A6 /* SettingsView.swift */; };
 		F650F0B92A39771900F61A85 /* Sets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F650F0B82A39771900F61A85 /* Sets.swift */; };
 		F65B06B62A2EB34B0094307E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65B06B52A2EB34B0094307E /* ProfileView.swift */; };
 		F6E729732A3DF36500C8C09D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E729722A3DF36500C8C09D /* Date.swift */; };
@@ -53,6 +54,7 @@
 		F634A1DC2A1ED4C100742182 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F634A1DE2A20293400742182 /* MainChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChartView.swift; sourceTree = "<group>"; };
 		F634A1E02A202C5700742182 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		F638282C2A41300E002209A6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F650F0B82A39771900F61A85 /* Sets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sets.swift; sourceTree = "<group>"; };
 		F65B06B52A2EB34B0094307E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		F6E729722A3DF36500C8C09D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -140,10 +142,11 @@
 				F6FED65E2A048427001F3B8C /* WorkoutDaysView.swift */,
 				F634A1DC2A1ED4C100742182 /* CardView.swift */,
 				F6292C202A0B1D020050C7E4 /* WorkoutTabView.swift */,
-				F65B06B52A2EB34B0094307E /* ProfileView.swift */,
+				F638282C2A41300E002209A6 /* SettingsView.swift */,
 				F634A1DE2A20293400742182 /* MainChartView.swift */,
 				F6292C1D2A0B1C8F0050C7E4 /* WorkoutView.swift */,
 				F6E729742A3F95C000C8C09D /* WorkoutChartView.swift */,
+				F65B06B52A2EB34B0094307E /* ProfileView.swift */,
 				F6FED6312A04801C001F3B8C /* Assets.xcassets */,
 				F6FED6362A04801C001F3B8C /* Persistence.swift */,
 				F6FED6382A04801C001F3B8C /* Jym.xcdatamodeld */,
@@ -312,6 +315,7 @@
 				F65B06B62A2EB34B0094307E /* ProfileView.swift in Sources */,
 				F6FED63A2A04801C001F3B8C /* Jym.xcdatamodeld in Sources */,
 				F634A1E12A202C5700742182 /* Record.swift in Sources */,
+				F638282D2A41300E002209A6 /* SettingsView.swift in Sources */,
 				F6292C1E2A0B1C8F0050C7E4 /* WorkoutView.swift in Sources */,
 				F6FED6632A0486BD001F3B8C /* Workout.swift in Sources */,
 				F634A1DD2A1ED4C200742182 /* CardView.swift in Sources */,
@@ -489,6 +493,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -518,6 +523,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

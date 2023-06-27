@@ -15,4 +15,10 @@ extension Date {
         let date = dateStringFormatter.date(from: dateString)!
         self.init(timeInterval:0, since:date)
     }
+    
+    func getWeekday(date: Date) -> String {
+        let f = DateFormatter()
+        let weekday = Calendar.current.component(.weekday, from: date)
+        return f.weekdaySymbols[Calendar.current.component(.weekday, from: Date()) - 1]
+    }
 }

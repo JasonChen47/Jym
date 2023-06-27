@@ -11,30 +11,29 @@ import Charts
 struct WorkoutChartView: View {
     @Binding var workoutDay: WorkoutDay
     var body: some View {
-        NavigationView {
-            ScrollView {
-                ForEach(workoutDay.workouts) { workout in
-                    VStack {
-                        HStack {
-                            Text(workout.name)
-                                .font(.system(size: 20))
-                            Spacer()
-                        }
-                        
-                        Chart {
-                            ForEach(workout.records) { record in
-                                BarMark(x: .value("Date", record.date, unit: .day), y: .value("Count", record.weight))
-                            }
-                        }
-                        .chartXAxis {
-                            AxisMarks(values: .stride(by: .day))
+        ScrollView {
+            ForEach(workoutDay.workouts) { workout in
+                VStack {
+                    HStack {
+                        Text(workout.name)
+                            .font(.system(size: 20))
+                        Spacer()
+                    }
+                    
+                    Chart {
+                        ForEach(workout.records) { record in
+                            BarMark(x: .value("Date", record.date, unit: .day), y: .value("Count", record.weight))
                         }
                     }
-                    .padding()
+                    .chartXAxis {
+                        AxisMarks(values: .stride(by: .day))
+                    }
                 }
+                .padding()
             }
-            .navigationTitle(workoutDay.name)
         }
+        .navigationTitle(workoutDay.name)
+        
     }
 }
 

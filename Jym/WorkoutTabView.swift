@@ -9,21 +9,22 @@ import SwiftUI
 
 struct WorkoutTabView: View {
     @State var workoutDays = WorkoutDay.sampleData
+    @State var mainWorkoutDay = WorkoutDay.sampleData[3]
     var body: some View {
         TabView {
-            WorkoutDaysView()
+            WorkoutDaysView(sampleWorkoutDays: $workoutDays, mainWorkoutDay: $mainWorkoutDay)
                 .tabItem {
                     Label("Workouts", systemImage: "dumbbell")
                 }
+                .toolbarBackground(Color("royalBlue"), for: .tabBar)
             MainChartView(sampleWorkoutDays: $workoutDays)
                 .tabItem {
                     Label("Chart", systemImage: "chart.bar.xaxis")
                 }
-            ProfileView()
+            SettingsView()
                 .tabItem {
-                    Label("Profile", systemImage: "person")
+                    Label("Settings", systemImage: "gearshape")
                 }
-                
         }
         
     }

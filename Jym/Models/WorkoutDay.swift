@@ -12,14 +12,16 @@ struct WorkoutDay: Identifiable {
     let id: UUID
     var name: String
     var emoji: String
+    var streak: Int
+    var lastWorkoutDay: Date
     var workouts: [Workout]
-    
-    
 
-    init(id: UUID = UUID(), name: String, emoji: String, workouts: [Workout]) {
+    init(id: UUID = UUID(), name: String, emoji: String, streak: Int, lastWorkoutDay: Date, workouts: [Workout]) {
         self.id = id
         self.name = name
         self.emoji = emoji
+        self.streak = streak
+        self.lastWorkoutDay = lastWorkoutDay
         self.workouts = workouts
     }
 }
@@ -34,44 +36,76 @@ extension WorkoutDay {
     ]
     static let sampleData: [WorkoutDay] =
     [
-        WorkoutDay(name: "Back", emoji: "🎒", workouts: [
+        WorkoutDay(name: "Back", emoji: "🎒", streak: 3, lastWorkoutDay: Date("2023-06-26"), workouts: [
             Workout(name: "Cable Row", weight: 120, reps: 10, sets: 4, records: records),
             Workout(name: "Pull Ups", weight: 155, reps: 10, sets: 4, records: records),
             Workout(name: "Lat Pull Downs", weight: 120, reps: 10, sets: 4, records: records)
         ]),
-        WorkoutDay(name: "Shoulders", emoji: "🤷‍♂️", workouts: [
+        WorkoutDay(name: "Shoulders", emoji: "🤷‍♂️", streak: 3, lastWorkoutDay: Date("2023-06-26"), workouts: [
             Workout(name: "Dumbbell Shoulder Press", weight: 45, reps: 10, sets: 4, records: records),
             Workout(name: "Lateral Raises", weight: 20, reps: 10, sets: 4, records: records),
             Workout(name: "Bent Over Dumbbell Flies", weight: 20, reps: 10, sets: 4, records: records)
         ]),
-        WorkoutDay(name: "Legs", emoji: "🦵", workouts: [
+        WorkoutDay(name: "Legs", emoji: "🦵", streak: 3, lastWorkoutDay: Date("2023-06-26"), workouts: [
             Workout(name: "Leg Press", weight: 205, reps: 10, sets: 4, records: records),
             Workout(name: "Leg Curls", weight: 75, reps: 10, sets: 4, records: records),
             Workout(name: "Leg Extensions", weight: 75, reps: 10, sets: 4, records: records),
             Workout(name: "Calf Raises", weight: 105, reps: 10, sets: 4, records: records)
         ]),
-        WorkoutDay(name: "Arms", emoji: "💪", workouts: [
+        WorkoutDay(name: "Arms", emoji: "💪", streak: 3, lastWorkoutDay: Date("2022-12-26"), workouts: [
             Workout(name: "Concentration Curls", weight: 30, reps: 10, sets: 4, records: records),
             Workout(name: "Tricep Kick-Back", weight: 17.5, reps: 10, sets: 4, records: records),
             Workout(name: "Triangle Pushups", weight: 155, reps: 15, sets: 4, records: records)
         ]),
-        WorkoutDay(name: "Back", emoji: "🎒", workouts: [
+        WorkoutDay(name: "Back", emoji: "🎒", streak: 3, lastWorkoutDay: Date("2022-12-26"), workouts: [
             Workout(name: "Cable Row", weight: 120, reps: 10, sets: 4, records: records),
             Workout(name: "Pull Ups", weight: 155, reps: 10, sets: 4, records: records),
             Workout(name: "Lat Pull Downs", weight: 120, reps: 10, sets: 4, records: records)
         ]),
-        WorkoutDay(name: "Shoulders", emoji: "🤷‍♂️", workouts: [
+        WorkoutDay(name: "Shoulders", emoji: "🤷‍♂️", streak: 3, lastWorkoutDay: Date("2022-12-26"), workouts: [
             Workout(name: "Dumbbell Shoulder Press", weight: 45, reps: 10, sets: 4, records: records),
             Workout(name: "Lateral Raises", weight: 20, reps: 10, sets: 4, records: records),
             Workout(name: "Bent Over Dumbbell Flies", weight: 20, reps: 10, sets: 4, records: records)
         ]),
-        WorkoutDay(name: "Legs", emoji: "🦵", workouts: [
+        WorkoutDay(name: "Legs", emoji: "🦵", streak: 3, lastWorkoutDay: Date("2022-12-26"), workouts: [
             Workout(name: "Leg Press", weight: 205, reps: 10, sets: 4, records: records),
             Workout(name: "Leg Curls", weight: 75, reps: 10, sets: 4, records: records),
             Workout(name: "Leg Extensions", weight: 75, reps: 10, sets: 4, records: records),
             Workout(name: "Calf Raises", weight: 105, reps: 10, sets: 4, records: records)
         ]),
-        WorkoutDay(name: "Arms", emoji: "💪", workouts: [
+        WorkoutDay(name: "Arms", emoji: "💪", streak: 3, lastWorkoutDay: Date("2022-12-26"), workouts: [
+            Workout(name: "Concentration Curls", weight: 30, reps: 10, sets: 4, records: records),
+            Workout(name: "Tricep Kick-Back", weight: 17.5, reps: 10, sets: 4, records: records),
+            Workout(name: "Triangle Pushups", weight: 155, reps: 15, sets: 4, records: records)
+        ]),
+        WorkoutDay(name: "Shoulders", emoji: "🤷‍♂️", streak: 3, lastWorkoutDay: Date("2022-12-26"), workouts: [
+            Workout(name: "Dumbbell Shoulder Press", weight: 45, reps: 10, sets: 4, records: records),
+            Workout(name: "Lateral Raises", weight: 20, reps: 10, sets: 4, records: records),
+            Workout(name: "Bent Over Dumbbell Flies", weight: 20, reps: 10, sets: 4, records: records)
+        ]),
+        WorkoutDay(name: "Legs", emoji: "🦵", streak: 3, lastWorkoutDay: Date("2022-12-26"), workouts: [
+            Workout(name: "Leg Press", weight: 205, reps: 10, sets: 4, records: records),
+            Workout(name: "Leg Curls", weight: 75, reps: 10, sets: 4, records: records),
+            Workout(name: "Leg Extensions", weight: 75, reps: 10, sets: 4, records: records),
+            Workout(name: "Calf Raises", weight: 105, reps: 10, sets: 4, records: records)
+        ]),
+        WorkoutDay(name: "Arms", emoji: "💪", streak: 3, lastWorkoutDay: Date("2022-12-26"), workouts: [
+            Workout(name: "Concentration Curls", weight: 30, reps: 10, sets: 4, records: records),
+            Workout(name: "Tricep Kick-Back", weight: 17.5, reps: 10, sets: 4, records: records),
+            Workout(name: "Triangle Pushups", weight: 155, reps: 15, sets: 4, records: records)
+        ]),
+        WorkoutDay(name: "Shoulders", emoji: "🤷‍♂️", streak: 3, lastWorkoutDay: Date("2022-12-26"), workouts: [
+            Workout(name: "Dumbbell Shoulder Press", weight: 45, reps: 10, sets: 4, records: records),
+            Workout(name: "Lateral Raises", weight: 20, reps: 10, sets: 4, records: records),
+            Workout(name: "Bent Over Dumbbell Flies", weight: 20, reps: 10, sets: 4, records: records)
+        ]),
+        WorkoutDay(name: "Legs", emoji: "🦵", streak: 3, lastWorkoutDay: Date("2022-12-26"), workouts: [
+            Workout(name: "Leg Press", weight: 205, reps: 10, sets: 4, records: records),
+            Workout(name: "Leg Curls", weight: 75, reps: 10, sets: 4, records: records),
+            Workout(name: "Leg Extensions", weight: 75, reps: 10, sets: 4, records: records),
+            Workout(name: "Calf Raises", weight: 105, reps: 10, sets: 4, records: records)
+        ]),
+        WorkoutDay(name: "Arms", emoji: "💪", streak: 3, lastWorkoutDay: Date("2022-12-26"), workouts: [
             Workout(name: "Concentration Curls", weight: 30, reps: 10, sets: 4, records: records),
             Workout(name: "Tricep Kick-Back", weight: 17.5, reps: 10, sets: 4, records: records),
             Workout(name: "Triangle Pushups", weight: 155, reps: 15, sets: 4, records: records)
