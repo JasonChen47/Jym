@@ -17,9 +17,9 @@ struct WorkoutChartView: View {
                     HStack {
                         Text(workout.name)
                             .font(.system(size: 20))
+                            .foregroundColor(.white)
                         Spacer()
                     }
-                    
                     Chart {
                         ForEach(workout.records) { record in
                             BarMark(x: .value("Date", record.date, unit: .day), y: .value("Count", record.weight))
@@ -33,7 +33,8 @@ struct WorkoutChartView: View {
             }
         }
         .navigationTitle(workoutDay.name)
-        
+        .background(Color("royalBlue"))
+        .toolbarBackground(Color("royalBlue"), for: .navigationBar)
     }
 }
 

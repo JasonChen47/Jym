@@ -24,11 +24,6 @@ struct WorkoutDaysView: View {
             GridItem(.flexible(), spacing: spacing),
             GridItem(.flexible(), spacing: spacing)
         ]
-        let df: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.setLocalizedDateFormatFromTemplate("M/dd")
-            return formatter
-        }()
         let dfLong: DateFormatter = {
             let formatter = DateFormatter()
             formatter.setLocalizedDateFormatFromTemplate("M/dd/yy")
@@ -128,56 +123,7 @@ struct WorkoutDaysView: View {
                         NavigationLink {
                             WorkoutView(workoutDay: $workoutDay)
                         } label: {
-                            Rectangle()
-                                .fill(.linearGradient(
-                                    Gradient(colors:[Color("royalBlueLight"), Color("royalBlueLight").opacity(0.5)]),
-                                startPoint: UnitPoint(x: 0, y: 0.5),
-                                endPoint: UnitPoint(x: 1, y: 0.5)
-                            ))
-                                .aspectRatio(1.5, contentMode: .fill)
-                                .cornerRadius(cornerRadius)
-                                .overlay(
-                                        VStack {
-                                            HStack {
-                                                Text(workoutDay.name)
-                                                    .foregroundColor(Color("yellowText"))
-                                                    .bold()
-                                                Spacer()
-                                            }
-                                            HStack {
-                                                ZStack {
-                                                    Circle()
-                                                        .foregroundColor(Color("royalBlue"))
-                                                        .frame(width: width*0.15, height: width*0.15, alignment: .center)
-//                                                        .overlay(
-//                                                            Circle()
-//                                                                .stroke(Color("angelYellow"), lineWidth: outlineSize)
-//                                                        )
-                                                    Text(workoutDay.emoji)
-                                                        .font(.system(size: 30))
-                                                }
-                                                Spacer()
-                                                VStack {
-                                                    HStack {
-                                                        Spacer()
-                                                        Image(systemName: "flame")
-                                                        Text(String(mainWorkoutDay.streak))
-                                                    }
-                                                    HStack {
-                                                        Spacer()
-                                                        Text(df.string(from: mainWorkoutDay.lastWorkoutDay))
-                                                    }
-                                                }
-                                                Spacer()
-                                            }
-                                            Spacer()
-                                        }
-                                            .padding()
-                                )
-//                                .overlay(
-//                                    RoundedRectangle(cornerRadius: cornerRadius)
-//                                        .strokeBorder(Color("angelYellow"), lineWidth: outlineSize)
-//                                )
+                            CardView(workoutDay: $workoutDay)
                         }
                         
                     }

@@ -74,7 +74,6 @@ struct WorkoutView: View {
             .scrollContentBackground(.hidden)
             Spacer()
         }
-        .navigationTitle(workoutDay.name)
         .background(Color("royalBlue"))
         .toolbarBackground(Color("royalBlue"), for: .navigationBar)
     }

@@ -21,10 +21,12 @@ struct WorkoutTabView: View {
                 .tabItem {
                     Label("Chart", systemImage: "chart.bar.xaxis")
                 }
+                .toolbarBackground(Color("royalBlue"), for: .tabBar)
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")
                 }
+                .toolbarBackground(Color("royalBlue"), for: .tabBar)
         }
         
     }

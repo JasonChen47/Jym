@@ -11,25 +11,34 @@ import Charts
 struct MainChartView: View {
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
+    let backTextColor = Color.white
+    let subtitleSize: CGFloat = 20
+    let cornerRadius: CGFloat = 10
+    let outlineSize: CGFloat = 1
     @Binding var sampleWorkoutDays: [WorkoutDay]
     let sampleSets = Sets.sampleData
-    let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
+    
     var body: some View {
+        let spacing: CGFloat = width*0.05
+        let columns = [
+            GridItem(.flexible(), spacing: spacing),
+            GridItem(.flexible(), spacing: spacing)
+        ]
         NavigationView {
             ScrollView {
                 HStack {
                     Text("Charts")
-                        .font(.system(size: 37))
+                        .foregroundColor(backTextColor)
+                        .font(.system(size: 30))
                         .bold()
                     Spacer()
                 }
                 .padding([.bottom])
                 HStack {
-                    Text("This past month:")
+                    Text("Activity Report")
                         .bold()
+                        .foregroundColor(backTextColor)
+                        .font(.system(size: subtitleSize))
                     Spacer()
                 }
                 Chart {
@@ -37,17 +46,41 @@ struct MainChartView: View {
                         BarMark(x: .value("Date", sets.date, unit: .day), y: .value("Count", sets.setCount))
                     }
                 }
-                .aspectRatio(1.618, contentMode: .fill)
                 .chartXAxis {
-                    AxisMarks(values: .stride(by: .day))
+                    AxisMarks(values: .stride(by: .weekOfYear)) { value in
+                        if let date = value.as(Date.self) {
+                            AxisValueLabel {
+                                Text(date, format: .dateTime.month().day())
+                                    .foregroundColor(.white)
+                            }
+                        }
+                    }
                 }
+                .chartYAxis {
+                    AxisMarks() { value in
+                        if let sets = value.as(Int.self) {
+                            AxisValueLabel {
+                                Text(String(sets))
+                                    .foregroundColor(.white)
+                            }
+                        }
+                    }
+                }
+                .foregroundColor(Color("gold"))
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: cornerRadius)
+                        .strokeBorder(Color("angelYellow"), lineWidth: outlineSize)
+                )
                 HStack {
-                    Text("See how you're improving: ")
+                    Text("See How You're Improving")
                         .padding([.top], width*0.05)
                         .bold()
+                        .foregroundColor(backTextColor)
+                        .font(.system(size: subtitleSize))
                     Spacer()
                 }
-                LazyVGrid(columns: columns) {
+                LazyVGrid(columns: columns, spacing: spacing) {
                     ForEach($sampleWorkoutDays) { $workoutDay in
                         NavigationLink {
                             VStack {
@@ -55,29 +88,7 @@ struct MainChartView: View {
                             }
                             .navigationTitle($workoutDay.name)
                         } label: {
-                            Color.black
-                                .aspectRatio(contentMode: .fill)
-                                .cornerRadius(5)
-                                .overlay(
-                                    VStack {
-                                        HStack {
-                                            Text(workoutDay.name)
-                                                .foregroundColor(.white)
-                                                .bold()
-                                            Spacer()
-                                        }
-                                        .padding([.leading, .top])
-                                        ZStack {
-                                            Circle()
-                                                .foregroundColor(.white)
-                                                .frame(width: width*0.25, height: width*0.25, alignment: .center)
-                                                .opacity(0.1)
-                                            Text(workoutDay.emoji)
-                                                .font(.system(size: 70))
-                                        }
-                                        Spacer()
-                                    }
-                                )
+                            CardView(workoutDay: $workoutDay)
                         }
                         
                     }
@@ -86,8 +97,9 @@ struct MainChartView: View {
             }
             .scrollIndicators(.hidden)
             .padding([.leading, .trailing], width*0.05)
+            .background(Color("royalBlue"))
+            .toolbarBackground(Color("royalBlue"), for: .navigationBar)
         }
-        
     }
 }
 
