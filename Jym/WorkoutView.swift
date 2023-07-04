@@ -55,6 +55,7 @@ struct WorkoutView: View {
                     } label: {
                         EmptyView()
                     }
+                    .listRowSeparatorTint(.yellow)
                     .background(
                         HStack {
                             Text(workout.name)
@@ -67,6 +68,7 @@ struct WorkoutView: View {
                         }
                     )
                 }
+                
                 .listRowBackground(
                     Color("royalBlueLight")
                 )

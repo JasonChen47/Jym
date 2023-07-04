@@ -6,149 +6,161 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct WorkoutDaysView: View {
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     @Binding var sampleWorkoutDays: [WorkoutDay]
     @Binding var mainWorkoutDay: WorkoutDay
+    @State private var searchText = ""
     let cornerRadius: CGFloat = 10
     let subtitleSize: CGFloat = 20
     let dateSize: CGFloat = 15
-    let outlineSize: CGFloat = 2
-    let emojiSize: CGFloat = 30
+    let outlineSize: CGFloat = 1
+    let emojiSize: CGFloat = 35
 
     var body: some View {
-        let spacing: CGFloat = width*0.05
-        let columns = [
-            GridItem(.flexible(), spacing: spacing),
-            GridItem(.flexible(), spacing: spacing)
-        ]
-        let dfLong: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.setLocalizedDateFormatFromTemplate("M/dd/yy")
-            return formatter
-        }()
-        
-        NavigationView {
-            ScrollView {
-                HStack {
-                    Text(Date.now, style: .date)
-                        .font(.system(size: dateSize))
-                        .foregroundColor(Color.gray)
-                    Spacer()
-                }
-                Spacer()
-                HStack {
-                    Text("Good afternoon John. \nLet's get to it.")
-                        .font(.system(size: 25))
-                        .bold()
-                        .foregroundColor(Color.white)
-                    Spacer()
-                }
-                .padding([.bottom])
-                HStack {
-                    Text("Recommended Next Workout")
-                        .bold()
-                        .foregroundColor(Color("backText"))
-                        .font(.system(size: subtitleSize))
-                    Spacer()
-                }
-                NavigationLink {
-                    WorkoutView(workoutDay: $mainWorkoutDay)
-                } label: {
-                    Rectangle()
-                        .fill(.linearGradient(
-                            Gradient(colors:[Color("gold").opacity(0.9), Color("gold").opacity(0.7)]),
-                        startPoint: UnitPoint(x: 0, y: 0.5),
-                        endPoint: UnitPoint(x: 1, y: 0.5)
-                    ))
-                        .cornerRadius(cornerRadius)
-                        .aspectRatio(4, contentMode: .fit)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: cornerRadius)
-                                .strokeBorder(Color("angelYellow"), lineWidth: outlineSize)
-                        )
-                        .overlay(
-                            HStack {
+        NavigationStack {
+            List {
+                Section {
+                    VStack {
+                        HStack {
+                            Text(Date.now, style: .date)
+                                .font(.system(size: dateSize))
+                                .foregroundColor(Color.gray)
+                            Spacer()
+                        }
+                        Spacer()
+                        HStack {
+                            Text("Workout Days")
+                                .foregroundColor(.white)
+                                .font(.system(size: 30))
+                                .bold()
+                            Spacer()
+                        }
+                        HStack {
+                            VStack {
                                 ZStack {
                                     Circle()
-                                        .foregroundColor(Color("royalBlue"))
-                                        .frame(width: width*0.15, height: width*0.15, alignment: .center)
-                                        .overlay(
-                                            Circle()
-                                                .stroke(Color("angelYellow"), lineWidth: outlineSize)
-                                        )
-                                    Text(mainWorkoutDay.emoji)
-                                        .font(.system(size: 30))
+                                        .stroke(Color.red, lineWidth: 10)
+                                        .frame(width: width/3)
+                                    Circle()
+                                        .stroke(Color("angelYellow"), lineWidth: 10)
+                                        .frame(width: width/4)
+                                    Circle()
+                                        .stroke(Color("gold"), lineWidth: 10)
+                                        .frame(width: width/6)
                                 }
+                                Text("Arms")
+                            }
+                            VStack {
                                 VStack {
-                                    HStack {
-                                        Text(mainWorkoutDay.name)
-                                            .font(.system(size: subtitleSize))
-                                            .foregroundColor(Color("blueText"))
-                                            .bold()
-                                        Spacer()
+                                    ZStack {
+                                        Circle()
+                                            .stroke(Color.red, lineWidth: 10)
+                                            .aspectRatio(contentMode: .fit)
                                     }
-                                    Spacer()
-                                    HStack {
-                                        Image(systemName: "flame")
-                                        Text(String(mainWorkoutDay.streak))
-                                            
-                                        + Text(" Weeks")
-                                        Spacer()
-                                        Image(systemName: "dumbbell")
-                                        Text(dfLong.string(from: mainWorkoutDay.lastWorkoutDay))
-                                        Spacer()
-                                    }
-                                    
+                                    Text("Back")
+                                        .fixedSize()
                                 }
-                                .padding([.leading])
+                                .padding()
+                                ZStack {
+                                    Circle()
+                                        .stroke(Color.red, lineWidth: 10)
+                                        .frame(width: width/7)
+                                    Circle()
+                                        .stroke(Color("angelYellow"), lineWidth: 10)
+                                        .frame(width: width/15)
+                                }
+                                Text("Legs")
+                            }
+                            .padding([.leading, .trailing])
+                            VStack {
+                                ZStack {
+                                    Circle()
+                                        .stroke(Color.red, lineWidth: 10)
+                                        .frame(width: width/5)
+                                    Circle()
+                                        .stroke(Color("angelYellow"), lineWidth: 10)
+                                        .frame(width: width/8)
+                                }
+                                Text("Shoulders")
                                 Spacer()
                             }
-                                .padding()
-                            
-                        )
-                                        }
-                                HStack {
-                    Text("Browse Workouts")
-                        .padding([.top], width*0.05)
-                        .bold()
-                        .foregroundColor(Color("backText"))
-                        .font(.system(size: subtitleSize))
-                    Spacer()
+                        }
+                        .padding([.leading, .trailing])
+                    }
+                } footer: {
+                    Text("The outermost rings represent streaks for each workout day. Ten weeks in a row yields a full circle. The four workouts with the longest streaks are shown.")
+                        .padding([.leading, .trailing])
+                        .foregroundColor(.gray)
                 }
-                LazyVGrid(columns: columns, spacing: spacing) {
+                .padding([.bottom])
+                .font(.system(size: 12))
+                .listRowInsets(EdgeInsets())
+                .listRowBackground(
+                    Color("royalBlue")
+                )
+                Section(header: Text("Recommended Next Workout")) {
+                    NavigationLink {
+                        WorkoutView(workoutDay: $mainWorkoutDay)
+                    } label: {
+                        CardView(workoutDay: $mainWorkoutDay)
+                    }
+                    .listRowSeparatorTint(.yellow)
+                    .foregroundColor(Color("angelYellow"))
+                    .listRowBackground(
+                        Color("royalBlueLight")
+                    )
+                    .listRowInsets(EdgeInsets())
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10, style: .circular)
+                            .stroke(Color("angelYellow"), lineWidth: 2)
+                            
+                    )
+                }
+                .headerProminence(.increased)
+                Section(header: Text("Browse Workouts")) {
                     ForEach($sampleWorkoutDays) { $workoutDay in
                         NavigationLink {
                             WorkoutView(workoutDay: $workoutDay)
                         } label: {
                             CardView(workoutDay: $workoutDay)
                         }
-                        
+                        .listRowSeparatorTint(.yellow)
+                        .foregroundColor(Color("gold"))
+                        .listRowBackground(
+                            Color("royalBlueLight")
+                        )
                     }
                 }
-                Spacer()
+                .headerProminence(.increased)
             }
+            .padding(.top, -35)
+            .foregroundColor(.white)
+            .scrollContentBackground(.hidden)
             .scrollIndicators(.hidden)
             .toolbar {
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
-                        .foregroundColor(Color("angelYellow"))
                 }
                 ToolbarItem {
                     Button{
                         print("hi")
                     } label: {
                         Label("Add Item", systemImage: "plus")
-                            .foregroundColor(Color("angelYellow"))
                     }
                 }
+                
             }
-            .padding([.leading, .trailing], width*0.05)
             .background(Color("royalBlue"))
             .toolbarBackground(Color("royalBlue"), for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
         }
+        .accentColor(Color("angelYellow"))
     }
     
     private func getStreak(workoutDay: WorkoutDay) {

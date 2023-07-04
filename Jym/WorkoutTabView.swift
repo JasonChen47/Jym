@@ -19,7 +19,7 @@ struct WorkoutTabView: View {
                 .toolbarBackground(Color("royalBlue"), for: .tabBar)
             MainChartView(sampleWorkoutDays: $workoutDays)
                 .tabItem {
-                    Label("Chart", systemImage: "chart.bar.xaxis")
+                    Label("Charts", systemImage: "chart.bar.xaxis")
                 }
                 .toolbarBackground(Color("royalBlue"), for: .tabBar)
             SettingsView()

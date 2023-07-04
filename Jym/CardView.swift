@@ -13,62 +13,85 @@ struct CardView: View {
     let height = UIScreen.main.bounds.size.height
     let cornerRadius: CGFloat = 10
     let subtitleSize: CGFloat = 20
-    let dateSize: CGFloat = 15
+    let smallFont: CGFloat = 15
+    let dateSize: CGFloat = 10
     let outlineSize: CGFloat = 2
-    let emojiSize: CGFloat = 30
+    let emojiSize: CGFloat = 32
     var body: some View {
         let df: DateFormatter = {
             let formatter = DateFormatter()
-            formatter.setLocalizedDateFormatFromTemplate("M/dd")
+            formatter.setLocalizedDateFormatFromTemplate("M/dd/yy")
             return formatter
         }()
-        Rectangle()
-            .fill(.linearGradient(
-                Gradient(colors:[Color("royalBlueLight"), Color("royalBlueLight").opacity(0.5)]),
-            startPoint: UnitPoint(x: 0, y: 0.5),
-            endPoint: UnitPoint(x: 1, y: 0.5)
-        ))
-            .aspectRatio(1.5, contentMode: .fill)
-            .cornerRadius(cornerRadius)
-            .overlay(
-                    VStack {
-                        HStack {
-                            Text(workoutDay.name)
-                                .foregroundColor(Color("yellowText"))
-                                .bold()
-                            Spacer()
-                        }
-                        HStack {
-                            ZStack {
-                                Circle()
-                                    .foregroundColor(Color("royalBlue"))
-                                    .frame(width: width*0.15, height: width*0.15, alignment: .center)
-                                Text(workoutDay.emoji)
-                                    .font(.system(size: 30))
-                            }
-                            Spacer()
-                            VStack {
-                                HStack {
-                                    Spacer()
-                                    Image(systemName: "flame")
-                                    Text(String(workoutDay.streak))
-                                }
-                                HStack {
-                                    Spacer()
-                                    Text(df.string(from: workoutDay.lastWorkoutDay))
-                                }
-                            }
-                            Spacer()
-                        }
-                        Spacer()
+        let dfWeek: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.setLocalizedDateFormatFromTemplate("EEEE")
+            return formatter
+        }()
+        HStack {
+            ZStack{
+//                Circle()
+//                    .foregroundColor(Color("royalBlue"))
+//                    .frame(width: width*0.13, height: width*0.13, alignment: .center)
+////                    .opacity(0.5)
+                Text(workoutDay.emoji)
+                    .font(.system(size: emojiSize))
+            }
+            .padding([.trailing, .leading])
+            VStack {
+                HStack {
+                    Text(workoutDay.name)
+                        .bold()
+//                        .font(.system(size: 20))
+                        .foregroundColor(.white)
+                    Spacer()
+                }
+//                Spacer()
+//                    .frame(height: 7)
+//                HStack{
+//                    Image(systemName: "flame")
+//                    Text(String(workoutDay.streak))
+//                    Text("Weeks")
+//                    Spacer()
+//                }
+                .font(.system(size: smallFont))
+            }
+            Spacer()
+            VStack {
+                HStack {
+                    let weekAgo = Calendar.current.date(byAdding: .day, value: -6, to: Date())
+                    if workoutDay.lastWorkoutDay > weekAgo! {
+                        Text(dfWeek.string(from: workoutDay.lastWorkoutDay))
                     }
-                        .padding()
-            )
+                    else {
+                        Text(df.string(from: workoutDay.lastWorkoutDay))
+                    }
+                }
+                .font(.system(size: smallFont))
+            }
+        }
     }
 }
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(workoutDay: .constant(WorkoutDay.sampleData[0]))
+        NavigationView {
+            List {
+                NavigationLink {
+                    Text("hi")
+                } label: {
+                    CardView(workoutDay: .constant(WorkoutDay.sampleData[0]))
+                }
+                .listRowSeparatorTint(.yellow)
+                .foregroundColor(Color("gold"))
+                .listRowBackground(
+                    Color("royalBlueLight")
+                )
+            }
+            .scrollContentBackground(.hidden)
+            .background(Color("royalBlue"))
+        }
+        
     }
+    
 }

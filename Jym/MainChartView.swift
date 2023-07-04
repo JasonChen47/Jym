@@ -15,90 +15,116 @@ struct MainChartView: View {
     let subtitleSize: CGFloat = 20
     let cornerRadius: CGFloat = 10
     let outlineSize: CGFloat = 1
+    let dateSize: CGFloat = 15
     @Binding var sampleWorkoutDays: [WorkoutDay]
     let sampleSets = Sets.sampleData
     
     var body: some View {
-        let spacing: CGFloat = width*0.05
-        let columns = [
-            GridItem(.flexible(), spacing: spacing),
-            GridItem(.flexible(), spacing: spacing)
-        ]
         NavigationView {
-            ScrollView {
-                HStack {
-                    Text("Charts")
-                        .foregroundColor(backTextColor)
-                        .font(.system(size: 30))
-                        .bold()
+            List {
+                VStack {
+                    HStack {
+                        Text(Date.now, style: .date)
+                            .font(.system(size: dateSize))
+                            .foregroundColor(Color.gray)
+                        Spacer()
+                    }
                     Spacer()
-                }
-                .padding([.bottom])
-                HStack {
-                    Text("Activity Report")
-                        .bold()
-                        .foregroundColor(backTextColor)
-                        .font(.system(size: subtitleSize))
-                    Spacer()
-                }
-                Chart {
-                    ForEach(sampleSets) { sets in
-                        BarMark(x: .value("Date", sets.date, unit: .day), y: .value("Count", sets.setCount))
+                    HStack {
+                        Text("Charts")
+                            .foregroundColor(.white)
+                            .font(.system(size: 30))
+                            .bold()
+                        Spacer()
                     }
                 }
-                .chartXAxis {
-                    AxisMarks(values: .stride(by: .weekOfYear)) { value in
-                        if let date = value.as(Date.self) {
-                            AxisValueLabel {
-                                Text(date, format: .dateTime.month().day())
-                                    .foregroundColor(.white)
-                            }
-                        }
-                    }
-                }
-                .chartYAxis {
-                    AxisMarks() { value in
-                        if let sets = value.as(Int.self) {
-                            AxisValueLabel {
-                                Text(String(sets))
-                                    .foregroundColor(.white)
-                            }
-                        }
-                    }
-                }
-                .foregroundColor(Color("gold"))
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: cornerRadius)
-                        .strokeBorder(Color("angelYellow"), lineWidth: outlineSize)
+                .listRowInsets(EdgeInsets())
+                .listRowBackground(
+                    Color("royalBlue")
                 )
-                HStack {
-                    Text("See How You're Improving")
-                        .padding([.top], width*0.05)
-                        .bold()
-                        .foregroundColor(backTextColor)
-                        .font(.system(size: subtitleSize))
-                    Spacer()
+                Section(header: Text("Activity Report")) {
+                    Chart {
+                        ForEach(sampleSets) { sets in
+                            BarMark(x: .value("Date", sets.date, unit: .day), y: .value("Count", sets.setCount))
+                        }
+                    }
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(
+                        Color("royalBlue")
+                    )
+                    .chartXAxis {
+                        AxisMarks(values: .stride(by: .weekOfYear)) { value in
+                            if let date = value.as(Date.self) {
+                                AxisValueLabel {
+                                    Text(date, format: .dateTime.month().day())
+                                        .foregroundColor(.white)
+                                }
+                            }
+                        }
+                    }
+                    .chartYAxis {
+                        AxisMarks() { value in
+                            if let sets = value.as(Int.self) {
+                                AxisValueLabel {
+                                    Text(String(sets))
+                                        .foregroundColor(.white)
+                                }
+                            }
+                        }
+                    }
+                    .foregroundStyle(
+                        .linearGradient(
+                            Gradient(colors:[Color("angelYellow").opacity(0.9), Color.red.opacity(0.7)]),
+                            startPoint: UnitPoint(x: 0.5, y: 0),
+                            endPoint: UnitPoint(x: 0.5, y: 1)
+                    )
+                    )
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: cornerRadius)
+                            .strokeBorder(Color("angelYellow"), lineWidth: outlineSize)
+                    )
+                    .background(
+                        Color("royalBlueLight")
+                    )
                 }
-                LazyVGrid(columns: columns, spacing: spacing) {
+                .headerProminence(.increased)
+                Section(header: Text("See how you're improving")) {
                     ForEach($sampleWorkoutDays) { $workoutDay in
                         NavigationLink {
-                            VStack {
-                                WorkoutChartView(workoutDay: $workoutDay)
-                            }
-                            .navigationTitle($workoutDay.name)
+                            WorkoutChartView(workoutDay: $workoutDay)
                         } label: {
                             CardView(workoutDay: $workoutDay)
                         }
-                        
+                        .listRowSeparatorTint(.yellow)
+                        .foregroundColor(Color("gold"))
+                        .listRowBackground(
+                            Color("royalBlueLight")
+                        )
                     }
                 }
-                Spacer()
+                .headerProminence(.increased)
             }
+            .padding(.top, -35)
+            .foregroundColor(.white)
+            .scrollContentBackground(.hidden)
             .scrollIndicators(.hidden)
-            .padding([.leading, .trailing], width*0.05)
+            .toolbar {
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
+                ToolbarItem {
+                    Button{
+                        print("hi")
+                    } label: {
+                        Label("Add Item", systemImage: "plus")
+                    }
+                }
+            }
             .background(Color("royalBlue"))
             .toolbarBackground(Color("royalBlue"), for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
         }
     }
 }
