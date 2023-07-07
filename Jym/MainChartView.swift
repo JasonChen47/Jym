@@ -77,7 +77,7 @@ struct MainChartView: View {
                             Gradient(colors:[Color("angelYellow").opacity(0.9), Color.red.opacity(0.7)]),
                             startPoint: UnitPoint(x: 0.5, y: 0),
                             endPoint: UnitPoint(x: 0.5, y: 1)
-                    )
+                        )
                     )
                     .padding()
                     .overlay(
@@ -92,7 +92,7 @@ struct MainChartView: View {
                 Section(header: Text("See how you're improving")) {
                     ForEach($sampleWorkoutDays) { $workoutDay in
                         NavigationLink {
-                            WorkoutChartView(workoutDay: $workoutDay)
+                            WorkoutDayChartView(workoutDay: $workoutDay)
                         } label: {
                             CardView(workoutDay: $workoutDay)
                         }

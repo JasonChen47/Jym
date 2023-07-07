@@ -8,7 +8,7 @@
 import Foundation
 
 // Struct for workout record
-struct Record: Identifiable {
+struct Record: Identifiable, Equatable {
     let id: UUID
     var date: Date
     var weight: Double
@@ -21,5 +21,8 @@ struct Record: Identifiable {
         self.weight = weight
         self.reps = reps
         self.sets = sets
+    }
+    static func == (lhs: Record, rhs: Record) -> Bool {
+        return lhs.date == rhs.date && lhs.weight == rhs.weight
     }
 }

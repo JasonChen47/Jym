@@ -28,6 +28,14 @@ struct WorkoutDay: Identifiable {
 
 extension WorkoutDay {
     static let records: [Record] = [
+        Record(date: Date("2023-06-01"), weight: 80, reps: 10, sets: 4),
+        Record(date: Date("2023-06-02"), weight: 85, reps: 10, sets: 4),
+        Record(date: Date("2023-06-03"), weight: 80, reps: 10, sets: 4),
+        Record(date: Date("2023-06-04"), weight: 85, reps: 10, sets: 4),
+        Record(date: Date("2023-06-05"), weight: 85, reps: 10, sets: 4),
+        Record(date: Date("2023-06-06"), weight: 90, reps: 10, sets: 4),
+        Record(date: Date("2023-06-07"), weight: 90, reps: 10, sets: 4),
+        Record(date: Date("2023-06-08"), weight: 90, reps: 10, sets: 4),
         Record(date: Date("2023-06-09"), weight: 80, reps: 10, sets: 4),
         Record(date: Date("2023-06-10"), weight: 85, reps: 10, sets: 4),
         Record(date: Date("2023-06-11"), weight: 85, reps: 10, sets: 4),
@@ -47,7 +55,15 @@ extension WorkoutDay {
         Record(date: Date("2023-06-25"), weight: 125, reps: 10, sets: 4),
         Record(date: Date("2023-06-26"), weight: 130, reps: 10, sets: 4),
         Record(date: Date("2023-06-27"), weight: 130, reps: 10, sets: 4),
-        Record(date: Date("2023-06-28"), weight: 130, reps: 10, sets: 4)
+        Record(date: Date("2023-06-28"), weight: 130, reps: 10, sets: 4),
+        Record(date: Date("2023-06-29"), weight: 120, reps: 10, sets: 4),
+        Record(date: Date("2023-06-30"), weight: 125, reps: 10, sets: 4),
+        Record(date: Date("2023-07-01"), weight: 120, reps: 10, sets: 4),
+        Record(date: Date("2023-07-02"), weight: 125, reps: 10, sets: 4),
+        Record(date: Date("2023-07-03"), weight: 125, reps: 10, sets: 4),
+        Record(date: Date("2023-07-04"), weight: 125, reps: 10, sets: 4),
+        Record(date: Date("2023-07-05"), weight: 130, reps: 10, sets: 4),
+        Record(date: Date("2023-07-06"), weight: 130, reps: 10, sets: 4)
     ]
     static let sampleData: [WorkoutDay] =
     [

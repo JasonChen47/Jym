@@ -104,7 +104,7 @@ struct WorkoutDaysView: View {
                 )
                 Section(header: Text("Recommended Next Workout")) {
                     NavigationLink {
-                        WorkoutView(workoutDay: $mainWorkoutDay)
+                        WorkoutDayView(workoutDay: $mainWorkoutDay)
                     } label: {
                         CardView(workoutDay: $mainWorkoutDay)
                     }
@@ -125,7 +125,7 @@ struct WorkoutDaysView: View {
                 Section(header: Text("Browse Workouts")) {
                     ForEach($sampleWorkoutDays) { $workoutDay in
                         NavigationLink {
-                            WorkoutView(workoutDay: $workoutDay)
+                            WorkoutDayView(workoutDay: $workoutDay)
                         } label: {
                             CardView(workoutDay: $workoutDay)
                         }
@@ -142,8 +142,11 @@ struct WorkoutDaysView: View {
             .foregroundColor(.white)
             .scrollContentBackground(.hidden)
             .scrollIndicators(.hidden)
+            .background(Color("royalBlue"))
+            .toolbarBackground(Color("royalBlue"), for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .accentColor(Color("angelYellow"))
             .toolbar {
-                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
@@ -154,13 +157,8 @@ struct WorkoutDaysView: View {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
-                
             }
-            .background(Color("royalBlue"))
-            .toolbarBackground(Color("royalBlue"), for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
         }
-        .accentColor(Color("angelYellow"))
     }
     
     private func getStreak(workoutDay: WorkoutDay) {
