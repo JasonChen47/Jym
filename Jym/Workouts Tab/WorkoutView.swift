@@ -34,19 +34,11 @@ struct WorkoutView: View {
             return sorted.suffix(3)
         }
         List {
-            VStack {
+            Section {
                 HStack {
                     Text(Date.now, style: .date)
                         .font(Font.subheadline)
                         .foregroundColor(Color.gray)
-                    Spacer()
-                }
-                Spacer()
-                HStack {
-                    Text(workout.name)
-                        .foregroundColor(.white)
-                        .font(.system(size: 30))
-                        .bold()
                     Spacer()
                 }
             }
@@ -194,7 +186,6 @@ struct WorkoutView: View {
 //            WorkoutLogView(workout: $workout)
 ////            MainChartView(sampleWorkoutDays: $workoutDays)
 //        }
-        .padding(.top, -35)
         .foregroundColor(.white)
         .scrollContentBackground(.hidden)
         .scrollIndicators(.hidden)
@@ -202,6 +193,9 @@ struct WorkoutView: View {
         .toolbarBackground(Color("royalBlue"), for: .navigationBar)
 //        .toolbarBackground(.visible, for: .navigationBar)
         .accentColor(Color("angelYellow"))
+        .navigationTitle(workout.name)
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
         .onChange(of: sharedData.presented) { presented in
         }
     }

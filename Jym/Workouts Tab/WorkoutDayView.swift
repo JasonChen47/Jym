@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct WorkoutDayView: View {
-    @State var refresh: Bool = false
-    @State private var id = UUID()
-//    @State private var num = 8
     @EnvironmentObject var sharedData: SharedData
     @Environment(\.dismiss) var dismiss
     @Binding var workoutDay: WorkoutDay
@@ -19,7 +16,6 @@ struct WorkoutDayView: View {
     let height = UIScreen.main.bounds.size.height
     
     var body: some View {
-        var num = 8
         VStack {
             Rectangle()
                 .fill(.linearGradient(
@@ -29,20 +25,7 @@ struct WorkoutDayView: View {
             ))
                 .aspectRatio(1.618, contentMode: .fit)
                 .overlay(
-                    VStack {
-                        HStack {
-                            Text(workoutDay.name)
-                                .font(.system(size: 37))
-                                .foregroundColor(.white)
-                                .bold()
-                            Text(String(num))
-                                .font(.system(size: 37))
-                                .foregroundColor(.white)
-                            Spacer()
-                        }
-                        .padding([.leading, .top])
-                        Spacer()
-                    }
+                    EmptyView()
                         .background(
                             HStack {
                                 ZStack {
@@ -86,9 +69,11 @@ struct WorkoutDayView: View {
                     Color("royalBlueLight")
                 )
             }
-            
             .scrollContentBackground(.hidden)
             Spacer()
+        }
+        .navigationDestination(for: Binding<Workout>.self) { workout in
+            WorkoutView(workout: workout)
         }
         .background(Color("royalBlue"))
         .toolbarBackground(Color("royalBlue"), for: .navigationBar)
@@ -104,16 +89,11 @@ struct WorkoutDayView: View {
                 }
             }
         }
+        .navigationTitle(workoutDay.name)
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
         .onChange(of: sharedData.presented) { presented in
-//            refresh.toggle()
-//            id = UUID()
-            num += 1
-            print(num)
         }
-        .navigationDestination(for: Binding<Workout>.self) { workout in
-            WorkoutView(workout: workout)
-        }
-//        .id(id)
     }
         
 }

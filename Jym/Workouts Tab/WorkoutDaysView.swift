@@ -116,12 +116,7 @@ struct WorkoutDaysView: View {
                     NavigationLink(value: $mainWorkoutDay) {
                         CardView(workoutDay: $mainWorkoutDay)
                     }
-//                    Button {
-//                        intPath.append(1)
-//                        print("hi")
-//                    } label: {
-//                        CardView(workoutDay: $mainWorkoutDay)
-//                    }
+
                     
                     .listRowSeparatorTint(.yellow)
                     .foregroundColor(Color("angelYellow"))
@@ -152,17 +147,14 @@ struct WorkoutDaysView: View {
                 }
                 .headerProminence(.increased)
             }
-            .navigationTitle("Workout Days")
             .navigationDestination(for: Binding<WorkoutDay>.self) { workoutDay in
                 WorkoutDayView(workoutDay: workoutDay, path: $path)
             }
-//            .padding(.top, -35)
             .foregroundColor(.white)
             .scrollContentBackground(.hidden)
             .scrollIndicators(.hidden)
             .background(Color("royalBlue"))
             .toolbarBackground(Color("royalBlue"), for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
             .accentColor(Color("angelYellow"))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -176,7 +168,9 @@ struct WorkoutDaysView: View {
                     }
                 }
             }
+            .navigationTitle("Workout Days")
             .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
         }
         .onChange(of: sharedData.presented) { presented in
             refresh.toggle()

@@ -39,18 +39,10 @@ struct WorkoutTabView: View {
                 }
                 .toolbarBackground(Color("royalBlue"), for: .tabBar)
                 .onChange(of: tappedTwice, perform: { tappedTwice in         guard tappedTwice else { return }
-                    withAnimation(.easeOut(duration: 3)) {
-                        sharedData.presented.toggle()
-                    }
                     workoutsPath = emptyPath
-//                    print(workoutsPath)
                     print("toggled")
                     self.tappedTwice = false
                 })
-                .onChange(of: tabSelection) { tabSelection in
-                  sharedData.presented.toggle()
-                    print("7")
-                }
                 .tag(0)
                 
                 
