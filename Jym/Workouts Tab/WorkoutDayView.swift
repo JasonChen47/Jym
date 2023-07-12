@@ -77,6 +77,7 @@ struct WorkoutDayView: View {
         }
         .background(Color("royalBlue"))
         .toolbarBackground(Color("royalBlue"), for: .navigationBar)
+        .toolbarBackground(Color("royalBlue"), for: .tabBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 EditButton()
@@ -89,9 +90,9 @@ struct WorkoutDayView: View {
                 }
             }
         }
-//        .navigationTitle(workoutDay.name)
-//        .toolbarColorScheme(.dark, for: .navigationBar)
-//        .toolbarBackground(.visible, for: .navigationBar)
+        .navigationTitle(workoutDay.name)
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
         .onChange(of: sharedData.presented) { presented in
         }
     }

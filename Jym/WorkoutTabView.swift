@@ -32,24 +32,28 @@ struct WorkoutTabView: View {
         )}
         TabView(selection: handler) {
             WorkoutDaysView(sampleWorkoutDays: $workoutDays, mainWorkoutDay: $mainWorkoutDay, path: $workoutsPath, intPath: $intPath)
-                
                 .tabItem {
                     Label("Workouts", systemImage: "dumbbell")
                 }
-                .toolbarBackground(Color("royalBlue"), for: .tabBar)
                 .onChange(of: tappedTwice, perform: { tappedTwice in         guard tappedTwice else { return }
                     workoutsPath = emptyPath
                     print("toggled")
                     self.tappedTwice = false
                 })
+                .toolbarBackground(Color("royalBlue"), for: .tabBar)
+                .toolbarBackground(.visible, for: .tabBar)
                 .tag(0)
                 
                 
             MainChartView(sampleWorkoutDays: $workoutDays)
                 .tabItem {
                     Label("Charts", systemImage: "chart.bar.xaxis")
-                }
+                        .background(Rectangle())
+                        .padding()
+                        .opacity(0)
+                } 
                 .toolbarBackground(Color("royalBlue"), for: .tabBar)
+                
                 .tag(1)
             SettingsView()
                 .tabItem {

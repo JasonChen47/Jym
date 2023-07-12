@@ -192,9 +192,9 @@ struct WorkoutView: View {
         .background(Color("royalBlue"))
         .toolbarBackground(Color("royalBlue"), for: .navigationBar)
         .accentColor(Color("angelYellow"))
-//        .navigationTitle(workout.name)
-//        .toolbarColorScheme(.dark, for: .navigationBar)
-//        .toolbarBackground(.visible, for: .navigationBar)
+        .navigationTitle(workout.name)
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
         .onChange(of: sharedData.presented) { presented in
         }
     }

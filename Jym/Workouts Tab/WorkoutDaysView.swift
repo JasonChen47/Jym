@@ -161,9 +161,9 @@ struct WorkoutDaysView: View {
                     }
                 }
             }
-//            .navigationTitle("Workout Days")
-//            .toolbarColorScheme(.dark, for: .navigationBar)
-//            .toolbarBackground(.visible, for: .navigationBar)
+            .navigationTitle("Workout Days")
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
             .onChange(of: sharedData.presented) { presented in
             }
         }
