@@ -36,14 +36,14 @@ struct WorkoutDaysView: View {
                                 .foregroundColor(Color.gray)
                             Spacer()
                         }
-                        Spacer()
-                        HStack {
-                            Text("Workout Days")
-                                .foregroundColor(.white)
-                                .font(.system(size: 30))
-                                .bold()
-                            Spacer()
-                        }
+//                        Spacer()
+//                        HStack {
+//                            Text("Workout Days")
+//                                .foregroundColor(.white)
+//                                .font(.system(size: 30))
+//                                .bold()
+//                            Spacer()
+//                        }
                         HStack {
                             VStack {
                                 ZStack {
@@ -152,16 +152,17 @@ struct WorkoutDaysView: View {
                 }
                 .headerProminence(.increased)
             }
+            .navigationTitle("Workout Days")
             .navigationDestination(for: Binding<WorkoutDay>.self) { workoutDay in
                 WorkoutDayView(workoutDay: workoutDay, path: $path)
             }
-            .padding(.top, -35)
+//            .padding(.top, -35)
             .foregroundColor(.white)
             .scrollContentBackground(.hidden)
             .scrollIndicators(.hidden)
             .background(Color("royalBlue"))
             .toolbarBackground(Color("royalBlue"), for: .navigationBar)
-//            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
             .accentColor(Color("angelYellow"))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -175,6 +176,7 @@ struct WorkoutDaysView: View {
                     }
                 }
             }
+            .toolbarColorScheme(.dark, for: .navigationBar)
         }
         .onChange(of: sharedData.presented) { presented in
             refresh.toggle()
@@ -183,6 +185,7 @@ struct WorkoutDaysView: View {
         }
         
     }
+        
     
     private func getStreak(workoutDay: WorkoutDay) {
         
