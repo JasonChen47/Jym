@@ -26,6 +26,18 @@ struct WorkoutDay: Identifiable {
     }
 }
 
+extension WorkoutDay: Hashable {
+    var identifier: String {
+        return UUID().uuidString
+    }
+    public func hash(into hasher: inout Hasher) {
+        return hasher.combine(identifier)
+    }
+    public static func == (lhs: WorkoutDay, rhs: WorkoutDay) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+}
+
 extension WorkoutDay {
     static let records: [Record] = [
         Record(date: Date("2023-06-01"), weight: 80, reps: 10, sets: 4),

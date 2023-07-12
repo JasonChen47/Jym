@@ -11,7 +11,7 @@ import Charts
 struct WorkoutDayChartView: View {
     @Binding var workoutDay: WorkoutDay
     var body: some View {
-        ScrollView {
+        List {
             HStack {
                 Text(workoutDay.name)
                     .foregroundColor(.white)
@@ -19,23 +19,28 @@ struct WorkoutDayChartView: View {
                     .bold()
                 Spacer()
             }
-            .padding([.bottom])
+            .listRowInsets(EdgeInsets())
+            .listRowBackground(Color("royalBlue"))
             ForEach($workoutDay.workouts) { $workout in
-                VStack {
-                    HStack {
-                        Text(workout.name)
-                            .font(.system(size: 20))
-                            .foregroundColor(.white)
-                        Spacer()
-                    }
+                Section(header: Text(workout.name)) {
                     WorkoutChartView(workout: $workout)
                 }
-                
+                .listRowInsets(.init(top: 10,
+                     leading: 0,
+                     bottom: 0,
+                     trailing: 0)
+                )
             }
+            .listRowBackground(Color("royalBlue"))
         }
-        .padding()
+        .padding(.top, -35)
+        .foregroundColor(.white)
+        .scrollContentBackground(.hidden)
+        .scrollIndicators(.hidden)
         .background(Color("royalBlue"))
         .toolbarBackground(Color("royalBlue"), for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .accentColor(Color("angelYellow"))
     }
 }
 

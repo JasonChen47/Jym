@@ -9,25 +9,30 @@ import SwiftUI
 import UIKit
 
 struct WorkoutDaysView: View {
+    @State var refresh: Bool = false
+    @EnvironmentObject var sharedData: SharedData
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     @Binding var sampleWorkoutDays: [WorkoutDay]
     @Binding var mainWorkoutDay: WorkoutDay
+    @Binding var path: NavigationPath
+    @Binding var intPath: [Int]
     @State private var searchText = ""
+    @State private var title = "Workout Days"
     let cornerRadius: CGFloat = 10
     let subtitleSize: CGFloat = 20
-    let dateSize: CGFloat = 15
     let outlineSize: CGFloat = 1
     let emojiSize: CGFloat = 35
+    @State private var id = UUID()
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 Section {
                     VStack {
                         HStack {
                             Text(Date.now, style: .date)
-                                .font(.system(size: dateSize))
+                                .font(Font.subheadline)
                                 .foregroundColor(Color.gray)
                             Spacer()
                         }
@@ -103,11 +108,21 @@ struct WorkoutDaysView: View {
                     Color("royalBlue")
                 )
                 Section(header: Text("Recommended Next Workout")) {
-                    NavigationLink {
-                        WorkoutDayView(workoutDay: $mainWorkoutDay)
-                    } label: {
+//                    NavigationLink {
+//                        WorkoutDayView(workoutDay: $mainWorkoutDay)
+//                    } label: {
+//                        CardView(workoutDay: $mainWorkoutDay)
+//                    }
+                    NavigationLink(value: $mainWorkoutDay) {
                         CardView(workoutDay: $mainWorkoutDay)
                     }
+//                    Button {
+//                        intPath.append(1)
+//                        print("hi")
+//                    } label: {
+//                        CardView(workoutDay: $mainWorkoutDay)
+//                    }
+                    
                     .listRowSeparatorTint(.yellow)
                     .foregroundColor(Color("angelYellow"))
                     .listRowBackground(
@@ -118,14 +133,13 @@ struct WorkoutDaysView: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 10, style: .circular)
                             .stroke(Color("angelYellow"), lineWidth: 2)
-                            
                     )
                 }
                 .headerProminence(.increased)
                 Section(header: Text("Browse Workouts")) {
                     ForEach($sampleWorkoutDays) { $workoutDay in
                         NavigationLink {
-                            WorkoutDayView(workoutDay: $workoutDay)
+                            WorkoutDayView(workoutDay: $workoutDay, path: $path)
                         } label: {
                             CardView(workoutDay: $workoutDay)
                         }
@@ -138,20 +152,23 @@ struct WorkoutDaysView: View {
                 }
                 .headerProminence(.increased)
             }
+            .navigationDestination(for: Binding<WorkoutDay>.self) { workoutDay in
+                WorkoutDayView(workoutDay: workoutDay, path: $path)
+            }
             .padding(.top, -35)
             .foregroundColor(.white)
             .scrollContentBackground(.hidden)
             .scrollIndicators(.hidden)
             .background(Color("royalBlue"))
             .toolbarBackground(Color("royalBlue"), for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
+//            .toolbarBackground(.visible, for: .navigationBar)
             .accentColor(Color("angelYellow"))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button{
+                    Button {
                         print("hi")
                     } label: {
                         Label("Add Item", systemImage: "plus")
@@ -159,6 +176,12 @@ struct WorkoutDaysView: View {
                 }
             }
         }
+        .onChange(of: sharedData.presented) { presented in
+            refresh.toggle()
+//            id = UUID()
+            print(String(refresh))
+        }
+        
     }
     
     private func getStreak(workoutDay: WorkoutDay) {
@@ -169,6 +192,11 @@ struct WorkoutDaysView: View {
 
 struct AllWorkoutsView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutDaysView(sampleWorkoutDays: .constant(WorkoutDay.sampleData), mainWorkoutDay: .constant(WorkoutDay.sampleData[3]))
+        Group {
+            WorkoutDaysView(sampleWorkoutDays: .constant(WorkoutDay.sampleData), mainWorkoutDay: .constant(WorkoutDay.sampleData[3]), path: .constant(NavigationPath()), intPath: .constant([]))
+        }.environmentObject(SharedData())
+        
+        
     }
 }
+

@@ -8,10 +8,18 @@
 import SwiftUI
 
 struct WorkoutDayView: View {
+    @State var refresh: Bool = false
+    @State private var id = UUID()
+//    @State private var num = 8
+    @EnvironmentObject var sharedData: SharedData
+    @Environment(\.dismiss) var dismiss
     @Binding var workoutDay: WorkoutDay
+    @Binding var path: NavigationPath
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
+    
     var body: some View {
+        var num = 8
         VStack {
             Rectangle()
                 .fill(.linearGradient(
@@ -27,7 +35,9 @@ struct WorkoutDayView: View {
                                 .font(.system(size: 37))
                                 .foregroundColor(.white)
                                 .bold()
-                            
+                            Text(String(num))
+                                .font(.system(size: 37))
+                                .foregroundColor(.white)
                             Spacer()
                         }
                         .padding([.leading, .top])
@@ -49,9 +59,12 @@ struct WorkoutDayView: View {
                 )
             List {
                 ForEach($workoutDay.workouts) { $workout in
-                    NavigationLink {
-                        WorkoutView(workout: $workout)
-                    } label: {
+//                    NavigationLink {
+//                        WorkoutView(workout: $workout)
+//                    } label: {
+//                        EmptyView()
+//                    }
+                    NavigationLink(value: $workout) {
                         EmptyView()
                     }
                     .listRowSeparatorTint(.yellow)
@@ -59,6 +72,7 @@ struct WorkoutDayView: View {
                         HStack {
                             Text(workout.name)
                                 .foregroundColor(Color("angelYellow"))
+                            
                             Spacer()
                             Image(systemName: "chevron.right")
                                 .resizable()
@@ -72,6 +86,7 @@ struct WorkoutDayView: View {
                     Color("royalBlueLight")
                 )
             }
+            
             .scrollContentBackground(.hidden)
             Spacer()
         }
@@ -89,11 +104,27 @@ struct WorkoutDayView: View {
                 }
             }
         }
+        .onChange(of: sharedData.presented) { presented in
+//            refresh.toggle()
+//            id = UUID()
+            num += 1
+            print(num)
+        }
+        .navigationDestination(for: Binding<Workout>.self) { workout in
+            WorkoutView(workout: workout)
+        }
+//        .id(id)
     }
+        
 }
 
 struct WorkoutDayView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutDayView(workoutDay: .constant(WorkoutDay.sampleData[0]))
+        @State var workoutsPath = NavigationPath()
+        NavigationStack(path: $workoutsPath) {
+            Group {
+                WorkoutDayView(workoutDay: .constant(WorkoutDay.sampleData[0]), path: $workoutsPath)
+            }.environmentObject(SharedData())
+        }
     }
 }

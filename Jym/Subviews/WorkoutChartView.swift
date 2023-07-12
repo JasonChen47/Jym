@@ -43,14 +43,13 @@ struct WorkoutChartView: View {
                 endPoint: UnitPoint(x: 0.5, y: 1)
             )
         )
-        .padding()
-        .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .strokeBorder(Color("angelYellow"), lineWidth: 1)
-        )
-        .background(
-            Color("royalBlueLight")
-        )
+//        .overlay(
+//            RoundedRectangle(cornerRadius: 10)
+//                .strokeBorder(Color("angelYellow"), lineWidth: 1)
+//        )
+//        .background(
+//            Color("royalBlueLight")
+//        )
     }
 }
 

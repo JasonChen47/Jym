@@ -8,21 +8,25 @@
 import SwiftUI
 
 struct WorkoutView: View {
+    @EnvironmentObject var sharedData: SharedData
+    @Environment(\.dismiss) var dismiss
     @Binding var workout: Workout
+    @State private var showingSheet = false
     @State private var lbs: String = ""
     @State private var reps: String = ""
     @State private var sets: String = ""
+    @State var workoutDays = WorkoutDay.sampleData
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        @State var sortOrder = [KeyPathComparator(\Record.date)]
         let df: DateFormatter = {
             let formatter = DateFormatter()
             formatter.setLocalizedDateFormatFromTemplate("M/dd/yy")
             return formatter
         }()
+        @State var sortOrder = [KeyPathComparator(\Record.date)]
         var recentRecords: [Record] {
             let sorted = workout.records.sorted {
                 $0.date < $1.date
@@ -32,34 +36,67 @@ struct WorkoutView: View {
         List {
             VStack {
                 HStack {
+                    Text(Date.now, style: .date)
+                        .font(Font.subheadline)
+                        .foregroundColor(Color.gray)
+                    Spacer()
+                }
+                Spacer()
+                HStack {
                     Text(workout.name)
                         .foregroundColor(.white)
                         .font(.system(size: 30))
                         .bold()
+                    Spacer()
                 }
             }
             .listRowInsets(EdgeInsets())
             .listRowBackground(
                 Color("royalBlue")
             )
-            Section(header: Text("Progress Chart")) {
-                WorkoutChartView(workout: $workout)
-                    .listRowInsets(EdgeInsets())
-                    .listRowBackground(
-                        Color("royalBlue")
-                    )
-            }
-            .headerProminence(.increased)
+    //                Section(header: Text("Progress Chart")) {
+    //                    WorkoutChartView(workout: $workout)
+    //                        .listRowInsets(EdgeInsets())
+    //                        .listRowBackground(
+    //                            Color("royalBlue")
+    //                        )
+    //                }
+    //                .headerProminence(.increased)
             Section(header: HStack {
                 Text("Workout Log")
                 Spacer()
-                NavigationLink {
-                    Text("hi")
-                } label: {
-                    Text("Show More")
-                        .font(Font.subheadline)
-                        .foregroundColor(Color("angelYellow"))
+    //                NavigationLink {
+    //                    WorkoutLogView(workout: $workout)
+    //                } label: {
+    //                    Text("Show More")
+    //                        .font(Font.subheadline)
+    //                        .foregroundColor(Color("angelYellow"))
+    //                }
+    //                NavigationLink(value: 3) {
+    //                    Text("Show More")
+    //                        .font(Font.subheadline)
+    //                        .foregroundColor(Color("angelYellow"))
+    //                }
+    //                NavigationLink("Show More", value: 3)
+    //                    .font(Font.subheadline)
+    //                    .foregroundColor(Color("angelYellow"))
+                Button("Show More") {
+                    showingSheet.toggle()
                 }
+                .font(Font.subheadline)
+                .foregroundColor(Color("angelYellow"))
+                .sheet(isPresented: $showingSheet) {
+                    ZStack {
+                        Color("royalBlue").edgesIgnoringSafeArea(.all)
+                        NavigationView {
+                            WorkoutLogView(workout: $workout)
+                        }
+                    }
+                    .accentColor(Color("angelYellow"))
+                    
+                    
+                }
+                
             }
                         
             ) {
@@ -74,12 +111,25 @@ struct WorkoutView: View {
                     Divider()
                         .overlay(.yellow)
                     ForEach(recentRecords) { record in
-                        GridRow {
-                            Text(df.string(from: record.date))
-                            Text(String(record.weight))
-                            Text(String(record.reps))
-                            Text(String(record.sets))
+                        if record != recentRecords.last {
+                            GridRow {
+                                Text(df.string(from: record.date))
+                                Text(String(record.weight))
+                                Text(String(record.reps))
+                                Text(String(record.sets))
+                            }
+                            .foregroundColor(Color("gold"))
                         }
+                        else {
+                            GridRow {
+                                Text(df.string(from: record.date))
+                                Text(String(record.weight))
+                                Text(String(record.reps))
+                                Text(String(record.sets))
+                            }
+                            .bold()
+                        }
+                        
                     }
                 }
                 .listRowSeparatorTint(.yellow)
@@ -140,19 +190,30 @@ struct WorkoutView: View {
             }
             .headerProminence(.increased)
         }
+//        .navigationDestination(for: Int.self) { number in
+//            WorkoutLogView(workout: $workout)
+////            MainChartView(sampleWorkoutDays: $workoutDays)
+//        }
         .padding(.top, -35)
         .foregroundColor(.white)
         .scrollContentBackground(.hidden)
         .scrollIndicators(.hidden)
         .background(Color("royalBlue"))
         .toolbarBackground(Color("royalBlue"), for: .navigationBar)
-        .toolbarBackground(.visible, for: .navigationBar)
+//        .toolbarBackground(.visible, for: .navigationBar)
         .accentColor(Color("angelYellow"))
+        .onChange(of: sharedData.presented) { presented in
+        }
     }
 }
 
 struct WorkoutView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutView(workout: .constant(WorkoutDay.sampleData[0].workouts[0]))
+        @State var workoutsPath = NavigationPath()
+        Group {
+            NavigationStack(path: $workoutsPath) {
+                WorkoutView(workout: .constant(WorkoutDay.sampleData[0].workouts[0]))
+            }
+        }.environmentObject(SharedData())
     }
 }
