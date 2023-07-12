@@ -108,16 +108,9 @@ struct WorkoutDaysView: View {
                     Color("royalBlue")
                 )
                 Section(header: Text("Recommended Next Workout")) {
-//                    NavigationLink {
-//                        WorkoutDayView(workoutDay: $mainWorkoutDay)
-//                    } label: {
-//                        CardView(workoutDay: $mainWorkoutDay)
-//                    }
                     NavigationLink(value: $mainWorkoutDay) {
                         CardView(workoutDay: $mainWorkoutDay)
                     }
-
-                    
                     .listRowSeparatorTint(.yellow)
                     .foregroundColor(Color("angelYellow"))
                     .listRowBackground(
@@ -168,16 +161,12 @@ struct WorkoutDaysView: View {
                     }
                 }
             }
-            .navigationTitle("Workout Days")
-            .toolbarColorScheme(.dark, for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
+//            .navigationTitle("Workout Days")
+//            .toolbarColorScheme(.dark, for: .navigationBar)
+//            .toolbarBackground(.visible, for: .navigationBar)
+            .onChange(of: sharedData.presented) { presented in
+            }
         }
-        .onChange(of: sharedData.presented) { presented in
-            refresh.toggle()
-//            id = UUID()
-            print(String(refresh))
-        }
-        
     }
         
     

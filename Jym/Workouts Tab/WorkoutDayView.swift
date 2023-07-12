@@ -89,9 +89,9 @@ struct WorkoutDayView: View {
                 }
             }
         }
-        .navigationTitle(workoutDay.name)
-        .toolbarColorScheme(.dark, for: .navigationBar)
-        .toolbarBackground(.visible, for: .navigationBar)
+//        .navigationTitle(workoutDay.name)
+//        .toolbarColorScheme(.dark, for: .navigationBar)
+//        .toolbarBackground(.visible, for: .navigationBar)
         .onChange(of: sharedData.presented) { presented in
         }
     }

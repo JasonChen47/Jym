@@ -31,7 +31,6 @@ struct WorkoutTabView: View {
             }
         )}
         TabView(selection: handler) {
-//        TabView() {
             WorkoutDaysView(sampleWorkoutDays: $workoutDays, mainWorkoutDay: $mainWorkoutDay, path: $workoutsPath, intPath: $intPath)
                 
                 .tabItem {
@@ -59,14 +58,6 @@ struct WorkoutTabView: View {
                 .toolbarBackground(Color("royalBlue"), for: .tabBar)
                 .tag(2)
         }
-//        .navigationViewStyle(StackNavigationViewStyle())
-//        .onReceive($tabSelection) { newSelection in
-//            if newSelection == self.tabSelection {
-//                // Lands here if user tapped more than once
-//                tappedTwice = true
-//            }
-//            self.tabSelection = newSelection
-//        }
         .environmentObject(sharedData)
     }
 }
