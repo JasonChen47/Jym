@@ -11,9 +11,9 @@ class SharedData: ObservableObject {
 }
 
 struct WorkoutTabView: View {
+    
     @State var workoutsPath = NavigationPath()
     @State var emptyPath = NavigationPath()
-    @State var intPath: [Int] = []
     @State var workoutDays = WorkoutDay.sampleData
     @State var mainWorkoutDay = WorkoutDay.sampleData[3]
     @State private var tabSelection = 0
@@ -31,7 +31,7 @@ struct WorkoutTabView: View {
             }
         )}
         TabView(selection: handler) {
-            WorkoutDaysView(sampleWorkoutDays: $workoutDays, mainWorkoutDay: $mainWorkoutDay, path: $workoutsPath, intPath: $intPath)
+            WorkoutDaysView(sampleWorkoutDays: $workoutDays, mainWorkoutDay: $mainWorkoutDay, path: $workoutsPath)
                 .tabItem {
                     Label("Workouts", systemImage: "dumbbell")
                 }

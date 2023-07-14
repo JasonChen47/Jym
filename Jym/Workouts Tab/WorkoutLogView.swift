@@ -26,18 +26,6 @@ struct WorkoutLogView: View {
             return sorted
         }
         List {
-            VStack {
-                HStack {
-                    Text("Full Workout Log")
-                        .foregroundColor(.white)
-                        .font(.system(size: 30))
-                        .bold()
-                }
-            }
-            .listRowInsets(EdgeInsets())
-            .listRowBackground(
-                Color("royalBlue")
-            )
             Section {
                 Grid {
                     GridRow {
@@ -65,7 +53,6 @@ struct WorkoutLogView: View {
                 )
             }
         }
-        .padding(.top, -35)
         .foregroundColor(.white)
         .scrollContentBackground(.hidden)
         .scrollIndicators(.hidden)
@@ -76,17 +63,20 @@ struct WorkoutLogView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 EditButton()
-                    .foregroundColor(Color("angelYellow"))
+                    .foregroundColor(Color.yellow)
             }
             ToolbarItem {
                 Button{
                     print("hi")
                 } label: {
                     Label("Add Item", systemImage: "plus")
-                        .foregroundColor(Color("angelYellow"))
+                        .foregroundColor(Color.yellow)
                 }
             }
         }
+        .navigationTitle("Full Workout Log")
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
         .onChange(of: sharedData.presented) { presented in
             
         }

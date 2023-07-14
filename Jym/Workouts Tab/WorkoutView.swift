@@ -34,18 +34,6 @@ struct WorkoutView: View {
             return sorted.suffix(3)
         }
         List {
-            Section {
-                HStack {
-                    Text(Date.now, style: .date)
-                        .font(Font.subheadline)
-                        .foregroundColor(Color.gray)
-                    Spacer()
-                }
-            }
-            .listRowInsets(EdgeInsets())
-            .listRowBackground(
-                Color("royalBlue")
-            )
     //                Section(header: Text("Progress Chart")) {
     //                    WorkoutChartView(workout: $workout)
     //                        .listRowInsets(EdgeInsets())
@@ -64,33 +52,29 @@ struct WorkoutView: View {
     //                        .font(Font.subheadline)
     //                        .foregroundColor(Color("angelYellow"))
     //                }
-    //                NavigationLink(value: 3) {
-    //                    Text("Show More")
-    //                        .font(Font.subheadline)
-    //                        .foregroundColor(Color("angelYellow"))
-    //                }
-    //                NavigationLink("Show More", value: 3)
-    //                    .font(Font.subheadline)
-    //                    .foregroundColor(Color("angelYellow"))
-                Button("Show More") {
-                    showingSheet.toggle()
-                }
-                .font(Font.subheadline)
-                .foregroundColor(Color("angelYellow"))
-                .sheet(isPresented: $showingSheet) {
-                    ZStack {
-                        Color("royalBlue").edgesIgnoringSafeArea(.all)
-                        NavigationView {
-                            WorkoutLogView(workout: $workout)
-                        }
+                NavigationLink(value: [$workout]) {
+                        Text("Show More")
+                            .font(Font.subheadline)
+                            .foregroundColor(Color("angelYellow"))
                     }
-                    .accentColor(Color("angelYellow"))
-                    
-                    
-                }
-                
+//                    NavigationLink("Show More", value: 3)
+//                        .font(Font.subheadline)
+//                        .foregroundColor(Color("angelYellow"))
+//                Button("Show More") {
+//                    showingSheet.toggle()
+//                }
+//                .font(Font.subheadline)
+//                .foregroundColor(Color("angelYellow"))
+//                .sheet(isPresented: $showingSheet) {
+//                    ZStack {
+//                        Color("royalBlue").edgesIgnoringSafeArea(.all)
+//                        NavigationView {
+//                            WorkoutLogView(workout: $workout)
+//                        }
+//                    }
+//                    .accentColor(Color("angelYellow"))
+//                }
             }
-                        
             ) {
                 Grid {
                     GridRow {
@@ -182,10 +166,9 @@ struct WorkoutView: View {
             }
             .headerProminence(.increased)
         }
-//        .navigationDestination(for: Int.self) { number in
-//            WorkoutLogView(workout: $workout)
-////            MainChartView(sampleWorkoutDays: $workoutDays)
-//        }
+        .navigationDestination(for: [Binding<Workout>].self) { workoutArr in
+            WorkoutLogView(workout: workoutArr[0])
+        }
         .foregroundColor(.white)
         .scrollContentBackground(.hidden)
         .scrollIndicators(.hidden)

@@ -9,6 +9,17 @@ import SwiftUI
 import UIKit
 
 struct WorkoutDaysView: View {
+    @State private var didSetupAppearance: Bool = false
+    
+    init(sampleWorkoutDays: Binding<[WorkoutDay]>, mainWorkoutDay: Binding<WorkoutDay>, path: Binding<NavigationPath>) {
+        
+        Utils.navigationBarConfig()
+        self._sampleWorkoutDays = sampleWorkoutDays
+        self._mainWorkoutDay = mainWorkoutDay
+        self._path = path
+    }
+    
+    @Environment(\.colorScheme) var colorScheme
     @State var refresh: Bool = false
     @EnvironmentObject var sharedData: SharedData
     let width = UIScreen.main.bounds.size.width
@@ -16,34 +27,26 @@ struct WorkoutDaysView: View {
     @Binding var sampleWorkoutDays: [WorkoutDay]
     @Binding var mainWorkoutDay: WorkoutDay
     @Binding var path: NavigationPath
-    @Binding var intPath: [Int]
     @State private var searchText = ""
     @State private var title = "Workout Days"
     let cornerRadius: CGFloat = 10
     let subtitleSize: CGFloat = 20
     let outlineSize: CGFloat = 1
     let emojiSize: CGFloat = 35
-    @State private var id = UUID()
 
     var body: some View {
         NavigationStack(path: $path) {
             List {
                 Section {
                     VStack {
-                        HStack {
-                            Text(Date.now, style: .date)
-                                .font(Font.subheadline)
-                                .foregroundColor(Color.gray)
-                            Spacer()
+                        Section {
+                            HStack {
+                                Text(Date.now, style: .date)
+                                    .font(Font.subheadline)
+                                    .foregroundColor(Color.gray)
+                                Spacer()
+                            }
                         }
-//                        Spacer()
-//                        HStack {
-//                            Text("Workout Days")
-//                                .foregroundColor(.white)
-//                                .font(.system(size: 30))
-//                                .bold()
-//                            Spacer()
-//                        }
                         HStack {
                             VStack {
                                 ZStack {
@@ -127,7 +130,7 @@ struct WorkoutDaysView: View {
                 Section(header: Text("Browse Workouts")) {
                     ForEach($sampleWorkoutDays) { $workoutDay in
                         NavigationLink {
-                            WorkoutDayView(workoutDay: $workoutDay, path: $path)
+                            WorkoutDayView(workoutDay: $workoutDay)
                         } label: {
                             CardView(workoutDay: $workoutDay)
                         }
@@ -140,33 +143,43 @@ struct WorkoutDaysView: View {
                 }
                 .headerProminence(.increased)
             }
+            .navigationTitle("Workout Days")
             .navigationDestination(for: Binding<WorkoutDay>.self) { workoutDay in
-                WorkoutDayView(workoutDay: workoutDay, path: $path)
+                WorkoutDayView(workoutDay: workoutDay)
             }
             .foregroundColor(.white)
             .scrollContentBackground(.hidden)
             .scrollIndicators(.hidden)
             .background(Color("royalBlue"))
-            .toolbarBackground(Color("royalBlue"), for: .navigationBar)
-            .accentColor(Color("angelYellow"))
+//            .toolbarBackground(Color("royalBlue"), for: .navigationBar)
+//            .toolbarBackground(.red, for: .navigationBar)
+//                            .toolbarBackground(.visible, for: .navigationBar)
+//            .accentColor(Color.yellow)
+//            .accentColor(Color("angelYellow"))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
+                        .foregroundColor(Color.yellow)
                 }
                 ToolbarItem {
                     Button {
                         print("hi")
                     } label: {
                         Label("Add Item", systemImage: "plus")
+                            .foregroundColor(Color.yellow)
                     }
                 }
             }
-            .navigationTitle("Workout Days")
-            .toolbarColorScheme(.dark, for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
+            
+//            .toolbarColorScheme(.dark, for: .navigationBar)
+//            .toolbarBackground(.visible, for: .navigationBar)
             .onChange(of: sharedData.presented) { presented in
             }
+//            .tint(Color.yellow)
+//            .accentColor(Color.yellow)
         }
+//        .tint(colorScheme == .dark ? Color.blue : Color.red)
+//        .accentColor(Color.yellow)
     }
         
     
@@ -179,7 +192,7 @@ struct WorkoutDaysView: View {
 struct AllWorkoutsView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            WorkoutDaysView(sampleWorkoutDays: .constant(WorkoutDay.sampleData), mainWorkoutDay: .constant(WorkoutDay.sampleData[3]), path: .constant(NavigationPath()), intPath: .constant([]))
+            WorkoutDaysView(sampleWorkoutDays: .constant(WorkoutDay.sampleData), mainWorkoutDay: .constant(WorkoutDay.sampleData[3]), path: .constant(NavigationPath()))
         }.environmentObject(SharedData())
         
         

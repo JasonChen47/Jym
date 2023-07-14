@@ -13,6 +13,9 @@
 		F634A1DF2A20293500742182 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634A1DE2A20293400742182 /* MainChartView.swift */; };
 		F634A1E12A202C5700742182 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634A1E02A202C5700742182 /* Record.swift */; };
 		F638282D2A41300E002209A6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F638282C2A41300E002209A6 /* SettingsView.swift */; };
+		F64D36002A60438500C872E7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D35FF2A60438500C872E7 /* Color.swift */; };
+		F64D36022A60F7A700C872E7 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D36012A60F7A700C872E7 /* TestView.swift */; };
+		F64D36042A6113CD00C872E7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D36032A6113CD00C872E7 /* Utils.swift */; };
 		F650F0B92A39771900F61A85 /* Sets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F650F0B82A39771900F61A85 /* Sets.swift */; };
 		F68866342A54F16A00590FCC /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68866332A54F16A00590FCC /* WorkoutView.swift */; };
 		F68866362A5784B700590FCC /* WorkoutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68866352A5784B700590FCC /* WorkoutChartView.swift */; };
@@ -58,6 +61,9 @@
 		F634A1DE2A20293400742182 /* MainChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChartView.swift; sourceTree = "<group>"; };
 		F634A1E02A202C5700742182 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		F638282C2A41300E002209A6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F64D35FF2A60438500C872E7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		F64D36012A60F7A700C872E7 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		F64D36032A6113CD00C872E7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		F650F0B82A39771900F61A85 /* Sets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sets.swift; sourceTree = "<group>"; };
 		F68866332A54F16A00590FCC /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		F68866352A5784B700590FCC /* WorkoutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutChartView.swift; sourceTree = "<group>"; };
@@ -110,14 +116,23 @@
 		F6292C1F2A0B1CA60050C7E4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F64D36032A6113CD00C872E7 /* Utils.swift */,
 				F6FED6622A0486BD001F3B8C /* Workout.swift */,
 				F6FED6602A04868A001F3B8C /* WorkoutDay.swift */,
 				F634A1E02A202C5700742182 /* Record.swift */,
 				F650F0B82A39771900F61A85 /* Sets.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F64D35FE2A60434A00C872E7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F64D35FF2A60438500C872E7 /* Color.swift */,
 				F6E729722A3DF36500C8C09D /* Date.swift */,
 				F6B9DB722A5A176C007F7F11 /* Binding.swift */,
 			);
-			path = Models;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		F68866372A57BFDB00590FCC /* Subviews */ = {
@@ -183,11 +198,13 @@
 				F6FED62D2A048015001F3B8C /* JymApp.swift */,
 				F6FED62F2A048015001F3B8C /* ContentView.swift */,
 				F6292C202A0B1D020050C7E4 /* WorkoutTabView.swift */,
+				F64D36012A60F7A700C872E7 /* TestView.swift */,
 				F688663C2A58499D00590FCC /* Workouts Tab */,
 				F688663E2A584A0100590FCC /* Charts Tab */,
 				F688663D2A5849E200590FCC /* Settings Tab */,
 				F68866372A57BFDB00590FCC /* Subviews */,
 				F6292C1F2A0B1CA60050C7E4 /* Models */,
+				F64D35FE2A60434A00C872E7 /* Extensions */,
 				F6FED6312A04801C001F3B8C /* Assets.xcassets */,
 				F6FED6362A04801C001F3B8C /* Persistence.swift */,
 				F6FED6382A04801C001F3B8C /* Jym.xcdatamodeld */,
@@ -353,6 +370,8 @@
 			files = (
 				F6FED65F2A048427001F3B8C /* WorkoutDaysView.swift in Sources */,
 				F6E729732A3DF36500C8C09D /* Date.swift in Sources */,
+				F64D36022A60F7A700C872E7 /* TestView.swift in Sources */,
+				F64D36002A60438500C872E7 /* Color.swift in Sources */,
 				F6FED63A2A04801C001F3B8C /* Jym.xcdatamodeld in Sources */,
 				F68866342A54F16A00590FCC /* WorkoutView.swift in Sources */,
 				F68866392A57C28200590FCC /* WorkoutDayChartView.swift in Sources */,
@@ -364,6 +383,7 @@
 				F634A1DD2A1ED4C200742182 /* CardView.swift in Sources */,
 				F68866362A5784B700590FCC /* WorkoutChartView.swift in Sources */,
 				F6FED6612A04868A001F3B8C /* WorkoutDay.swift in Sources */,
+				F64D36042A6113CD00C872E7 /* Utils.swift in Sources */,
 				F6FED6372A04801C001F3B8C /* Persistence.swift in Sources */,
 				F634A1DF2A20293500742182 /* MainChartView.swift in Sources */,
 				F6FED6302A048015001F3B8C /* ContentView.swift in Sources */,
