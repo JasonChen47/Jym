@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct WorkoutLogView: View {
+    
+    init(workout: Binding<Workout>) {
+        Utils.navigationBarConfig()
+        self._workout = workout
+    }
+    
     @EnvironmentObject var sharedData: SharedData
     @Environment(\.dismiss) var dismiss
     @Binding var workout: Workout
@@ -57,28 +63,20 @@ struct WorkoutLogView: View {
         .scrollContentBackground(.hidden)
         .scrollIndicators(.hidden)
         .background(Color("royalBlue"))
-        .toolbarBackground(Color("royalBlue"), for: .navigationBar)
-        .toolbarBackground(.visible, for: .navigationBar)
-        .accentColor(Color("angelYellow"))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 EditButton()
-                    .foregroundColor(Color.yellow)
             }
             ToolbarItem {
                 Button{
                     print("hi")
                 } label: {
                     Label("Add Item", systemImage: "plus")
-                        .foregroundColor(Color.yellow)
                 }
             }
         }
         .navigationTitle("Full Workout Log")
-        .toolbarColorScheme(.dark, for: .navigationBar)
-        .toolbarBackground(.visible, for: .navigationBar)
         .onChange(of: sharedData.presented) { presented in
-            
         }
     }
 }

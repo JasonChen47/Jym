@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct WorkoutView: View {
+    
+    init(workout: Binding<Workout>) {
+        Utils.navigationBarConfig()
+        self._workout = workout
+    }
+    
     @EnvironmentObject var sharedData: SharedData
     @Environment(\.dismiss) var dismiss
     @Binding var workout: Workout
@@ -45,35 +51,11 @@ struct WorkoutView: View {
             Section(header: HStack {
                 Text("Workout Log")
                 Spacer()
-    //                NavigationLink {
-    //                    WorkoutLogView(workout: $workout)
-    //                } label: {
-    //                    Text("Show More")
-    //                        .font(Font.subheadline)
-    //                        .foregroundColor(Color("angelYellow"))
-    //                }
                 NavigationLink(value: [$workout]) {
                         Text("Show More")
                             .font(Font.subheadline)
                             .foregroundColor(Color("angelYellow"))
                     }
-//                    NavigationLink("Show More", value: 3)
-//                        .font(Font.subheadline)
-//                        .foregroundColor(Color("angelYellow"))
-//                Button("Show More") {
-//                    showingSheet.toggle()
-//                }
-//                .font(Font.subheadline)
-//                .foregroundColor(Color("angelYellow"))
-//                .sheet(isPresented: $showingSheet) {
-//                    ZStack {
-//                        Color("royalBlue").edgesIgnoringSafeArea(.all)
-//                        NavigationView {
-//                            WorkoutLogView(workout: $workout)
-//                        }
-//                    }
-//                    .accentColor(Color("angelYellow"))
-//                }
             }
             ) {
                 Grid {
@@ -173,11 +155,7 @@ struct WorkoutView: View {
         .scrollContentBackground(.hidden)
         .scrollIndicators(.hidden)
         .background(Color("royalBlue"))
-        .toolbarBackground(Color("royalBlue"), for: .navigationBar)
-        .accentColor(Color("angelYellow"))
         .navigationTitle(workout.name)
-        .toolbarColorScheme(.dark, for: .navigationBar)
-        .toolbarBackground(.visible, for: .navigationBar)
         .onChange(of: sharedData.presented) { presented in
         }
     }

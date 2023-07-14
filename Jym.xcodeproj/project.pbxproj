@@ -197,8 +197,8 @@
 			children = (
 				F6FED62D2A048015001F3B8C /* JymApp.swift */,
 				F6FED62F2A048015001F3B8C /* ContentView.swift */,
-				F6292C202A0B1D020050C7E4 /* WorkoutTabView.swift */,
 				F64D36012A60F7A700C872E7 /* TestView.swift */,
+				F6292C202A0B1D020050C7E4 /* WorkoutTabView.swift */,
 				F688663C2A58499D00590FCC /* Workouts Tab */,
 				F688663E2A584A0100590FCC /* Charts Tab */,
 				F688663D2A5849E200590FCC /* Settings Tab */,

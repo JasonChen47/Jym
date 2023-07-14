@@ -78,36 +78,26 @@ struct WorkoutDayView: View {
             .scrollContentBackground(.hidden)
             Spacer()
         }
-//        .navigationBarBackButtonHidden(true)
-        .tint(Color.yellow)
-        .accentColor(Color.yellow)
         .navigationDestination(for: Binding<Workout>.self) { workout in
             WorkoutView(workout: workout)
         }
         .background(Color("royalBlue"))
-//        .toolbarBackground(Color("royalBlue"), for: .navigationBar)
-//        .toolbarBackground(Color("royalBlue"), for: .tabBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 EditButton()
-                    .foregroundColor(Color.yellow)
             }
             ToolbarItem {
                 Button{
                     print("hi")
                 } label: {
                     Label("Add Item", systemImage: "plus")
-                        .foregroundColor(Color.yellow)
                 }
             }
         }
         .navigationTitle(workoutDay.name)
-//        .toolbarColorScheme(.dark, for: .navigationBar)
-//        .toolbarBackground(.visible, for: .navigationBar)
         .onChange(of: sharedData.presented) { presented in
         }
     }
-        
 }
 
 struct WorkoutDayView_Previews: PreviewProvider {
