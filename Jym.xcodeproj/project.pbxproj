@@ -17,6 +17,7 @@
 		F64D36022A60F7A700C872E7 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D36012A60F7A700C872E7 /* TestView.swift */; };
 		F64D36042A6113CD00C872E7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D36032A6113CD00C872E7 /* Utils.swift */; };
 		F650F0B92A39771900F61A85 /* Sets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F650F0B82A39771900F61A85 /* Sets.swift */; };
+		F660B92D2A62F19D0061216D /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F660B92C2A62F19D0061216D /* AboutView.swift */; };
 		F68866342A54F16A00590FCC /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68866332A54F16A00590FCC /* WorkoutView.swift */; };
 		F68866362A5784B700590FCC /* WorkoutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68866352A5784B700590FCC /* WorkoutChartView.swift */; };
 		F68866392A57C28200590FCC /* WorkoutDayChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68866382A57C28200590FCC /* WorkoutDayChartView.swift */; };
@@ -65,6 +66,7 @@
 		F64D36012A60F7A700C872E7 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		F64D36032A6113CD00C872E7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		F650F0B82A39771900F61A85 /* Sets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sets.swift; sourceTree = "<group>"; };
+		F660B92C2A62F19D0061216D /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		F68866332A54F16A00590FCC /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		F68866352A5784B700590FCC /* WorkoutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutChartView.swift; sourceTree = "<group>"; };
 		F68866382A57C28200590FCC /* WorkoutDayChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDayChartView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				F638282C2A41300E002209A6 /* SettingsView.swift */,
+				F660B92C2A62F19D0061216D /* AboutView.swift */,
 			);
 			path = "Settings Tab";
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				F68866362A5784B700590FCC /* WorkoutChartView.swift in Sources */,
 				F6FED6612A04868A001F3B8C /* WorkoutDay.swift in Sources */,
 				F64D36042A6113CD00C872E7 /* Utils.swift in Sources */,
+				F660B92D2A62F19D0061216D /* AboutView.swift in Sources */,
 				F6FED6372A04801C001F3B8C /* Persistence.swift in Sources */,
 				F634A1DF2A20293500742182 /* MainChartView.swift in Sources */,
 				F6FED6302A048015001F3B8C /* ContentView.swift in Sources */,

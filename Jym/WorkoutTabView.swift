@@ -14,6 +14,7 @@ struct WorkoutTabView: View {
     
     @State var workoutsPath = NavigationPath()
     @State var chartsPath = NavigationPath()
+    @State var settingsPath = NavigationPath()
     @State var emptyPath = NavigationPath()
     @State var workoutDays = WorkoutDay.sampleData
     @State var mainWorkoutDay = WorkoutDay.sampleData[3]
@@ -59,11 +60,18 @@ struct WorkoutTabView: View {
                 .toolbarBackground(Color("royalBlue"), for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
                 .tag(2)
-            SettingsView()
+            SettingsView(path: $settingsPath)
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")
                 }
+                .onChange(of: tappedTwice, perform: { tappedTwice in         guard tappedTwice else { return }
+                    if tabSelection == 3 {
+                        settingsPath = emptyPath
+                        self.tappedTwice = false
+                    }
+                })
                 .toolbarBackground(Color("royalBlue"), for: .tabBar)
+                .toolbarBackground(.visible, for: .tabBar)
                 .tag(3)
         }
         .environmentObject(sharedData)

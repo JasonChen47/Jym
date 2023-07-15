@@ -93,11 +93,6 @@ struct MainChartView: View {
                 .headerProminence(.increased)
                 Section(header: Text("See how you're improving")) {
                     ForEach($sampleWorkoutDays) { $workoutDay in
-//                        NavigationLink {
-//                            WorkoutDayChartView(workoutDay: $workoutDay)
-//                        } label: {
-//                            CardView(workoutDay: $workoutDay)
-//                        }
                         NavigationLink(value: $workoutDay) {
                             CardView(workoutDay: $workoutDay)
                         }

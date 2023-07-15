@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    init(path: Binding<NavigationPath>) {
+        Utils.navigationBarConfig()
+        self._path = path
+    }
+    
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     let cornerRadius: CGFloat = 10
@@ -16,26 +22,13 @@ struct SettingsView: View {
         var id: Self { self }
     }
     @State private var selectedWeightUnit: weightUnit = .lb
+    @Binding var path: NavigationPath
+    
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
-                VStack {
-                    HStack {
-                        Text("Settings")
-                            .foregroundColor(.white)
-                            .font(.system(size: 30))
-                            .bold()
-                        Spacer()
-                    }
-                }
-                .listRowInsets(EdgeInsets())
-                .listRowBackground(
-                    Color("royalBlue")
-                )
                 Section {
-                    NavigationLink {
-                        Text("hi")
-                    } label: {
+                    NavigationLink(value: 1) {
                         Text("About")
                     }
                     .listRowSeparatorTint(.yellow)
@@ -80,19 +73,20 @@ struct SettingsView: View {
                 .foregroundColor(Color("angelYellow"))
                 .listRowBackground(Color("royalBlueLight"))
             }
+            .navigationTitle("Settings")
+            .navigationDestination(for: Int.self) { int in
+                AboutView()
+            }
             .foregroundColor(.white)
             .scrollContentBackground(.hidden)
             .scrollIndicators(.hidden)
             .background(Color("royalBlue"))
-            .toolbarBackground(Color("royalBlue"), for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
-            .accentColor(Color("angelYellow"))
         }
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(path: .constant(NavigationPath()))
     }
 }

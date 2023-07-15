@@ -41,8 +41,8 @@ struct WorkoutDayChartView: View {
 
 struct WorkoutChartView_Previews: PreviewProvider {
     static var previews: some View {
-        @State var workoutsPath = NavigationPath()
-        NavigationStack(path: $workoutsPath) {
+        @State var path = NavigationPath()
+        NavigationStack(path: $path) {
             WorkoutDayChartView(workoutDay: .constant(WorkoutDay.sampleData[0]))
         }
     }
