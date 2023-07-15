@@ -9,6 +9,14 @@ import SwiftUI
 import Charts
 
 struct MainChartView: View {
+    
+    init(sampleWorkoutDays: Binding<[WorkoutDay]>, path: Binding<NavigationPath>) {
+        
+        Utils.navigationBarConfig()
+        self._sampleWorkoutDays = sampleWorkoutDays
+        self._path = path
+    }
+    
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     let backTextColor = Color.white
@@ -17,31 +25,25 @@ struct MainChartView: View {
     let outlineSize: CGFloat = 1
     let dateSize: CGFloat = 15
     @Binding var sampleWorkoutDays: [WorkoutDay]
+    @Binding var path: NavigationPath
+    
     let sampleSets = Sets.sampleData
     
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $path) {
             List {
-                VStack {
-                    HStack {
-                        Text(Date.now, style: .date)
-                            .font(.system(size: dateSize))
-                            .foregroundColor(Color.gray)
-                        Spacer()
-                    }
-                    Spacer()
-                    HStack {
-                        Text("Charts")
-                            .foregroundColor(.white)
-                            .font(.system(size: 30))
-                            .bold()
-                        Spacer()
-                    }
-                }
-                .listRowInsets(EdgeInsets())
-                .listRowBackground(
-                    Color("royalBlue")
-                )
+//                VStack {
+//                    HStack {
+//                        Text(Date.now, style: .date)
+//                            .font(Font.subheadline)
+//                            .foregroundColor(Color.gray)
+//                        Spacer()
+//                    }
+//                }
+//                .listRowInsets(EdgeInsets())
+//                .listRowBackground(
+//                    Color("royalBlue")
+//                )
                 Section(header: Text("Activity Report")) {
                     Chart {
                         ForEach(sampleSets) { sets in
@@ -91,9 +93,12 @@ struct MainChartView: View {
                 .headerProminence(.increased)
                 Section(header: Text("See how you're improving")) {
                     ForEach($sampleWorkoutDays) { $workoutDay in
-                        NavigationLink {
-                            WorkoutDayChartView(workoutDay: $workoutDay)
-                        } label: {
+//                        NavigationLink {
+//                            WorkoutDayChartView(workoutDay: $workoutDay)
+//                        } label: {
+//                            CardView(workoutDay: $workoutDay)
+//                        }
+                        NavigationLink(value: $workoutDay) {
                             CardView(workoutDay: $workoutDay)
                         }
                         .listRowSeparatorTint(.yellow)
@@ -105,12 +110,14 @@ struct MainChartView: View {
                 }
                 .headerProminence(.increased)
             }
-            .padding(.top, -35)
+            .navigationTitle("Charts")
+            .navigationDestination(for: Binding<WorkoutDay>.self) { workoutDay in
+                WorkoutDayChartView(workoutDay: workoutDay)
+            }
             .foregroundColor(.white)
             .scrollContentBackground(.hidden)
             .scrollIndicators(.hidden)
             .toolbar {
-                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
@@ -123,14 +130,12 @@ struct MainChartView: View {
                 }
             }
             .background(Color("royalBlue"))
-            .toolbarBackground(Color("royalBlue"), for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
         }
     }
 }
 
 struct MainChartView_Previews: PreviewProvider {
     static var previews: some View {
-        MainChartView(sampleWorkoutDays: .constant(WorkoutDay.sampleData))
+        MainChartView(sampleWorkoutDays: .constant(WorkoutDay.sampleData), path: .constant(NavigationPath()))
     }
 }

@@ -9,8 +9,6 @@ import SwiftUI
 import UIKit
 
 struct WorkoutDaysView: View {
-    @State private var didSetupAppearance: Bool = false
-    
     init(sampleWorkoutDays: Binding<[WorkoutDay]>, mainWorkoutDay: Binding<WorkoutDay>, path: Binding<NavigationPath>) {
         
         Utils.navigationBarConfig()
@@ -39,14 +37,14 @@ struct WorkoutDaysView: View {
             List {
                 Section {
                     VStack {
-                        Section {
-                            HStack {
-                                Text(Date.now, style: .date)
-                                    .font(Font.subheadline)
-                                    .foregroundColor(Color.gray)
-                                Spacer()
-                            }
+                        // Date
+                        HStack {
+                            Text(Date.now, style: .date)
+                                .font(Font.subheadline)
+                                .foregroundColor(Color.gray)
+                            Spacer()
                         }
+                        // Circles
                         HStack {
                             VStack {
                                 ZStack {
@@ -129,9 +127,7 @@ struct WorkoutDaysView: View {
                 .headerProminence(.increased)
                 Section(header: Text("Browse Workouts")) {
                     ForEach($sampleWorkoutDays) { $workoutDay in
-                        NavigationLink {
-                            WorkoutDayView(workoutDay: $workoutDay)
-                        } label: {
+                        NavigationLink(value: $workoutDay) {
                             CardView(workoutDay: $workoutDay)
                         }
                         .listRowSeparatorTint(.yellow)
@@ -151,11 +147,6 @@ struct WorkoutDaysView: View {
             .scrollContentBackground(.hidden)
             .scrollIndicators(.hidden)
             .background(Color("royalBlue"))
-//            .toolbarBackground(Color("royalBlue"), for: .navigationBar)
-//            .toolbarBackground(.red, for: .navigationBar)
-//                            .toolbarBackground(.visible, for: .navigationBar)
-//            .accentColor(Color.yellow)
-//            .accentColor(Color("angelYellow"))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
@@ -170,23 +161,14 @@ struct WorkoutDaysView: View {
                     }
                 }
             }
-            
-//            .toolbarColorScheme(.dark, for: .navigationBar)
-//            .toolbarBackground(.visible, for: .navigationBar)
             .onChange(of: sharedData.presented) { presented in
             }
-//            .tint(Color.yellow)
-//            .accentColor(Color.yellow)
         }
-//        .tint(colorScheme == .dark ? Color.blue : Color.red)
-//        .accentColor(Color.yellow)
     }
         
-    
     private func getStreak(workoutDay: WorkoutDay) {
         
     }
-    
 }
 
 struct AllWorkoutsView_Previews: PreviewProvider {

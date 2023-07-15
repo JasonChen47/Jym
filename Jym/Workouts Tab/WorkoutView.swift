@@ -57,6 +57,7 @@ struct WorkoutView: View {
                             .foregroundColor(Color("angelYellow"))
                     }
             }
+                
             ) {
                 Grid {
                     GridRow {
@@ -90,6 +91,7 @@ struct WorkoutView: View {
                         
                     }
                 }
+                
                 .listRowSeparatorTint(.yellow)
                 .foregroundColor(Color("angelYellow"))
                 .listRowBackground(
@@ -146,6 +148,7 @@ struct WorkoutView: View {
                 .listRowSeparatorTint(Color("royalBlueLight"))
                 .listRowBackground(Color("royalBlueLight"))
             }
+            
             .headerProminence(.increased)
         }
         .navigationDestination(for: [Binding<Workout>].self) { workoutArr in

@@ -13,9 +13,8 @@ struct JymApp: App {
 
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                WorkoutTabView()
-            }
+            WorkoutTabView()
+            
         }
     }
 }

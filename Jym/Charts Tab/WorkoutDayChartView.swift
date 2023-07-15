@@ -9,18 +9,16 @@ import SwiftUI
 import Charts
 
 struct WorkoutDayChartView: View {
+    
+    init(workoutDay: Binding<WorkoutDay>) {
+        
+        Utils.navigationBarConfig()
+        self._workoutDay = workoutDay
+    }
+    
     @Binding var workoutDay: WorkoutDay
     var body: some View {
         List {
-            HStack {
-                Text(workoutDay.name)
-                    .foregroundColor(.white)
-                    .font(.system(size: 30))
-                    .bold()
-                Spacer()
-            }
-            .listRowInsets(EdgeInsets())
-            .listRowBackground(Color("royalBlue"))
             ForEach($workoutDay.workouts) { $workout in
                 Section(header: Text(workout.name)) {
                     WorkoutChartView(workout: $workout)
@@ -33,19 +31,19 @@ struct WorkoutDayChartView: View {
             }
             .listRowBackground(Color("royalBlue"))
         }
-        .padding(.top, -35)
+        .navigationTitle(workoutDay.name)
         .foregroundColor(.white)
         .scrollContentBackground(.hidden)
         .scrollIndicators(.hidden)
         .background(Color("royalBlue"))
-        .toolbarBackground(Color("royalBlue"), for: .navigationBar)
-        .toolbarBackground(.visible, for: .navigationBar)
-        .accentColor(Color("angelYellow"))
     }
 }
 
 struct WorkoutChartView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutDayChartView(workoutDay: .constant(WorkoutDay.sampleData[0]))
+        @State var workoutsPath = NavigationPath()
+        NavigationStack(path: $workoutsPath) {
+            WorkoutDayChartView(workoutDay: .constant(WorkoutDay.sampleData[0]))
+        }
     }
 }

@@ -13,10 +13,11 @@ class SharedData: ObservableObject {
 struct WorkoutTabView: View {
     
     @State var workoutsPath = NavigationPath()
+    @State var chartsPath = NavigationPath()
     @State var emptyPath = NavigationPath()
     @State var workoutDays = WorkoutDay.sampleData
     @State var mainWorkoutDay = WorkoutDay.sampleData[3]
-    @State private var tabSelection = 0
+    @State private var tabSelection = 1
     @State private var tappedTwice: Bool = false
     @StateObject var sharedData = SharedData()
     var body: some View {
@@ -36,31 +37,34 @@ struct WorkoutTabView: View {
                     Label("Workouts", systemImage: "dumbbell")
                 }
                 .onChange(of: tappedTwice, perform: { tappedTwice in         guard tappedTwice else { return }
-                    workoutsPath = emptyPath
-                    print("toggled")
-                    self.tappedTwice = false
+                    if tabSelection == 1 {
+                        workoutsPath = emptyPath
+                        self.tappedTwice = false
+                    }
                 })
                 .toolbarBackground(Color("royalBlue"), for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
-                .tag(0)
+                .tag(1)
                 
-                
-            MainChartView(sampleWorkoutDays: $workoutDays)
+            MainChartView(sampleWorkoutDays: $workoutDays, path: $chartsPath)
                 .tabItem {
                     Label("Charts", systemImage: "chart.bar.xaxis")
-                        .background(Rectangle())
-                        .padding()
-                        .opacity(0)
-                } 
+                }
+                .onChange(of: tappedTwice, perform: { tappedTwice in         guard tappedTwice else { return }
+                    if tabSelection == 2 {
+                        chartsPath = emptyPath
+                        self.tappedTwice = false
+                    }
+                })
                 .toolbarBackground(Color("royalBlue"), for: .tabBar)
-                
-                .tag(1)
+                .toolbarBackground(.visible, for: .tabBar)
+                .tag(2)
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")
                 }
                 .toolbarBackground(Color("royalBlue"), for: .tabBar)
-                .tag(2)
+                .tag(3)
         }
         .environmentObject(sharedData)
     }
