@@ -14,13 +14,15 @@ struct WorkoutView: View {
         self._workout = workout
     }
     
+    @State private var newRecord = Record.emptyRecord
     @EnvironmentObject var sharedData: SharedData
     @Environment(\.dismiss) var dismiss
     @Binding var workout: Workout
     @State private var showingSheet = false
-    @State private var lbs: String = ""
-    @State private var reps: String = ""
-    @State private var sets: String = ""
+    @State private var lbs: Double = 0
+    @State private var recentRecords: [Record] = []
+    @State private var reps: Double = 0
+    @State private var sets: Double = 0
     @State var workoutDays = WorkoutDay.sampleData
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
@@ -32,13 +34,16 @@ struct WorkoutView: View {
             formatter.setLocalizedDateFormatFromTemplate("M/dd/yy")
             return formatter
         }()
-        @State var sortOrder = [KeyPathComparator(\Record.date)]
-        var recentRecords: [Record] {
+//        @State var sortOrder = [KeyPathComparator(\Record.date)]
+        var recentRecords1: [Record] {
             let sorted = workout.records.sorted {
                 $0.date < $1.date
             }
+            
             return sorted.suffix(3)
         }
+        
+        
         List {
     //                Section(header: Text("Progress Chart")) {
     //                    WorkoutChartView(workout: $workout)
@@ -102,19 +107,19 @@ struct WorkoutView: View {
             Section(header: Text("Record Workout")) {
                 VStack {
                     HStack {
-                        TextField("40", text: $lbs)
+                        TextField("40", value: $lbs, formatter: NumberFormatter())
                             .textFieldStyle(.roundedBorder)
                             .frame(width: width/8)
                             .foregroundColor(.black)
                         Text("lbs")
                         Spacer()
-                        TextField("40", text: $reps)
+                        TextField("10", value: $reps, formatter: NumberFormatter())
                             .textFieldStyle(.roundedBorder)
                             .frame(width: width/8)
                             .foregroundColor(.black)
                         Text("Reps")
                         Spacer()
-                        TextField("40", text: $sets)
+                        TextField("4", value: $sets, formatter: NumberFormatter())
                             .textFieldStyle(.roundedBorder)
                             .frame(width: width/8)
                             .foregroundColor(.black)
@@ -126,7 +131,29 @@ struct WorkoutView: View {
                         Color("royalBlueLight")
                     )
                     Button{
-                        print("hi")
+                        withAnimation {
+                            print("henlo")
+                            newRecord.weight = lbs
+                            newRecord.reps = reps
+                            newRecord.sets = sets
+                            
+                            if !workout.records.isEmpty {
+                                if Calendar.current.isDate(workout.records.last?.date ?? Date.distantPast, inSameDayAs: Date.now) {
+                                    workout.records.removeLast()
+                                }
+                            }
+                            if !recentRecords.isEmpty {
+                                if Calendar.current.isDate(recentRecords.last?.date ?? Date.distantPast, inSameDayAs: Date.now) {
+                                    recentRecords.removeLast()
+                                }
+                            }
+                            workout.records.append(newRecord)
+                            recentRecords.append(newRecord)
+                            if recentRecords.count > 3 {
+                                recentRecords.removeFirst()
+                            }
+                            
+                        }
                     } label: {
                         HStack {
                             Spacer()
@@ -160,6 +187,14 @@ struct WorkoutView: View {
         .background(Color("royalBlue"))
         .navigationTitle(workout.name)
         .onChange(of: sharedData.presented) { presented in
+        }
+        .onAppear {
+            if !recentRecords.isEmpty {
+                lbs = recentRecords.last?.weight ?? 0
+                reps = recentRecords.last?.reps ?? 0
+                sets = recentRecords.last?.sets ?? 0
+            }
+            recentRecords = recentRecords1
         }
     }
 }

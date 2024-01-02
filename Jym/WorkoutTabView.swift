@@ -11,16 +11,16 @@ class SharedData: ObservableObject {
 }
 
 struct WorkoutTabView: View {
-    
+    @Environment(\.scenePhase) private var scenePhase
     @State var workoutsPath = NavigationPath()
     @State var chartsPath = NavigationPath()
     @State var settingsPath = NavigationPath()
     @State var emptyPath = NavigationPath()
-    @State var workoutDays = WorkoutDay.sampleData
-    @State var mainWorkoutDay = WorkoutDay.sampleData[3]
+    @Binding var workoutDays: [WorkoutDay]
     @State private var tabSelection = 1
     @State private var tappedTwice: Bool = false
     @StateObject var sharedData = SharedData()
+    let saveAction: ()->Void
     var body: some View {
         var handler: Binding<Int> { Binding(
             get: { self.tabSelection },
@@ -33,7 +33,7 @@ struct WorkoutTabView: View {
             }
         )}
         TabView(selection: handler) {
-            WorkoutDaysView(sampleWorkoutDays: $workoutDays, mainWorkoutDay: $mainWorkoutDay, path: $workoutsPath)
+            WorkoutDaysView(sampleWorkoutDays: $workoutDays, path: .constant(NavigationPath()))
                 .tabItem {
                     Label("Workouts", systemImage: "dumbbell")
                 }
@@ -75,11 +75,14 @@ struct WorkoutTabView: View {
                 .tag(3)
         }
         .environmentObject(sharedData)
+        .onChange(of: scenePhase) { phase in
+            if phase == .inactive { saveAction() }
+        }
     }
 }
 
 struct WorkoutTabView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutTabView()
+        WorkoutTabView(workoutDays: .constant(WorkoutDay.sampleData), saveAction: {})
     }
 }

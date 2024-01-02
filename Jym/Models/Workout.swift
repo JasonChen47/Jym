@@ -8,15 +8,15 @@
 import Foundation
 
 // Struct for each workout
-struct Workout: Identifiable {
+struct Workout: Identifiable, Codable {
     let id: UUID
     var name: String
     var weight: Double
-    var reps: Int
-    var sets: Int
+    var reps: Double
+    var sets: Double
     var records: [Record]
     
-    init(id: UUID = UUID(), name: String, weight: Double, reps: Int, sets: Int, records: [Record]) {
+    init(id: UUID = UUID(), name: String, weight: Double, reps: Double, sets: Double, records: [Record]) {
         self.id = id
         self.name = name
         self.weight = weight

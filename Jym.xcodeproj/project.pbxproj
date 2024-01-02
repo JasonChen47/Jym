@@ -13,6 +13,7 @@
 		F634A1DF2A20293500742182 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634A1DE2A20293400742182 /* MainChartView.swift */; };
 		F634A1E12A202C5700742182 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634A1E02A202C5700742182 /* Record.swift */; };
 		F638282D2A41300E002209A6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F638282C2A41300E002209A6 /* SettingsView.swift */; };
+		F63A334D2A7C906600886BDC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F63A334C2A7C906600886BDC /* Launch Screen.storyboard */; };
 		F64D36002A60438500C872E7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D35FF2A60438500C872E7 /* Color.swift */; };
 		F64D36022A60F7A700C872E7 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D36012A60F7A700C872E7 /* TestView.swift */; };
 		F64D36042A6113CD00C872E7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D36032A6113CD00C872E7 /* Utils.swift */; };
@@ -22,7 +23,9 @@
 		F68866362A5784B700590FCC /* WorkoutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68866352A5784B700590FCC /* WorkoutChartView.swift */; };
 		F68866392A57C28200590FCC /* WorkoutDayChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68866382A57C28200590FCC /* WorkoutDayChartView.swift */; };
 		F688663B2A58487F00590FCC /* WorkoutLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688663A2A58487E00590FCC /* WorkoutLogView.swift */; };
+		F690991C2A9AB4BC00D7517A /* NewWorkoutDaySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F690991B2A9AB4BC00D7517A /* NewWorkoutDaySheet.swift */; };
 		F6B9DB732A5A176C007F7F11 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B9DB722A5A176C007F7F11 /* Binding.swift */; };
+		F6CB87D82AA01C5500E4CF6E /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CB87D72AA01C5500E4CF6E /* DataStore.swift */; };
 		F6E729732A3DF36500C8C09D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E729722A3DF36500C8C09D /* Date.swift */; };
 		F6FED62E2A048015001F3B8C /* JymApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FED62D2A048015001F3B8C /* JymApp.swift */; };
 		F6FED6302A048015001F3B8C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FED62F2A048015001F3B8C /* ContentView.swift */; };
@@ -62,6 +65,7 @@
 		F634A1DE2A20293400742182 /* MainChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChartView.swift; sourceTree = "<group>"; };
 		F634A1E02A202C5700742182 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		F638282C2A41300E002209A6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F63A334C2A7C906600886BDC /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		F64D35FF2A60438500C872E7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		F64D36012A60F7A700C872E7 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		F64D36032A6113CD00C872E7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -71,7 +75,9 @@
 		F68866352A5784B700590FCC /* WorkoutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutChartView.swift; sourceTree = "<group>"; };
 		F68866382A57C28200590FCC /* WorkoutDayChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDayChartView.swift; sourceTree = "<group>"; };
 		F688663A2A58487E00590FCC /* WorkoutLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutLogView.swift; sourceTree = "<group>"; };
+		F690991B2A9AB4BC00D7517A /* NewWorkoutDaySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutDaySheet.swift; sourceTree = "<group>"; };
 		F6B9DB722A5A176C007F7F11 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
+		F6CB87D72AA01C5500E4CF6E /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		F6E729722A3DF36500C8C09D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		F6FED62A2A048015001F3B8C /* Jym.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jym.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6FED62D2A048015001F3B8C /* JymApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JymApp.swift; sourceTree = "<group>"; };
@@ -119,8 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				F64D36032A6113CD00C872E7 /* Utils.swift */,
-				F6FED6622A0486BD001F3B8C /* Workout.swift */,
 				F6FED6602A04868A001F3B8C /* WorkoutDay.swift */,
+				F6FED6622A0486BD001F3B8C /* Workout.swift */,
 				F634A1E02A202C5700742182 /* Record.swift */,
 				F650F0B82A39771900F61A85 /* Sets.swift */,
 			);
@@ -153,6 +159,7 @@
 				F6292C1D2A0B1C8F0050C7E4 /* WorkoutDayView.swift */,
 				F68866332A54F16A00590FCC /* WorkoutView.swift */,
 				F688663A2A58487E00590FCC /* WorkoutLogView.swift */,
+				F690991B2A9AB4BC00D7517A /* NewWorkoutDaySheet.swift */,
 			);
 			path = "Workouts Tab";
 			sourceTree = "<group>";
@@ -202,6 +209,7 @@
 				F6FED62F2A048015001F3B8C /* ContentView.swift */,
 				F64D36012A60F7A700C872E7 /* TestView.swift */,
 				F6292C202A0B1D020050C7E4 /* WorkoutTabView.swift */,
+				F6CB87D72AA01C5500E4CF6E /* DataStore.swift */,
 				F688663C2A58499D00590FCC /* Workouts Tab */,
 				F688663E2A584A0100590FCC /* Charts Tab */,
 				F688663D2A5849E200590FCC /* Settings Tab */,
@@ -209,6 +217,7 @@
 				F6292C1F2A0B1CA60050C7E4 /* Models */,
 				F64D35FE2A60434A00C872E7 /* Extensions */,
 				F6FED6312A04801C001F3B8C /* Assets.xcassets */,
+				F63A334C2A7C906600886BDC /* Launch Screen.storyboard */,
 				F6FED6362A04801C001F3B8C /* Persistence.swift */,
 				F6FED6382A04801C001F3B8C /* Jym.xcdatamodeld */,
 				F6FED6332A04801C001F3B8C /* Preview Content */,
@@ -345,6 +354,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F63A334D2A7C906600886BDC /* Launch Screen.storyboard in Resources */,
 				F6FED6352A04801C001F3B8C /* Preview Assets.xcassets in Resources */,
 				F6FED6322A04801C001F3B8C /* Assets.xcassets in Resources */,
 			);
@@ -384,6 +394,7 @@
 				F6292C1E2A0B1C8F0050C7E4 /* WorkoutDayView.swift in Sources */,
 				F6FED6632A0486BD001F3B8C /* Workout.swift in Sources */,
 				F634A1DD2A1ED4C200742182 /* CardView.swift in Sources */,
+				F6CB87D82AA01C5500E4CF6E /* DataStore.swift in Sources */,
 				F68866362A5784B700590FCC /* WorkoutChartView.swift in Sources */,
 				F6FED6612A04868A001F3B8C /* WorkoutDay.swift in Sources */,
 				F64D36042A6113CD00C872E7 /* Utils.swift in Sources */,
@@ -395,6 +406,7 @@
 				F650F0B92A39771900F61A85 /* Sets.swift in Sources */,
 				F6292C212A0B1D020050C7E4 /* WorkoutTabView.swift in Sources */,
 				F6B9DB732A5A176C007F7F11 /* Binding.swift in Sources */,
+				F690991C2A9AB4BC00D7517A /* NewWorkoutDaySheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,6 +571,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16;
@@ -589,6 +602,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16;

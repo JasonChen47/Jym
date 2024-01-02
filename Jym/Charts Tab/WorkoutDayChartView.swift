@@ -16,18 +16,29 @@ struct WorkoutDayChartView: View {
         self._workoutDay = workoutDay
     }
     
+    let cornerRadius: CGFloat = 10
+    let outlineSize: CGFloat = 1
     @Binding var workoutDay: WorkoutDay
     var body: some View {
         List {
             ForEach($workoutDay.workouts) { $workout in
                 Section(header: Text(workout.name)) {
                     WorkoutChartView(workout: $workout)
+                        .listRowInsets(EdgeInsets())
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: cornerRadius)
+                                .strokeBorder(Color("angelYellow"), lineWidth: outlineSize)
+                        )
+                        .background(
+                            Color("royalBlueLight")
+                        )
                 }
-                .listRowInsets(.init(top: 10,
-                     leading: 0,
-                     bottom: 0,
-                     trailing: 0)
-                )
+//                .listRowInsets(.init(top: 10,
+//                     leading: 0,
+//                     bottom: 0,
+//                     trailing: 0)
+//                )
             }
             .listRowBackground(Color("royalBlue"))
         }

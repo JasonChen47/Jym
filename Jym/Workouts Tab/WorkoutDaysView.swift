@@ -9,21 +9,22 @@ import SwiftUI
 import UIKit
 
 struct WorkoutDaysView: View {
-    init(sampleWorkoutDays: Binding<[WorkoutDay]>, mainWorkoutDay: Binding<WorkoutDay>, path: Binding<NavigationPath>) {
+    init(sampleWorkoutDays: Binding<[WorkoutDay]>, path: Binding<NavigationPath>) {
         
         Utils.navigationBarConfig()
         self._sampleWorkoutDays = sampleWorkoutDays
-        self._mainWorkoutDay = mainWorkoutDay
         self._path = path
     }
     
+    @State private var workoutDays: [WorkoutDay] = []
+    @State private var isPresentingNewWorkoutDayView = false
     @Environment(\.colorScheme) var colorScheme
     @State var refresh: Bool = false
     @EnvironmentObject var sharedData: SharedData
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     @Binding var sampleWorkoutDays: [WorkoutDay]
-    @Binding var mainWorkoutDay: WorkoutDay
+    @State private var mainWorkoutDay: WorkoutDay = WorkoutDay.emptyWorkoutDay
     @Binding var path: NavigationPath
     @State private var searchText = ""
     @State private var title = "Workout Days"
@@ -31,8 +32,35 @@ struct WorkoutDaysView: View {
     let subtitleSize: CGFloat = 20
     let outlineSize: CGFloat = 1
     let emojiSize: CGFloat = 35
-
+    var highestStreaks: [WorkoutDay] {
+        // Sort streaks from lowest to highest
+        let sorted = sampleWorkoutDays.sorted {
+            $0.streak < $1.streak
+        }
+        var reversedFour: [WorkoutDay] = sorted.suffix(4).reversed()
+        for i in 0...3 {
+            if !reversedFour.indices.contains(i) {
+                reversedFour.append(WorkoutDay.emptyWorkoutDay)
+            }
+        }
+        return reversedFour
+    }
+    var oldestWorkoutDay: WorkoutDay {
+        let oldest = sampleWorkoutDays.max {
+            $0.lastWorkoutDay > $1.lastWorkoutDay
+        } ?? WorkoutDay.emptyWorkoutDay
+        return oldest
+    }
+    
     var body: some View {
+        let firstStreak = highestStreaks[0]
+        let secondStreak = highestStreaks[1]
+        let thirdStreak = highestStreaks[2]
+        let fourthStreak = highestStreaks[3]
+        
+        var streaks = [firstStreak.streak, secondStreak.streak, thirdStreak.streak, fourthStreak.streak]
+        var filteredStreaks = streaks.map { $0 > 10 ? CGFloat(10) : CGFloat($0) }
+        
         NavigationStack(path: $path) {
             List {
                 Section {
@@ -46,11 +74,18 @@ struct WorkoutDaysView: View {
                         }
                         // Circles
                         HStack {
+                            // 1st highest streak
                             VStack {
                                 ZStack {
                                     Circle()
                                         .stroke(Color.red, lineWidth: 10)
                                         .frame(width: width/3)
+                                        .opacity(0.3)
+                                    Circle()
+                                        .trim(from: 0, to: filteredStreaks[0]/10)
+                                        .stroke(Color.red, lineWidth: 10)
+                                        .frame(width: width/3)
+                                        
                                     Circle()
                                         .stroke(Color("angelYellow"), lineWidth: 10)
                                         .frame(width: width/4)
@@ -58,40 +93,58 @@ struct WorkoutDaysView: View {
                                         .stroke(Color("gold"), lineWidth: 10)
                                         .frame(width: width/6)
                                 }
-                                Text("Arms")
+                                Text(firstStreak.name)
                             }
                             VStack {
+                                // 4th highest streak
                                 VStack {
                                     ZStack {
                                         Circle()
                                             .stroke(Color.red, lineWidth: 10)
                                             .aspectRatio(contentMode: .fit)
+                                            .opacity(0.3)
+                                        Circle()
+                                            .trim(from: 0, to: filteredStreaks[3]/10)
+                                            .stroke(Color.red, lineWidth: 10)
+                                            .aspectRatio(contentMode: .fit)
                                     }
-                                    Text("Back")
+                                    Text(fourthStreak.name)
                                         .fixedSize()
                                 }
                                 .padding()
+                                // 3rd highest streak
                                 ZStack {
                                     Circle()
+                                        .stroke(Color.red, lineWidth: 10)
+                                        .frame(width: width/7)
+                                        .opacity(0.3)
+                                    Circle()
+                                        .trim(from: 0, to: filteredStreaks[2]/10)
                                         .stroke(Color.red, lineWidth: 10)
                                         .frame(width: width/7)
                                     Circle()
                                         .stroke(Color("angelYellow"), lineWidth: 10)
                                         .frame(width: width/15)
                                 }
-                                Text("Legs")
+                                Text(thirdStreak.name)
                             }
                             .padding([.leading, .trailing])
+                            // 2nd highest streak
                             VStack {
                                 ZStack {
                                     Circle()
+                                        .stroke(Color.red, lineWidth: 10)
+                                        .frame(width: width/5)
+                                        .opacity(0.3)
+                                    Circle()
+                                        .trim(from: 0, to: filteredStreaks[1]/10)
                                         .stroke(Color.red, lineWidth: 10)
                                         .frame(width: width/5)
                                     Circle()
                                         .stroke(Color("angelYellow"), lineWidth: 10)
                                         .frame(width: width/8)
                                 }
-                                Text("Shoulders")
+                                Text(secondStreak.name)
                                 Spacer()
                             }
                         }
@@ -144,9 +197,9 @@ struct WorkoutDaysView: View {
                 WorkoutDayView(workoutDay: workoutDay)
             }
             .foregroundColor(.white)
+            .background(Color("royalBlue"))
             .scrollContentBackground(.hidden)
             .scrollIndicators(.hidden)
-            .background(Color("royalBlue"))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
@@ -154,18 +207,23 @@ struct WorkoutDaysView: View {
                 }
                 ToolbarItem {
                     Button {
-                        print("hi")
+                        isPresentingNewWorkoutDayView = true
                     } label: {
                         Label("Add Item", systemImage: "plus")
                             .foregroundColor(Color.yellow)
                     }
                 }
             }
+            .sheet(isPresented: $isPresentingNewWorkoutDayView) {
+                NewWorkoutDaySheet(workoutDays: $sampleWorkoutDays, isPresentingNewWorkoutDayView: $isPresentingNewWorkoutDayView)
+            }
             .onChange(of: sharedData.presented) { presented in
             }
         }
+        .onAppear {
+            mainWorkoutDay = oldestWorkoutDay
+        }
     }
-        
     private func getStreak(workoutDay: WorkoutDay) {
         
     }
@@ -174,7 +232,7 @@ struct WorkoutDaysView: View {
 struct AllWorkoutsView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            WorkoutDaysView(sampleWorkoutDays: .constant(WorkoutDay.sampleData), mainWorkoutDay: .constant(WorkoutDay.sampleData[3]), path: .constant(NavigationPath()))
+            WorkoutDaysView(sampleWorkoutDays: .constant(WorkoutDay.sampleData), path: .constant(NavigationPath()))
         }.environmentObject(SharedData())
         
         
