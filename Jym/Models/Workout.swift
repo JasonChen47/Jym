@@ -26,16 +26,18 @@ struct Workout: Identifiable, Codable {
     }
 }
 
-extension Workout: Hashable {
-    var identifier: String {
-        return UUID().uuidString
-    }
-    public func hash(into hasher: inout Hasher) {
-        return hasher.combine(identifier)
-    }
-    public static func == (lhs: Workout, rhs: Workout) -> Bool {
-        return lhs.identifier == rhs.identifier
-    }
-}
+//extension Workout: Hashable {
+//    var identifier: String {
+//        return UUID().uuidString
+//    }
+//    public func hash(into hasher: inout Hasher) {
+//        return hasher.combine(identifier)
+//    }
+//    public static func == (lhs: Workout, rhs: Workout) -> Bool {
+//        return lhs.identifier == rhs.identifier
+//    }
+//}
+
+
 
 

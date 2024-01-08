@@ -27,20 +27,21 @@ struct WorkoutDay: Identifiable, Codable {
     
     static var emptyWorkoutDay: WorkoutDay {
         WorkoutDay(name: "", emoji: "", streak: 0, lastWorkoutDay: Date.now, workouts: [])
+//        WorkoutDay(name: "hi", emoji: "o", streak: 0, lastWorkoutDay: Date.now, workouts: [WorkoutDay.sampl])
     }
 }
 
-extension WorkoutDay: Hashable {
-    var identifier: String {
-        return UUID().uuidString
-    }
-    public func hash(into hasher: inout Hasher) {
-        return hasher.combine(identifier)
-    }
-    public static func == (lhs: WorkoutDay, rhs: WorkoutDay) -> Bool {
-        return lhs.identifier == rhs.identifier
-    }
-}
+//extension WorkoutDay: Hashable {
+//    var identifier: String {
+//        return UUID().uuidString
+//    }
+//    public func hash(into hasher: inout Hasher) {
+//        return hasher.combine(identifier)
+//    }
+//    public static func == (lhs: WorkoutDay, rhs: WorkoutDay) -> Bool {
+//        return lhs.identifier == rhs.identifier
+//    }
+//}
 
 extension WorkoutDay {
     static let records: [Record] = [
@@ -160,6 +161,34 @@ extension WorkoutDay {
     ]
 }
 
-
-
-
+//extension WorkoutDay {
+//    struct Workout: Identifiable, Codable {
+//        let id: UUID
+//        var name: String
+//        var weight: Double
+//        var reps: Double
+//        var sets: Double
+//        var records: [Record]
+//        
+//        init(id: UUID = UUID(), name: String, weight: Double, reps: Double, sets: Double, records: [Record]) {
+//            self.id = id
+//            self.name = name
+//            self.weight = weight
+//            self.reps = reps
+//            self.sets = sets
+//            self.records = records
+//        }
+//    }
+//}
+//
+//extension WorkoutDay.Workout: Hashable {
+//    var identifier: String {
+//        return UUID().uuidString
+//    }
+//    public func hash(into hasher: inout Hasher) {
+//        return hasher.combine(identifier)
+//    }
+//    public static func == (lhs: WorkoutDay.Workout, rhs: WorkoutDay.Workout) -> Bool {
+//        return lhs.identifier == rhs.identifier
+//    }
+//}

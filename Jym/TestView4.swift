@@ -1,16 +1,16 @@
 //
-//  AllWorkoutsView.swift
+//  TestView4.swift
 //  Jym
 //
-//  Created by John Smith on 5/4/23.
+//  Created by John Smith on 1/7/24.
 //
 
 import SwiftUI
 
 
-struct WorkoutDaysView: View {
+struct TestView4: View {
 //    init(sampleWorkoutDays: Binding<[WorkoutDay]>, path: Binding<NavigationPath>) {
-//        
+//
 //        Utils.navigationBarConfig()
 //        self._sampleWorkoutDays = sampleWorkoutDays
 //        self._path = path
@@ -23,8 +23,8 @@ struct WorkoutDaysView: View {
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     @Binding var workoutDays: [WorkoutDay]
-    @State private var mainWorkoutDay = [WorkoutDay.emptyWorkoutDay]
-//    @Binding var path: NavigationPath
+    @State private var mainWorkoutDay: WorkoutDay = WorkoutDay.emptyWorkoutDay
+    @Binding var path: NavigationPath
     @State private var searchText = ""
     @State private var title = "Workout Days"
     let cornerRadius: CGFloat = 10
@@ -59,13 +59,10 @@ struct WorkoutDaysView: View {
 //                    NavigationLink(destination: TestView2())
 //                    NavigationLink(value: $mainWorkoutDay)
 //                    NavigationLink(destination: WorkoutDayView(workoutDay: $mainWorkoutDay))
-                    ForEach($mainWorkoutDay) { $workoutDay in
-                        NavigationLink(destination: WorkoutDayView(workoutDay: $workoutDay))
-                        {
-                            CardView(workoutDay: $workoutDay)
-                        }
+                    NavigationLink(destination: TestView2(workouts: $mainWorkoutDay.workouts))
+                    {
+                        CardView(workoutDay: $mainWorkoutDay)
                     }
-                    
                     .listRowSeparatorTint(.yellow)
                     .foregroundColor(Color("angelYellow"))
                     .listRowBackground(
@@ -85,7 +82,7 @@ struct WorkoutDaysView: View {
 //                        NavigationLink(destination: TestView2())
 //                        NavigationLink(value: $workoutDay)
 //                        NavigationLink(destination: WorkoutDayView(workoutDay: $workoutDay))
-                        NavigationLink(destination: WorkoutDayView(workoutDay: $workoutDay))
+                        NavigationLink(destination: TestView2(workouts: $mainWorkoutDay.workouts))
                         
                         {
                             CardView(workoutDay: $workoutDay)
@@ -130,19 +127,18 @@ struct WorkoutDaysView: View {
 //            }
         }
         .onAppear {
-            mainWorkoutDay[0] = oldestWorkoutDay
+            mainWorkoutDay = oldestWorkoutDay
         }
     }
     
 }
 
-struct AllWorkoutsView_Previews: PreviewProvider {
+struct TestView4_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            WorkoutDaysView(workoutDays: .constant(WorkoutDay.sampleData))
+            TestView4(workoutDays: .constant(WorkoutDay.sampleData), path: .constant(NavigationPath()))
         }
         
         
     }
 }
-

@@ -91,24 +91,24 @@ struct MainChartView: View {
                     )
                 }
                 .headerProminence(.increased)
-                Section(header: Text("See how you're improving")) {
-                    ForEach($sampleWorkoutDays) { $workoutDay in
-                        NavigationLink(value: $workoutDay) {
-                            CardView(workoutDay: $workoutDay)
-                        }
-                        .listRowSeparatorTint(.yellow)
-                        .foregroundColor(Color("gold"))
-                        .listRowBackground(
-                            Color("royalBlueLight")
-                        )
-                    }
-                }
-                .headerProminence(.increased)
+//                Section(header: Text("See how you're improving")) {
+//                    ForEach($sampleWorkoutDays) { $workoutDay in
+//                        NavigationLink(value: $workoutDay) {
+//                            CardView(workoutDay: $workoutDay)
+//                        }
+//                        .listRowSeparatorTint(.yellow)
+//                        .foregroundColor(Color("gold"))
+//                        .listRowBackground(
+//                            Color("royalBlueLight")
+//                        )
+//                    }
+//                }
+//                .headerProminence(.increased)
             }
             .navigationTitle("Charts")
-            .navigationDestination(for: Binding<WorkoutDay>.self) { workoutDay in
-                WorkoutDayChartView(workoutDay: workoutDay)
-            }
+//            .navigationDestination(for: Binding<WorkoutDay>.self) { workoutDay in
+//                WorkoutDayChartView(workoutDay: workoutDay)
+//            }
             .foregroundColor(.white)
             .scrollContentBackground(.hidden)
             .scrollIndicators(.hidden)

@@ -33,7 +33,7 @@ struct WorkoutTabView: View {
             }
         )}
         TabView(selection: handler) {
-            WorkoutDaysView(sampleWorkoutDays: $workoutDays, path: .constant(NavigationPath()))
+            WorkoutDaysView(workoutDays: $workoutDays)
                 .tabItem {
                     Label("Workouts", systemImage: "dumbbell")
                 }
@@ -45,7 +45,8 @@ struct WorkoutTabView: View {
                 })
                 .toolbarBackground(Color("royalBlue"), for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
-                .tag(1)
+            .tag(1)
+            
                 
             MainChartView(sampleWorkoutDays: $workoutDays, path: $chartsPath)
                 .tabItem {
@@ -60,6 +61,7 @@ struct WorkoutTabView: View {
                 .toolbarBackground(Color("royalBlue"), for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
                 .tag(2)
+//            TestView(workoutDays: $workoutDays)
             SettingsView(path: $settingsPath)
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")
@@ -73,8 +75,21 @@ struct WorkoutTabView: View {
                 .toolbarBackground(Color("royalBlue"), for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
                 .tag(3)
+            TestView3(workoutDays: $workoutDays)
+//            TestView4(workoutDays: $workoutDays, path: .constant(NavigationPath()))
+                .tabItem {
+                    Label("Test", systemImage: "testtube.2")
+                }
+                .onChange(of: tappedTwice, perform: { tappedTwice in         guard tappedTwice else { return }
+                    if tabSelection == 4 {
+                        settingsPath = emptyPath
+                        self.tappedTwice = false
+                    }
+                })
+                .toolbarBackground(Color("royalBlue"), for: .tabBar)
+                .toolbarBackground(.visible, for: .tabBar)
+                .tag(4)
         }
-        .environmentObject(sharedData)
         .onChange(of: scenePhase) { phase in
             if phase == .inactive { saveAction() }
         }

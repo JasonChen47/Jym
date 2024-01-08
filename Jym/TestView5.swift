@@ -1,31 +1,25 @@
 //
-//  WorkoutDayView.swift
+//  TestView5.swift
 //  Jym
 //
-//  Created by John Smith on 5/9/23.
+//  Created by John Smith on 1/7/24.
 //
 
 import SwiftUI
 
-struct WorkoutDayView: View {
-    
-//    init(workoutDay: Binding<WorkoutDay>) {
-//        Utils.navigationBarConfig()
-//        self._workoutDay = workoutDay
-//        
-//    }
+struct TestView5: View {
     @Binding var workoutDay: WorkoutDay
-    
     
     @State private var editingWorkoutDay = WorkoutDay.emptyWorkoutDay
     @State private var isPresentingNewWorkoutView = false
-//    @EnvironmentObject var sharedData: SharedData
-//    @Environment(\.dismiss) var dismiss
     
-//    @Binding var path: NavigationPath
+    @Environment(\.dismiss) var dismiss
+
+    
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     var body: some View {
+//        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
         VStack {
             Rectangle()
                 .fill(.linearGradient(
@@ -53,34 +47,14 @@ struct WorkoutDayView: View {
             List {
                 ForEach($workoutDay.workouts) { $workout in
                     NavigationLink(destination: WorkoutView(workout: $workout)) {
-//                        ZStack {
-//                            EmptyView()
-//                        }
                         Text(workout.name)
                     }
-//                    .listRowSeparatorTint(.yellow)
-//                    .background(
-//                        ZStack {
-//                            HStack {
-//                                Text(workout.name)
-//                                    .foregroundColor(Color("angelYellow"))
-//                                
-//                                Spacer()
-//                                Image(systemName: "chevron.right")
-//                                    .resizable()
-//                                    .aspectRatio(contentMode: .fit)
-//                                    .foregroundColor(Color("angelYellow"))
-//                            }
-//                        }
-//                    )
                 }
-                
                 .listRowBackground(
                     Color("royalBlueLight")
                 )
             }
             .scrollContentBackground(.hidden)
-            Spacer()
         }
         .background(Color("royalBlue"))
         .toolbar {
@@ -116,18 +90,13 @@ struct WorkoutDayView: View {
             
         }
         .navigationTitle(workoutDay.name)
-//        .onChange(of: sharedData.presented) { presented in
-//        }
+        
     }
 }
 
-struct WorkoutDayView_Previews: PreviewProvider {
-    static var previews: some View {
-        @State var workoutsPath = NavigationPath()
-        NavigationStack(path: $workoutsPath) {
-            Group {
-                WorkoutDayView(workoutDay: .constant(WorkoutDay.sampleData[0]))
-            }
-        }
+#Preview {
+    NavigationStack {
+        TestView5(workoutDay: .constant(WorkoutDay.sampleData[0]))
     }
+    
 }

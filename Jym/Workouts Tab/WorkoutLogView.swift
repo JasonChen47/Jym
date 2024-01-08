@@ -76,8 +76,8 @@ struct WorkoutLogView: View {
             }
         }
         .navigationTitle("Full Workout Log")
-        .onChange(of: sharedData.presented) { presented in
-        }
+//        .onChange(of: sharedData.presented) { presented in
+//        }
     }
 }
 
@@ -87,6 +87,6 @@ struct WorkoutLogView_Previews: PreviewProvider {
             NavigationStack {
                 WorkoutLogView(workout: .constant(WorkoutDay.sampleData[0].workouts[0]))
             }
-        }.environmentObject(SharedData())
+        }
     }
 }

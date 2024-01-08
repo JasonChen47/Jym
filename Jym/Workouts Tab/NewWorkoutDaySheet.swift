@@ -27,13 +27,6 @@ struct NewWorkoutDaySheet: View {
                         HStack {
                             Text(workout.name)
                             Spacer()
-//                            Button(action: {
-//                                withAnimation {
-//                                    newWorkoutDay.workouts = newWorkoutDay.workouts.filter() {$0 != workout}
-//                                }
-//                            }) {
-//                                Image(systemName: "minus.circle").accessibilityLabel("Delete Workout")
-//                            }
                         }
                     }
                     HStack {
@@ -64,10 +57,6 @@ struct NewWorkoutDaySheet: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Add") {
                         withAnimation {
-                            if newWorkoutName != "" {
-                                let workout = Workout(name: newWorkoutName, weight: 0, reps: 0, sets: 0, records: [])
-                                newWorkoutDay.workouts.append(workout)
-                            }
                             workoutDays.append(newWorkoutDay)
                         }
                         isPresentingNewWorkoutDayView = false

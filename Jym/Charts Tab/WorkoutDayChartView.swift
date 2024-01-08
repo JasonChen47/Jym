@@ -10,11 +10,11 @@ import Charts
 
 struct WorkoutDayChartView: View {
     
-    init(workoutDay: Binding<WorkoutDay>) {
-        
-        Utils.navigationBarConfig()
-        self._workoutDay = workoutDay
-    }
+//    init(workoutDay: Binding<WorkoutDay>) {
+//        
+//        Utils.navigationBarConfig()
+//        self._workoutDay = workoutDay
+//    }
     
     let cornerRadius: CGFloat = 10
     let outlineSize: CGFloat = 1
@@ -23,7 +23,8 @@ struct WorkoutDayChartView: View {
         List {
             ForEach($workoutDay.workouts) { $workout in
                 Section(header: Text(workout.name)) {
-                    WorkoutChartView(workout: $workout)
+//                    WorkoutChartView(workout: $workout)
+                    TestView2(workouts: .constant(WorkoutDay.sampleData[0].workouts))
                         .listRowInsets(EdgeInsets())
                         .padding()
                         .overlay(

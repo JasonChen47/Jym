@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F62685412B4B525A00CF661E /* TestView5.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62685402B4B525A00CF661E /* TestView5.swift */; };
+		F62685432B4B550300CF661E /* TestTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62685422B4B550200CF661E /* TestTabView.swift */; };
 		F6292C1E2A0B1C8F0050C7E4 /* WorkoutDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6292C1D2A0B1C8F0050C7E4 /* WorkoutDayView.swift */; };
 		F6292C212A0B1D020050C7E4 /* WorkoutTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6292C202A0B1D020050C7E4 /* WorkoutTabView.swift */; };
 		F634A1DD2A1ED4C200742182 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634A1DC2A1ED4C100742182 /* CardView.swift */; };
@@ -24,6 +26,11 @@
 		F68866392A57C28200590FCC /* WorkoutDayChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68866382A57C28200590FCC /* WorkoutDayChartView.swift */; };
 		F688663B2A58487F00590FCC /* WorkoutLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688663A2A58487E00590FCC /* WorkoutLogView.swift */; };
 		F690991C2A9AB4BC00D7517A /* NewWorkoutDaySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F690991B2A9AB4BC00D7517A /* NewWorkoutDaySheet.swift */; };
+		F691F24D2B45289900E5D29F /* NewWorkoutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F691F24C2B45289800E5D29F /* NewWorkoutSheet.swift */; };
+		F6B9CA0E2B4A7E1000E7B534 /* TestView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B9CA0D2B4A7E1000E7B534 /* TestView2.swift */; };
+		F6B9CA102B4AC08100E7B534 /* TestView3.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B9CA0F2B4AC08100E7B534 /* TestView3.swift */; };
+		F6B9CA122B4AC3D300E7B534 /* StreaksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B9CA112B4AC3D300E7B534 /* StreaksView.swift */; };
+		F6B9CA142B4ACE2E00E7B534 /* TestView4.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B9CA132B4ACE2E00E7B534 /* TestView4.swift */; };
 		F6B9DB732A5A176C007F7F11 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B9DB722A5A176C007F7F11 /* Binding.swift */; };
 		F6CB87D82AA01C5500E4CF6E /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CB87D72AA01C5500E4CF6E /* DataStore.swift */; };
 		F6E729732A3DF36500C8C09D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E729722A3DF36500C8C09D /* Date.swift */; };
@@ -59,6 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F62685402B4B525A00CF661E /* TestView5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView5.swift; sourceTree = "<group>"; };
+		F62685422B4B550200CF661E /* TestTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTabView.swift; sourceTree = "<group>"; };
 		F6292C1D2A0B1C8F0050C7E4 /* WorkoutDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDayView.swift; sourceTree = "<group>"; };
 		F6292C202A0B1D020050C7E4 /* WorkoutTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTabView.swift; sourceTree = "<group>"; };
 		F634A1DC2A1ED4C100742182 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -76,6 +85,11 @@
 		F68866382A57C28200590FCC /* WorkoutDayChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDayChartView.swift; sourceTree = "<group>"; };
 		F688663A2A58487E00590FCC /* WorkoutLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutLogView.swift; sourceTree = "<group>"; };
 		F690991B2A9AB4BC00D7517A /* NewWorkoutDaySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutDaySheet.swift; sourceTree = "<group>"; };
+		F691F24C2B45289800E5D29F /* NewWorkoutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutSheet.swift; sourceTree = "<group>"; };
+		F6B9CA0D2B4A7E1000E7B534 /* TestView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView2.swift; sourceTree = "<group>"; };
+		F6B9CA0F2B4AC08100E7B534 /* TestView3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView3.swift; sourceTree = "<group>"; };
+		F6B9CA112B4AC3D300E7B534 /* StreaksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreaksView.swift; sourceTree = "<group>"; };
+		F6B9CA132B4ACE2E00E7B534 /* TestView4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView4.swift; sourceTree = "<group>"; };
 		F6B9DB722A5A176C007F7F11 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		F6CB87D72AA01C5500E4CF6E /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		F6E729722A3DF36500C8C09D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -148,6 +162,7 @@
 			children = (
 				F68866352A5784B700590FCC /* WorkoutChartView.swift */,
 				F634A1DC2A1ED4C100742182 /* CardView.swift */,
+				F6B9CA112B4AC3D300E7B534 /* StreaksView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -160,6 +175,7 @@
 				F68866332A54F16A00590FCC /* WorkoutView.swift */,
 				F688663A2A58487E00590FCC /* WorkoutLogView.swift */,
 				F690991B2A9AB4BC00D7517A /* NewWorkoutDaySheet.swift */,
+				F691F24C2B45289800E5D29F /* NewWorkoutSheet.swift */,
 			);
 			path = "Workouts Tab";
 			sourceTree = "<group>";
@@ -208,6 +224,11 @@
 				F6FED62D2A048015001F3B8C /* JymApp.swift */,
 				F6FED62F2A048015001F3B8C /* ContentView.swift */,
 				F64D36012A60F7A700C872E7 /* TestView.swift */,
+				F6B9CA0D2B4A7E1000E7B534 /* TestView2.swift */,
+				F6B9CA0F2B4AC08100E7B534 /* TestView3.swift */,
+				F6B9CA132B4ACE2E00E7B534 /* TestView4.swift */,
+				F62685402B4B525A00CF661E /* TestView5.swift */,
+				F62685422B4B550200CF661E /* TestTabView.swift */,
 				F6292C202A0B1D020050C7E4 /* WorkoutTabView.swift */,
 				F6CB87D72AA01C5500E4CF6E /* DataStore.swift */,
 				F688663C2A58499D00590FCC /* Workouts Tab */,
@@ -383,18 +404,23 @@
 			files = (
 				F6FED65F2A048427001F3B8C /* WorkoutDaysView.swift in Sources */,
 				F6E729732A3DF36500C8C09D /* Date.swift in Sources */,
+				F6B9CA102B4AC08100E7B534 /* TestView3.swift in Sources */,
 				F64D36022A60F7A700C872E7 /* TestView.swift in Sources */,
 				F64D36002A60438500C872E7 /* Color.swift in Sources */,
 				F6FED63A2A04801C001F3B8C /* Jym.xcdatamodeld in Sources */,
+				F6B9CA122B4AC3D300E7B534 /* StreaksView.swift in Sources */,
 				F68866342A54F16A00590FCC /* WorkoutView.swift in Sources */,
 				F68866392A57C28200590FCC /* WorkoutDayChartView.swift in Sources */,
 				F688663B2A58487F00590FCC /* WorkoutLogView.swift in Sources */,
 				F634A1E12A202C5700742182 /* Record.swift in Sources */,
 				F638282D2A41300E002209A6 /* SettingsView.swift in Sources */,
 				F6292C1E2A0B1C8F0050C7E4 /* WorkoutDayView.swift in Sources */,
+				F6B9CA0E2B4A7E1000E7B534 /* TestView2.swift in Sources */,
+				F691F24D2B45289900E5D29F /* NewWorkoutSheet.swift in Sources */,
 				F6FED6632A0486BD001F3B8C /* Workout.swift in Sources */,
 				F634A1DD2A1ED4C200742182 /* CardView.swift in Sources */,
 				F6CB87D82AA01C5500E4CF6E /* DataStore.swift in Sources */,
+				F62685432B4B550300CF661E /* TestTabView.swift in Sources */,
 				F68866362A5784B700590FCC /* WorkoutChartView.swift in Sources */,
 				F6FED6612A04868A001F3B8C /* WorkoutDay.swift in Sources */,
 				F64D36042A6113CD00C872E7 /* Utils.swift in Sources */,
@@ -402,6 +428,8 @@
 				F6FED6372A04801C001F3B8C /* Persistence.swift in Sources */,
 				F634A1DF2A20293500742182 /* MainChartView.swift in Sources */,
 				F6FED6302A048015001F3B8C /* ContentView.swift in Sources */,
+				F6B9CA142B4ACE2E00E7B534 /* TestView4.swift in Sources */,
+				F62685412B4B525A00CF661E /* TestView5.swift in Sources */,
 				F6FED62E2A048015001F3B8C /* JymApp.swift in Sources */,
 				F650F0B92A39771900F61A85 /* Sets.swift in Sources */,
 				F6292C212A0B1D020050C7E4 /* WorkoutTabView.swift in Sources */,

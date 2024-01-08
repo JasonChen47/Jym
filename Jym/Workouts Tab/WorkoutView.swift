@@ -56,14 +56,15 @@ struct WorkoutView: View {
             Section(header: HStack {
                 Text("Workout Log")
                 Spacer()
-                NavigationLink(value: [$workout]) {
-                        Text("Show More")
-                            .font(Font.subheadline)
-                            .foregroundColor(Color("angelYellow"))
-                    }
+//                NavigationLink(value: [$workout]) {
+//                        Text("Show More")
+//                            .font(Font.subheadline)
+//                            .foregroundColor(Color("angelYellow"))
+//                    }
             }
                 
-            ) {
+            ) 
+            {
                 Grid {
                     GridRow {
                         Text("Date")
@@ -93,7 +94,6 @@ struct WorkoutView: View {
                             }
                             .bold()
                         }
-                        
                     }
                 }
                 
@@ -132,11 +132,8 @@ struct WorkoutView: View {
                     )
                     Button{
                         withAnimation {
-                            print("henlo")
-                            newRecord.weight = lbs
-                            newRecord.reps = reps
-                            newRecord.sets = sets
-                            
+                            var extraRecord = Record(id: UUID(), date: Date.now, weight: lbs, reps: reps, sets: sets)
+                            newRecord = extraRecord
                             if !workout.records.isEmpty {
                                 if Calendar.current.isDate(workout.records.last?.date ?? Date.distantPast, inSameDayAs: Date.now) {
                                     workout.records.removeLast()
@@ -152,7 +149,6 @@ struct WorkoutView: View {
                             if recentRecords.count > 3 {
                                 recentRecords.removeFirst()
                             }
-                            
                         }
                     } label: {
                         HStack {
@@ -175,19 +171,18 @@ struct WorkoutView: View {
                 .listRowSeparatorTint(Color("royalBlueLight"))
                 .listRowBackground(Color("royalBlueLight"))
             }
-            
             .headerProminence(.increased)
         }
-        .navigationDestination(for: [Binding<Workout>].self) { workoutArr in
-            WorkoutLogView(workout: workoutArr[0])
-        }
+//        .navigationDestination(for: [Binding<Workout>].self) { workoutArr in
+//            WorkoutLogView(workout: workoutArr[0])
+//        }
         .foregroundColor(.white)
         .scrollContentBackground(.hidden)
         .scrollIndicators(.hidden)
         .background(Color("royalBlue"))
         .navigationTitle(workout.name)
-        .onChange(of: sharedData.presented) { presented in
-        }
+//        .onChange(of: sharedData.presented) { presented in
+//        }
         .onAppear {
             if !recentRecords.isEmpty {
                 lbs = recentRecords.last?.weight ?? 0
@@ -206,6 +201,6 @@ struct WorkoutView_Previews: PreviewProvider {
             NavigationStack(path: $workoutsPath) {
                 WorkoutView(workout: .constant(WorkoutDay.sampleData[0].workouts[0]))
             }
-        }.environmentObject(SharedData())
+        }
     }
 }

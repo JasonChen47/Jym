@@ -9,7 +9,9 @@ import SwiftUI
 import Charts
 
 struct WorkoutChartView: View {
+    
     @Binding var workout: Workout
+    
     var body: some View {
         Chart {
             ForEach(workout.records) { record in

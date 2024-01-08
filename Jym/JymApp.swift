@@ -12,7 +12,6 @@ struct JymApp: App {
     
     @State var workoutDays = WorkoutDay.sampleData // To replace the stored data in case of debugging
     @StateObject private var store = DataStore()
-    let persistenceController = PersistenceController.shared
 
     var body: some Scene {
         WindowGroup {

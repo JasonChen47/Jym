@@ -8,19 +8,16 @@
 import SwiftUI
 
 struct TestView: View {
-    init (sampleWorkoutDays: Binding<[WorkoutDay]>) {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.green]
-        self._sampleWorkoutDays = sampleWorkoutDays
-    }
-    @State var path = NavigationPath()
-    @Binding var sampleWorkoutDays: [WorkoutDay]
+    
+    @Binding var workout: Workout
     var body: some View {
         
-        NavigationStack(path: $path) {
+        NavigationStack() {
             List {
                 Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+                
             }
-            .navigationTitle("hi")
+            .navigationTitle("henlo")
         }
         
     }
@@ -28,6 +25,9 @@ struct TestView: View {
 
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
-        TestView(sampleWorkoutDays: .constant(WorkoutDay.sampleData))
+        NavigationStack {
+            TestView(workout: .constant(WorkoutDay.sampleData[0].workouts[0]))
+        }
+        
     }
 }
