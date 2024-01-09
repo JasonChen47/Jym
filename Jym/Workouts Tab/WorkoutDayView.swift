@@ -9,20 +9,13 @@ import SwiftUI
 
 struct WorkoutDayView: View {
     
-//    init(workoutDay: Binding<WorkoutDay>) {
-//        Utils.navigationBarConfig()
-//        self._workoutDay = workoutDay
-//        
-//    }
+
     @Binding var workoutDay: WorkoutDay
     
     
     @State private var editingWorkoutDay = WorkoutDay.emptyWorkoutDay
     @State private var isPresentingNewWorkoutView = false
-//    @EnvironmentObject var sharedData: SharedData
-//    @Environment(\.dismiss) var dismiss
-    
-//    @Binding var path: NavigationPath
+
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     var body: some View {
@@ -53,26 +46,25 @@ struct WorkoutDayView: View {
             List {
                 ForEach($workoutDay.workouts) { $workout in
                     NavigationLink(destination: WorkoutView(workout: $workout)) {
-//                        ZStack {
-//                            EmptyView()
-//                        }
-                        Text(workout.name)
+                        ZStack {
+                            EmptyView()
+                        }
                     }
-//                    .listRowSeparatorTint(.yellow)
-//                    .background(
-//                        ZStack {
-//                            HStack {
-//                                Text(workout.name)
-//                                    .foregroundColor(Color("angelYellow"))
-//                                
-//                                Spacer()
-//                                Image(systemName: "chevron.right")
-//                                    .resizable()
-//                                    .aspectRatio(contentMode: .fit)
-//                                    .foregroundColor(Color("angelYellow"))
-//                            }
-//                        }
-//                    )
+                    .listRowSeparatorTint(.yellow)
+                    .background(
+                        ZStack {
+                            HStack {
+                                Text(workout.name)
+                                    .foregroundColor(Color("angelYellow"))
+                                
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .foregroundColor(Color("angelYellow"))
+                            }
+                        }
+                    )
                 }
                 
                 .listRowBackground(
@@ -92,7 +84,8 @@ struct WorkoutDayView: View {
                     isPresentingNewWorkoutView = true
                     editingWorkoutDay = workoutDay
                 } label: {
-                    Label("Add Item", systemImage: "plus")
+//                    Label("Add Item", systemImage: "plus")
+                    Text("Edit")
                 }
             }
         }
@@ -106,7 +99,7 @@ struct WorkoutDayView: View {
                             }
                         }
                         ToolbarItem(placement: .confirmationAction) {
-                            Button("Add") {
+                            Button("Done") {
                                 workoutDay = editingWorkoutDay
                                 isPresentingNewWorkoutView = false
                             }

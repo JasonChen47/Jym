@@ -15,12 +15,21 @@ struct NewWorkoutSheet: View {
     
     var body: some View {
         Form {
-            Section(header: Text("Workouts to Add").foregroundColor(.white)) {
+            Section(header: Text("Workout Day").foregroundColor(.white)) {
+                VStack {
+                    TextField("Workout Name", text: $editingWorkoutDay.name)
+                    TextField("Emoji", text: $editingWorkoutDay.emoji)
+                }
+            }
+            Section(header: Text("Workouts").foregroundColor(.white)) {
                 ForEach(editingWorkoutDay.workouts) { workout in
                     HStack {
                         Text(workout.name)
                         Spacer()
                     }
+                }
+                .onDelete { indices in
+                    editingWorkoutDay.workouts.remove(atOffsets: indices)
                 }
                 HStack {
                     TextField("Workout Name", text: $newWorkoutName)

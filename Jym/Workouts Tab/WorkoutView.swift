@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct WorkoutView: View {
-    
-    init(workout: Binding<Workout>) {
-        Utils.navigationBarConfig()
-        self._workout = workout
-    }
+//    
+//    init(workout: Binding<Workout>) {
+//        Utils.navigationBarConfig()
+//        self._workout = workout
+//    }
     
     @State private var newRecord = Record.emptyRecord
     @EnvironmentObject var sharedData: SharedData
@@ -61,6 +61,11 @@ struct WorkoutView: View {
 //                            .font(Font.subheadline)
 //                            .foregroundColor(Color("angelYellow"))
 //                    }
+                NavigationLink(destination: WorkoutLogView(workout: $workout)) {
+                    Text("Show More")
+                        .font(Font.subheadline)
+                        .foregroundColor(Color("angelYellow"))
+                }
             }
                 
             ) 
