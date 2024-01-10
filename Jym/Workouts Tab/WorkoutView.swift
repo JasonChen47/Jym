@@ -15,8 +15,8 @@ struct WorkoutView: View {
 //    }
     
     @State private var newRecord = Record.emptyRecord
-    @EnvironmentObject var sharedData: SharedData
-    @Environment(\.dismiss) var dismiss
+//    @EnvironmentObject var sharedData: SharedData
+//    @Environment(\.dismiss) var dismiss
     @Binding var workout: Workout
     @State private var showingSheet = false
     @State private var lbs: Double = 0

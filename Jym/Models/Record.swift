@@ -22,9 +22,9 @@ struct Record: Identifiable, Equatable, Codable {
         self.reps = reps
         self.sets = sets
     }
-    static func == (lhs: Record, rhs: Record) -> Bool {
-        return lhs.date == rhs.date && lhs.weight == rhs.weight
-    }
+//    static func == (lhs: Record, rhs: Record) -> Bool {
+//        return lhs.date == rhs.date && lhs.weight == rhs.weight
+//    }
     static var emptyRecord: Record {
         Record(date: Date.now, weight: 0, reps: 0, sets: 0)
     }

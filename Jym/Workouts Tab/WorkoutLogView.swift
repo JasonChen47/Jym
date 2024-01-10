@@ -9,13 +9,13 @@ import SwiftUI
 
 struct WorkoutLogView: View {
     
-    init(workout: Binding<Workout>) {
-        Utils.navigationBarConfig()
-        self._workout = workout
-    }
+//    init(workout: Binding<Workout>) {
+//        Utils.navigationBarConfig()
+//        self._workout = workout
+//    }
     
-    @EnvironmentObject var sharedData: SharedData
-    @Environment(\.dismiss) var dismiss
+//    @EnvironmentObject var sharedData: SharedData
+//    @Environment(\.dismiss) var dismiss
     @Binding var workout: Workout
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     var body: some View {
