@@ -8,15 +8,9 @@
 import SwiftUI
 
 struct WorkoutView: View {
-//    
-//    init(workout: Binding<Workout>) {
-//        Utils.navigationBarConfig()
-//        self._workout = workout
-//    }
-    
+
     @State private var newRecord = Record.emptyRecord
-//    @EnvironmentObject var sharedData: SharedData
-//    @Environment(\.dismiss) var dismiss
+
     @Binding var workout: Workout
     @State private var showingSheet = false
     @State private var lbs: Double = 0
@@ -42,25 +36,12 @@ struct WorkoutView: View {
             
             return sorted.suffix(3)
         }
-        
+        var mostRecentWorkout = recentRecords1.last
         
         List {
-    //                Section(header: Text("Progress Chart")) {
-    //                    WorkoutChartView(workout: $workout)
-    //                        .listRowInsets(EdgeInsets())
-    //                        .listRowBackground(
-    //                            Color("royalBlue")
-    //                        )
-    //                }
-    //                .headerProminence(.increased)
             Section(header: HStack {
                 Text("Workout Log")
                 Spacer()
-//                NavigationLink(value: [$workout]) {
-//                        Text("Show More")
-//                            .font(Font.subheadline)
-//                            .foregroundColor(Color("angelYellow"))
-//                    }
                 NavigationLink(destination: WorkoutLogView(workout: $workout)) {
                     Text("Show More")
                         .font(Font.subheadline)
@@ -112,19 +93,19 @@ struct WorkoutView: View {
             Section(header: Text("Record Workout")) {
                 VStack {
                     HStack {
-                        TextField("40", value: $lbs, formatter: NumberFormatter())
+                        TextField("", value: $newRecord.weight, formatter: NumberFormatter())
                             .textFieldStyle(.roundedBorder)
                             .frame(width: width/8)
                             .foregroundColor(.black)
                         Text("lbs")
                         Spacer()
-                        TextField("10", value: $reps, formatter: NumberFormatter())
+                        TextField("", value: $newRecord.reps, formatter: NumberFormatter())
                             .textFieldStyle(.roundedBorder)
                             .frame(width: width/8)
                             .foregroundColor(.black)
                         Text("Reps")
                         Spacer()
-                        TextField("4", value: $sets, formatter: NumberFormatter())
+                        TextField("", value: $newRecord.sets, formatter: NumberFormatter())
                             .textFieldStyle(.roundedBorder)
                             .frame(width: width/8)
                             .foregroundColor(.black)
@@ -137,8 +118,6 @@ struct WorkoutView: View {
                     )
                     Button{
                         withAnimation {
-                            var extraRecord = Record(id: UUID(), date: Date.now, weight: lbs, reps: reps, sets: sets)
-                            newRecord = extraRecord
                             if !workout.records.isEmpty {
                                 if Calendar.current.isDate(workout.records.last?.date ?? Date.distantPast, inSameDayAs: Date.now) {
                                     workout.records.removeLast()
@@ -178,16 +157,12 @@ struct WorkoutView: View {
             }
             .headerProminence(.increased)
         }
-//        .navigationDestination(for: [Binding<Workout>].self) { workoutArr in
-//            WorkoutLogView(workout: workoutArr[0])
-//        }
         .foregroundColor(.white)
         .scrollContentBackground(.hidden)
         .scrollIndicators(.hidden)
         .background(Color("royalBlue"))
         .navigationTitle(workout.name)
-//        .onChange(of: sharedData.presented) { presented in
-//        }
+
         .onAppear {
             if !recentRecords.isEmpty {
                 lbs = recentRecords.last?.weight ?? 0
@@ -195,6 +170,7 @@ struct WorkoutView: View {
                 sets = recentRecords.last?.sets ?? 0
             }
             recentRecords = recentRecords1
+            newRecord = Record(id: UUID(), date: Date.now, weight: mostRecentWorkout?.weight ?? 0, reps: mostRecentWorkout?.reps ?? 0, sets: mostRecentWorkout?.sets ?? 0)
         }
     }
 }
