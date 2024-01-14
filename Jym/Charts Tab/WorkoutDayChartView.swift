@@ -23,8 +23,8 @@ struct WorkoutDayChartView: View {
         List {
             ForEach($workoutDay.workouts) { $workout in
                 Section(header: Text(workout.name)) {
-//                    WorkoutChartView(workout: $workout)
-                    TestView2(workouts: .constant(WorkoutDay.sampleData[0].workouts))
+                    WorkoutChartView(workout: $workout)
+//                    WorkoutChartView(workouts: .constant(WorkoutDay.sampleData[0].workouts))
                         .listRowInsets(EdgeInsets())
                         .padding()
                         .overlay(

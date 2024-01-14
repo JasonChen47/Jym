@@ -12,12 +12,34 @@ struct WorkoutChartView: View {
     
     @Binding var workout: Workout
     
+    var mostRecentRecord: Record {
+        var sortedRecords: [Record] {
+            let sorted = workout.records.sorted {
+                $0.date > $1.date
+            }
+            return sorted
+        }
+        let tempMostRecentRecord = sortedRecords.first ?? Record.emptyRecord
+        return tempMostRecentRecord
+    }
+    
     var body: some View {
+        let referenceDate = mostRecentRecord.date
+        let recentRecords = workout.records.filter { record in
+            if let thirtyDaysAgo = Calendar.current.date(byAdding: .day, value: -31, to: referenceDate) {
+                return record.date > thirtyDaysAgo
+            } else {
+                // Handle the case where date calculation fails (if it ever does)
+                return false
+            }
+        }
+
         Chart {
-            ForEach(workout.records) { record in
+            ForEach(recentRecords) { record in
                 BarMark(x: .value("Date", record.date, unit: .day), y: .value("Count", record.weight))
             }
         }
+        .chartXScale(domain: [mostRecentRecord.date.addingTimeInterval(-30 * 24 * 60 * 60), mostRecentRecord.date.addingTimeInterval(2 * 24 * 60 * 60)])
         .chartXAxis {
             AxisMarks(values: .stride(by: .weekOfYear)) { value in
                 if let date = value.as(Date.self) {
