@@ -48,7 +48,7 @@ struct WorkoutTabView: View {
             .tag(1)
             
                 
-            MainChartView(sampleWorkoutDays: $workoutDays, path: $chartsPath)
+            MainChartView(workoutDays: $workoutDays)
                 .tabItem {
                     Label("Charts", systemImage: "chart.bar.xaxis")
                 }

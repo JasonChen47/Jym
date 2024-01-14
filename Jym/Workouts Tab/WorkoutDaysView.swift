@@ -9,22 +9,15 @@ import SwiftUI
 
 
 struct WorkoutDaysView: View {
-//    init(sampleWorkoutDays: Binding<[WorkoutDay]>, path: Binding<NavigationPath>) {
-//        
-//        Utils.navigationBarConfig()
-//        self._sampleWorkoutDays = sampleWorkoutDays
-//        self._path = path
-//    }
+
     
     @State private var isPresentingNewWorkoutDayView = false
     @Environment(\.colorScheme) var colorScheme
     @State var refresh: Bool = false
-//    @EnvironmentObject var sharedData: SharedData
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     @Binding var workoutDays: [WorkoutDay]
     @State private var mainWorkoutDay = [WorkoutDay.emptyWorkoutDay]
-//    @Binding var path: NavigationPath
     @State private var searchText = ""
     @State private var title = "Workout Days"
     let cornerRadius: CGFloat = 10
@@ -55,10 +48,6 @@ struct WorkoutDaysView: View {
                     Color("royalBlue")
                 )
                 Section(header: Text("Recommended Next Workout")) {
-                    
-//                    NavigationLink(destination: TestView2())
-//                    NavigationLink(value: $mainWorkoutDay)
-//                    NavigationLink(destination: WorkoutDayView(workoutDay: $mainWorkoutDay))
                     ForEach($mainWorkoutDay) { $workoutDay in
                         NavigationLink(destination: WorkoutDayView(workoutDay: $workoutDay))
                         {
@@ -81,12 +70,7 @@ struct WorkoutDaysView: View {
                 .headerProminence(.increased)
                 Section(header: Text("Browse Workouts")) {
                     ForEach($workoutDays) { $workoutDay in
-                        
-//                        NavigationLink(destination: TestView2())
-//                        NavigationLink(value: $workoutDay)
-//                        NavigationLink(destination: WorkoutDayView(workoutDay: $workoutDay))
                         NavigationLink(destination: WorkoutDayView(workoutDay: $workoutDay))
-                        
                         {
                             CardView(workoutDay: $workoutDay)
                         }
@@ -101,10 +85,6 @@ struct WorkoutDaysView: View {
                 .headerProminence(.increased)
             }
             .navigationTitle("Workout Days")
-//            .navigationDestination(for: Binding<WorkoutDay>.self) { workoutDay in
-//                WorkoutDayView(workoutDay: workoutDay)
-//            }
-            
             .foregroundColor(.white)
             .background(Color("royalBlue"))
             .scrollContentBackground(.hidden)
@@ -126,8 +106,6 @@ struct WorkoutDaysView: View {
             .sheet(isPresented: $isPresentingNewWorkoutDayView) {
                 NewWorkoutDaySheet(workoutDays: $workoutDays, isPresentingNewWorkoutDayView: $isPresentingNewWorkoutDayView)
             }
-//            .onChange(of: sharedData.presented) { presented in
-//            }
         }
         .onAppear {
             mainWorkoutDay[0] = oldestWorkoutDay

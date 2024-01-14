@@ -46,7 +46,7 @@ struct TestView5: View {
                 )
             List {
                 ForEach($workoutDay.workouts) { $workout in
-                    NavigationLink(destination: WorkoutView(workout: $workout)) {
+                    NavigationLink(destination: WorkoutView(workout: $workout, workoutDay: $editingWorkoutDay)) {
                         Text(workout.name)
                     }
                 }

@@ -10,12 +10,7 @@ import Charts
 
 struct MainChartView: View {
     
-    init(sampleWorkoutDays: Binding<[WorkoutDay]>, path: Binding<NavigationPath>) {
-        
-        Utils.navigationBarConfig()
-        self._sampleWorkoutDays = sampleWorkoutDays
-        self._path = path
-    }
+    @Binding var workoutDays: [WorkoutDay]
     
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
@@ -24,13 +19,48 @@ struct MainChartView: View {
     let cornerRadius: CGFloat = 10
     let outlineSize: CGFloat = 1
     let dateSize: CGFloat = 15
-    @Binding var sampleWorkoutDays: [WorkoutDay]
-    @Binding var path: NavigationPath
+    let sampleSets = SetRecord.sampleData
     
-    let sampleSets = Sets.sampleData
+    let df: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("M/dd/yy")
+        return formatter
+    }()
+    
+    var setRecordsAndMostRecentRecord: ([SetRecord], Record) {
+        // Go through the workoutDays and make an array of all records
+        let allRecords = workoutDays.flatMap { $0.workouts.flatMap { $0.records } }
+        var sortedRecords: [Record] {
+            let sorted = allRecords.sorted {
+                $0.date > $1.date
+            }
+            return sorted
+        }
+        let tempMostRecentRecord = sortedRecords.first ?? Record.emptyRecord
+        let setCountByDate = sortedRecords.reduce(into: [:]) { dict, record in
+            dict[df.string(from: record.date), default: 0] += record.sets
+        }
+        let tempSetRecords = setCountByDate.map { SetRecord(date: df.date(from: $0.key) ?? Date.now, setCount: $0.value) }
+        return (tempSetRecords, tempMostRecentRecord)
+    }
     
     var body: some View {
-        NavigationStack(path: $path) {
+        let setRecords = setRecordsAndMostRecentRecord.0
+        let mostRecentRecord = setRecordsAndMostRecentRecord.1
+        // Filter to the range of 30 days before the most recent date to the most recent date
+        let referenceDate = mostRecentRecord.date
+
+        // Filter records based on whether their date is within 30 days before the reference date
+        let recentSetRecords = setRecords.filter { record in
+            if let thirtyDaysAgo = Calendar.current.date(byAdding: .day, value: -31, to: referenceDate) {
+                return record.date > thirtyDaysAgo
+            } else {
+                // Handle the case where date calculation fails (if it ever does)
+                return false
+            }
+        }
+        
+        NavigationStack {
             List {
 //                VStack {
 //                    HStack {
@@ -45,11 +75,16 @@ struct MainChartView: View {
 //                    Color("royalBlue")
 //                )
                 Section(header: Text("Activity Report")) {
+                    // Show 30 values from the most recent date to 30 days before the most recent date
+                    
                     Chart {
-                        ForEach(sampleSets) { sets in
+                        ForEach(recentSetRecords) { sets in
                             BarMark(x: .value("Date", sets.date, unit: .day), y: .value("Count", sets.setCount))
                         }
                     }
+//                    .chartXAxisLabel("Position (meters)")
+                    // Show 30 values from the most recent date to 30 days before the most recent date
+                    .chartXScale(domain: [mostRecentRecord.date.addingTimeInterval(-30 * 24 * 60 * 60), mostRecentRecord.date.addingTimeInterval(2 * 24 * 60 * 60)])
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(
                         Color("royalBlue")
@@ -63,6 +98,7 @@ struct MainChartView: View {
                                 }
                             }
                         }
+                        
                     }
                     .chartYAxis {
                         AxisMarks() { value in
@@ -89,21 +125,27 @@ struct MainChartView: View {
                     .background(
                         Color("royalBlueLight")
                     )
+                } 
+//            footer: {
+//                    Text("Total number of sets done each day")
+//                        .padding([.leading, .trailing])
+//                        .foregroundColor(.gray)
+//                }
+                .headerProminence(.increased)
+                Section(header: Text("See how you're improving")) {
+                    ForEach($workoutDays) { $workoutDay in
+                        NavigationLink(value: $workoutDay) {
+                            CardView(workoutDay: $workoutDay)
+                        }
+                        .listRowSeparatorTint(.yellow)
+                        .foregroundColor(Color("gold"))
+                        .listRowBackground(
+                            Color("royalBlueLight")
+                        )
+                    }
                 }
                 .headerProminence(.increased)
-//                Section(header: Text("See how you're improving")) {
-//                    ForEach($sampleWorkoutDays) { $workoutDay in
-//                        NavigationLink(value: $workoutDay) {
-//                            CardView(workoutDay: $workoutDay)
-//                        }
-//                        .listRowSeparatorTint(.yellow)
-//                        .foregroundColor(Color("gold"))
-//                        .listRowBackground(
-//                            Color("royalBlueLight")
-//                        )
-//                    }
-//                }
-//                .headerProminence(.increased)
+                
             }
             .navigationTitle("Charts")
 //            .navigationDestination(for: Binding<WorkoutDay>.self) { workoutDay in
@@ -125,12 +167,15 @@ struct MainChartView: View {
                 }
             }
             .background(Color("royalBlue"))
+            .onAppear {
+                
+            }
         }
     }
 }
 
 struct MainChartView_Previews: PreviewProvider {
     static var previews: some View {
-        MainChartView(sampleWorkoutDays: .constant(WorkoutDay.sampleData), path: .constant(NavigationPath()))
+        MainChartView(workoutDays: .constant(WorkoutDay.sampleData))
     }
 }

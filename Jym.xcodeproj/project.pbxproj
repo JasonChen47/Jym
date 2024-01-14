@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F60ED9712B4E25940004171E /* NewRecordSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60ED9702B4E25940004171E /* NewRecordSheet.swift */; };
+		F60ED9712B4E25940004171E /* EditRecordSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60ED9702B4E25940004171E /* EditRecordSheet.swift */; };
+		F60ED9732B4FB6990004171E /* EditRecordsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60ED9722B4FB6990004171E /* EditRecordsSheet.swift */; };
 		F62685412B4B525A00CF661E /* TestView5.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62685402B4B525A00CF661E /* TestView5.swift */; };
 		F62685432B4B550300CF661E /* TestTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62685422B4B550200CF661E /* TestTabView.swift */; };
 		F6292C1E2A0B1C8F0050C7E4 /* WorkoutDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6292C1D2A0B1C8F0050C7E4 /* WorkoutDayView.swift */; };
@@ -20,7 +21,7 @@
 		F64D36002A60438500C872E7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D35FF2A60438500C872E7 /* Color.swift */; };
 		F64D36022A60F7A700C872E7 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D36012A60F7A700C872E7 /* TestView.swift */; };
 		F64D36042A6113CD00C872E7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D36032A6113CD00C872E7 /* Utils.swift */; };
-		F650F0B92A39771900F61A85 /* Sets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F650F0B82A39771900F61A85 /* Sets.swift */; };
+		F650F0B92A39771900F61A85 /* SetRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F650F0B82A39771900F61A85 /* SetRecord.swift */; };
 		F660B92D2A62F19D0061216D /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F660B92C2A62F19D0061216D /* AboutView.swift */; };
 		F68866342A54F16A00590FCC /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68866332A54F16A00590FCC /* WorkoutView.swift */; };
 		F68866362A5784B700590FCC /* WorkoutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68866352A5784B700590FCC /* WorkoutChartView.swift */; };
@@ -67,7 +68,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F60ED9702B4E25940004171E /* NewRecordSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordSheet.swift; sourceTree = "<group>"; };
+		F60ED9702B4E25940004171E /* EditRecordSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordSheet.swift; sourceTree = "<group>"; };
+		F60ED9722B4FB6990004171E /* EditRecordsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordsSheet.swift; sourceTree = "<group>"; };
 		F62685402B4B525A00CF661E /* TestView5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView5.swift; sourceTree = "<group>"; };
 		F62685422B4B550200CF661E /* TestTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTabView.swift; sourceTree = "<group>"; };
 		F6292C1D2A0B1C8F0050C7E4 /* WorkoutDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDayView.swift; sourceTree = "<group>"; };
@@ -80,7 +82,7 @@
 		F64D35FF2A60438500C872E7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		F64D36012A60F7A700C872E7 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		F64D36032A6113CD00C872E7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		F650F0B82A39771900F61A85 /* Sets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sets.swift; sourceTree = "<group>"; };
+		F650F0B82A39771900F61A85 /* SetRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRecord.swift; sourceTree = "<group>"; };
 		F660B92C2A62F19D0061216D /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		F68866332A54F16A00590FCC /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		F68866352A5784B700590FCC /* WorkoutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutChartView.swift; sourceTree = "<group>"; };
@@ -144,7 +146,7 @@
 				F6FED6602A04868A001F3B8C /* WorkoutDay.swift */,
 				F6FED6622A0486BD001F3B8C /* Workout.swift */,
 				F634A1E02A202C5700742182 /* Record.swift */,
-				F650F0B82A39771900F61A85 /* Sets.swift */,
+				F650F0B82A39771900F61A85 /* SetRecord.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -178,7 +180,8 @@
 				F688663A2A58487E00590FCC /* WorkoutLogView.swift */,
 				F690991B2A9AB4BC00D7517A /* NewWorkoutDaySheet.swift */,
 				F691F24C2B45289800E5D29F /* NewWorkoutSheet.swift */,
-				F60ED9702B4E25940004171E /* NewRecordSheet.swift */,
+				F60ED9722B4FB6990004171E /* EditRecordsSheet.swift */,
+				F60ED9702B4E25940004171E /* EditRecordSheet.swift */,
 			);
 			path = "Workouts Tab";
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				F6B9CA102B4AC08100E7B534 /* TestView3.swift in Sources */,
 				F64D36022A60F7A700C872E7 /* TestView.swift in Sources */,
 				F64D36002A60438500C872E7 /* Color.swift in Sources */,
+				F60ED9732B4FB6990004171E /* EditRecordsSheet.swift in Sources */,
 				F6FED63A2A04801C001F3B8C /* Jym.xcdatamodeld in Sources */,
 				F6B9CA122B4AC3D300E7B534 /* StreaksView.swift in Sources */,
 				F68866342A54F16A00590FCC /* WorkoutView.swift in Sources */,
@@ -434,11 +438,11 @@
 				F6B9CA142B4ACE2E00E7B534 /* TestView4.swift in Sources */,
 				F62685412B4B525A00CF661E /* TestView5.swift in Sources */,
 				F6FED62E2A048015001F3B8C /* JymApp.swift in Sources */,
-				F650F0B92A39771900F61A85 /* Sets.swift in Sources */,
+				F650F0B92A39771900F61A85 /* SetRecord.swift in Sources */,
 				F6292C212A0B1D020050C7E4 /* WorkoutTabView.swift in Sources */,
 				F6B9DB732A5A176C007F7F11 /* Binding.swift in Sources */,
 				F690991C2A9AB4BC00D7517A /* NewWorkoutDaySheet.swift in Sources */,
-				F60ED9712B4E25940004171E /* NewRecordSheet.swift in Sources */,
+				F60ED9712B4E25940004171E /* EditRecordSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

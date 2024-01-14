@@ -56,7 +56,7 @@ extension WorkoutDay {
         Record(date: Date("2023-06-09"), weight: 80, reps: 10, sets: 4),
         Record(date: Date("2023-06-10"), weight: 85, reps: 10, sets: 4),
         Record(date: Date("2023-06-11"), weight: 85, reps: 10, sets: 4),
-        Record(date: Date("2023-06-12"), weight: 90, reps: 10, sets: 4),
+        Record(date: Date("2023-06-12"), weight: 90, reps: 10, sets: 5),
         Record(date: Date("2023-06-13"), weight: 90, reps: 10, sets: 4),
         Record(date: Date("2023-06-14"), weight: 90, reps: 10, sets: 4),
         Record(date: Date("2023-06-15"), weight: 100, reps: 10, sets: 4),
@@ -84,12 +84,12 @@ extension WorkoutDay {
     ]
     static let sampleData: [WorkoutDay] =
     [
-        WorkoutDay(name: "Back", emoji: "🎒", streak: 13, lastWorkoutDay: Date("2023-07-02"), workouts: [
+        WorkoutDay(name: "Back", emoji: "🎒", streak: 9, lastWorkoutDay: Date().addingTimeInterval(-86400), workouts: [
             Workout(name: "Cable Row", weight: 120, reps: 10, sets: 4, records: records),
             Workout(name: "Pull Ups", weight: 155, reps: 10, sets: 4, records: records),
             Workout(name: "Lat Pull Downs", weight: 120, reps: 10, sets: 4, records: records)
         ]),
-        WorkoutDay(name: "Shoulders", emoji: "🤷‍♂️", streak: 7, lastWorkoutDay: Date("2023-07-02"), workouts: [
+        WorkoutDay(name: "Shoulders", emoji: "🤷‍♂️", streak: 7, lastWorkoutDay: Date.now, workouts: [
             Workout(name: "Dumbbell Shoulder Press", weight: 45, reps: 10, sets: 4, records: records),
             Workout(name: "Lateral Raises", weight: 20, reps: 10, sets: 4, records: records),
             Workout(name: "Bent Over Dumbbell Flies", weight: 20, reps: 10, sets: 4, records: records)

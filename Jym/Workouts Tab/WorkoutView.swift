@@ -9,9 +9,10 @@ import SwiftUI
 
 struct WorkoutView: View {
 
-    @State private var newRecord = Record.emptyRecord
-
     @Binding var workout: Workout
+    @Binding var workoutDay: WorkoutDay
+    
+    @State private var newRecord = Record.emptyRecord
     @State private var showingSheet = false
     @State private var lbs: Double = 0
     @State private var recentRecords: [Record] = []
@@ -82,7 +83,6 @@ struct WorkoutView: View {
                         }
                     }
                 }
-                
                 .listRowSeparatorTint(.yellow)
                 .foregroundColor(Color("angelYellow"))
                 .listRowBackground(
@@ -133,6 +133,14 @@ struct WorkoutView: View {
                             if recentRecords.count > 3 {
                                 recentRecords.removeFirst()
                             }
+                            if Calendar.current.isDateInYesterday(workoutDay.lastWorkoutDay) {
+                                workoutDay.streak += 1
+                            }
+                            else {
+                                workoutDay.streak = 1
+                            }
+                            workoutDay.lastWorkoutDay = Date.now
+                            
                         }
                     } label: {
                         HStack {
@@ -180,7 +188,7 @@ struct WorkoutView_Previews: PreviewProvider {
         @State var workoutsPath = NavigationPath()
         Group {
             NavigationStack(path: $workoutsPath) {
-                WorkoutView(workout: .constant(WorkoutDay.sampleData[0].workouts[0]))
+                WorkoutView(workout: .constant(WorkoutDay.sampleData[0].workouts[0]), workoutDay: .constant(WorkoutDay.sampleData[0]))
             }
         }
     }

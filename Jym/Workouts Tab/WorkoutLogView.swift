@@ -10,6 +10,10 @@ import SwiftUI
 struct WorkoutLogView: View {
     
     @Binding var workout: Workout
+    
+    @State private var records: [Record] = []
+    @State private var isPresentingEditRecordsSheet = false
+    
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     var body: some View {
         let df: DateFormatter = {
@@ -17,7 +21,6 @@ struct WorkoutLogView: View {
             formatter.setLocalizedDateFormatFromTemplate("M/dd/yy")
             return formatter
         }()
-        @State var sortOrder = [KeyPathComparator(\Record.date)]
         var sortedRecords: [Record] {
             let sorted = workout.records.sorted {
                 $0.date > $1.date
@@ -36,7 +39,7 @@ struct WorkoutLogView: View {
                     .bold()
                     Divider()
                         .overlay(.yellow)
-                    ForEach(sortedRecords) { record in
+                    ForEach($records) { $record in
                         GridRow {
                             Text(df.string(from: record.date))
                             Text(String(record.weight))
@@ -45,12 +48,18 @@ struct WorkoutLogView: View {
                         }
                     }
                 }
-                .listRowSeparatorTint(.yellow)
-                .foregroundColor(Color("angelYellow"))
-                .listRowBackground(
-                    Color("royalBlueLight")
-                )
+//                .listRowSeparatorTint(.yellow)
+//                .foregroundColor(Color("angelYellow"))
+//                .listRowBackground(
+//                    Color("royalBlueLight")
+//                )
             }
+
+            .listRowSeparatorTint(.yellow)
+            .foregroundColor(Color("angelYellow"))
+            .listRowBackground(
+                Color("royalBlueLight")
+            )
         }
         .foregroundColor(.white)
         .scrollContentBackground(.hidden)
@@ -58,15 +67,19 @@ struct WorkoutLogView: View {
         .background(Color("royalBlue"))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
-            }
-            ToolbarItem {
-                Button{
-                    print("hi")
+                Button {
+                    isPresentingEditRecordsSheet = true
                 } label: {
-                    Label("Add Item", systemImage: "plus")
+                    Text("Edit")
                 }
             }
+        }
+        .sheet(isPresented: $isPresentingEditRecordsSheet) {
+            EditRecordsSheet(records: $records, isPresentingEditRecordsSheet: $isPresentingEditRecordsSheet)
+            
+        }
+        .onAppear {
+            records = sortedRecords
         }
         .navigationTitle("Full Workout Log")
 //        .onChange(of: sharedData.presented) { presented in

@@ -15,7 +15,9 @@ struct StreaksView: View {
     
     var highestStreaks: [WorkoutDay] {
         // Sort streaks from lowest to highest
-        let sorted = workoutDays.sorted {
+        let recentWorkoutDays = workoutDays.filter { Calendar.current.isDateInToday($0.lastWorkoutDay) || Calendar.current.isDateInYesterday($0.lastWorkoutDay) }
+        
+        let sorted = recentWorkoutDays.sorted {
             $0.streak < $1.streak
         }
         var reversedFour: [WorkoutDay] = sorted.suffix(4).reversed()
@@ -122,7 +124,14 @@ struct StreaksView: View {
             }
             .padding([.leading, .trailing])
         }
-        
+        .onAppear {
+            // Go through all the WorkoutDays and then see if the lastWorkoutDay was yesterday or today. If it is not, set the streaks to 0.
+            for index in workoutDays.indices {
+                if !Calendar.current.isDateInToday(workoutDays[index].lastWorkoutDay) && !Calendar.current.isDateInYesterday(workoutDays[index].lastWorkoutDay) {
+                        workoutDays[index].streak = 0
+                }
+            }
+        }
     }
 }
 

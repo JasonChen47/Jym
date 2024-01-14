@@ -12,7 +12,6 @@ struct WorkoutDayView: View {
 
     @Binding var workoutDay: WorkoutDay
     
-    
     @State private var editingWorkoutDay = WorkoutDay.emptyWorkoutDay
     @State private var isPresentingNewWorkoutView = false
 
@@ -45,7 +44,7 @@ struct WorkoutDayView: View {
                 )
             List {
                 ForEach($workoutDay.workouts) { $workout in
-                    NavigationLink(destination: WorkoutView(workout: $workout)) {
+                    NavigationLink(destination: WorkoutView(workout: $workout, workoutDay: $workoutDay)) {
                         ZStack {
                             EmptyView()
                         }
