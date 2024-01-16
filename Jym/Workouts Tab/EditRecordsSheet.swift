@@ -24,61 +24,57 @@ struct EditRecordsSheet: View {
             }
             return sorted
         }
-        NavigationStack {
-            List {
-                Section(header: Text("Workout Records").foregroundColor(.white)) {
-                    HStack {
-                        Spacer()
-                        Text("Date")
-                        Spacer()
-                        Text("Weight")
-                        Spacer()
-                        Text("Reps")
-                        Spacer()
-                        Text("Sets")
-                        Spacer()
-                    }.bold()
-                    ForEach($records) { $record in
-                        NavigationLink(destination: EditRecordSheet(record: $record, isPresentingEditRecordsSheet: $isPresentingEditRecordsSheet)) {
-                            HStack {
-                                Spacer()
-                                Text(df.string(from: record.date))
-                                Spacer()
-                                Text(String(record.weight))
-                                Spacer()
-                                Text(String(record.reps))
-                                Spacer()
-                                Text(String(record.sets))
-                                Spacer()
+        List {
+            Section(header: Text("Workout Records").foregroundColor(.white)) {
+                HStack {
+                    Spacer()
+                    Text("Date")
+                    Spacer()
+                    Text("Weight")
+                    Spacer()
+                    Text("Reps")
+                    Spacer()
+                    Text("Sets")
+                    Spacer()
+                }.bold()
+                ForEach($records) { $record in
+                    NavigationLink(destination: EditRecordSheet(record: $record, isPresentingEditRecordsSheet: $isPresentingEditRecordsSheet)
+                        .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Done") {
+                                isPresentingEditRecordsSheet = false
                             }
                         }
                     }
-                    .onDelete{records.remove(atOffsets: $0)}
-                }
-                .listRowSeparatorTint(.yellow)
-                .foregroundColor(Color("angelYellow"))
-                .listRowBackground(
-                    Color("royalBlueLight")
-                )
-            }
-            .scrollContentBackground(.hidden)
-            .background(Color("royalBlue"))
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Dismiss") {
-                        isPresentingEditRecordsSheet = false
+                    ) {
+                        HStack {
+                            Spacer()
+                            Text(df.string(from: record.date))
+                            Spacer()
+                            Text(String(record.weight))
+                            Spacer()
+                            Text(String(record.reps))
+                            Spacer()
+                            Text(String(record.sets))
+                            Spacer()
+                        }
                     }
                 }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") {
-                        isPresentingEditRecordsSheet = false
-                    }
-                }
+                .onDelete{records.remove(atOffsets: $0)}
             }
-            .onAppear {
-                records = sortedRecords
+            .listRowSeparatorTint(.yellow)
+            .foregroundColor(Color("angelYellow"))
+            .listRowBackground(
+                Color("royalBlueLight")
+            )
         }
+        .scrollContentBackground(.hidden)
+        .background(Color("royalBlue"))
+        
+        .onAppear {
+            records = sortedRecords
         }
+        
     }
 }
 

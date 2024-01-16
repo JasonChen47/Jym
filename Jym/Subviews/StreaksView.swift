@@ -13,30 +13,89 @@ struct StreaksView: View {
     
     let width = UIScreen.main.bounds.size.width
     
-    var highestStreaks: [WorkoutDay] {
-        // Sort streaks from lowest to highest
-        let recentWorkoutDays = workoutDays.filter { Calendar.current.isDateInToday($0.lastWorkoutDay) || Calendar.current.isDateInYesterday($0.lastWorkoutDay) }
-        
-        let sorted = recentWorkoutDays.sorted {
-            $0.streak < $1.streak
-        }
-        var reversedFour: [WorkoutDay] = sorted.suffix(4).reversed()
-        for i in 0...3 {
-            if !reversedFour.indices.contains(i) {
-                reversedFour.append(WorkoutDay.emptyWorkoutDay)
+    var streakList: [(WorkoutDay, Int)] {
+        var tempStreakList: [(WorkoutDay, Int)] = []
+        for workoutDay in workoutDays {
+            let allRecords = workoutDay.workouts.flatMap { $0.records }
+            var sortedRecords: [Record] {
+                let sorted = allRecords.sorted {
+                    $0.date > $1.date
+                }
+                return sorted
+            }
+            // Only continue if sortedRecords is not empty
+            if sortedRecords.count > 0 {
+                // ReferenceDate will be the upper bound of the date range to check, while weekBeforeDate will be the lower bound
+                var referenceDate = sortedRecords[0].date
+                var weekBeforeDate = referenceDate.addingTimeInterval(-7 * 24 * 60 * 60)
+                var count = 0
+                var streakOngoing = true
+                var index = 1
+                
+                // Check if the first workout is within 1 week of the current date. If so, add to count.
+                if referenceDate > Date.now.addingTimeInterval(-7 * 24 * 60 * 60) {
+                    count += 1
+                    // Loop through from the most recent workout and go back a week each loop. Each week, check if there are workouts that are in that week. Loop for a max of 10 weeks.
+                    while streakOngoing && index < 9 {
+                        // Set lower bound on the date range
+                        weekBeforeDate = referenceDate.addingTimeInterval(-7 * 24 * 60 * 60)
+                        
+                        // See if there is a record in the next week range. If so, update the count
+                        var recordInRange: Bool {
+                            return sortedRecords.contains { $0.date > weekBeforeDate && $0.date < referenceDate }
+                        }
+                        if recordInRange {
+                            count += 1
+                        }
+                        // Otherwise, the streak count stops, and the loop exits
+                        else {
+                            streakOngoing = false
+                        }
+                        // Continue to the next loop. Update the range to move to 1 week earlier
+                        referenceDate = weekBeforeDate
+                        index += 1
+                    }
+                }
+                tempStreakList.append((workoutDay, count))
             }
         }
-        return reversedFour
+        
+        // Sort tempStreakList from highest to lowest streaks
+        var sortedTempStreakList: [(WorkoutDay, Int)] {
+            let sorted = tempStreakList.sorted {
+                $0.1 > $1.1
+            }
+            return sorted
+        }
+        
+        // Take the four highest
+        var highestStreaks = sortedTempStreakList.prefix(4)
+        
+        // Fill array with empty workoutDays if there is still room. Append to end.
+        for i in 0...3 {
+            if !highestStreaks.indices.contains(i) {
+                highestStreaks.append((WorkoutDay.emptyWorkoutDay, 0))
+            }
+        }
+        
+        return Array(highestStreaks)
     }
     
+
+    
+    
+    
+    
     var body: some View {
-        let firstStreak = highestStreaks[0]
-        let secondStreak = highestStreaks[1]
-        let thirdStreak = highestStreaks[2]
-        let fourthStreak = highestStreaks[3]
+        let firstStreak = streakList[0].0
+        let secondStreak = streakList[1].0
+        let thirdStreak = streakList[2].0
+        let fourthStreak = streakList[3].0
         
-        var streaks = [firstStreak.streak, secondStreak.streak, thirdStreak.streak, fourthStreak.streak]
-        var filteredStreaks = streaks.map { $0 > 10 ? CGFloat(10) : CGFloat($0) }
+        // Convert to CFFloat and ensure that it is within a range of 10
+        let streaks = [streakList[0].1, streakList[1].1, streakList[2].1, streakList[3].1]
+        let filteredStreaks = streaks.map { $0 > 10 ? CGFloat(10) : CGFloat($0) }
+        
         
         VStack {
             // Date
@@ -125,12 +184,21 @@ struct StreaksView: View {
             .padding([.leading, .trailing])
         }
         .onAppear {
-            // Go through all the WorkoutDays and then see if the lastWorkoutDay was yesterday or today. If it is not, set the streaks to 0.
+            // Go through all the WorkoutDays and if the lastWorkoutDay older than 2 weeks ago, set the streaks to 0.
             for index in workoutDays.indices {
-                if !Calendar.current.isDateInToday(workoutDays[index].lastWorkoutDay) && !Calendar.current.isDateInYesterday(workoutDays[index].lastWorkoutDay) {
+                if workoutDays[index].lastWorkoutDay < Date.now.addingTimeInterval(-14 * 24 * 60 * 60) {
                         workoutDays[index].streak = 0
                 }
             }
+            
+            // Go through each workoutday
+            // Get the records from all the workouts for each workout day
+            // Sort them in order
+            // Loop through weeks up to 10 weeks. Have a veriable called workoutDayToCheck. Have a variable called streakongoing. While the streakongoing is true, then the while loop continues. Have a variable called count. Check 1 week back. See if the lastWorkoutDay is within that 1 week. If it is, set count += 1. Else, set the streakOngoing to false. Then check in the week before lastWorkoutDay (between that lastWorkoutDay and 7 days prior). If there is one, set that to the workoutDayToCheck
+            
+//            for workoutDay in workoutDays {
+//                <#body#>
+//            }
         }
     }
 }

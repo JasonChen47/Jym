@@ -34,6 +34,7 @@ struct EditRecordSheet: View {
                     }
                     .bold()
                     Divider()
+                        .overlay(.yellow)
                     GridRow {
                         Text(df.string(from: record.date))
                         Text(String(record.weight))
@@ -114,13 +115,7 @@ struct EditRecordSheet: View {
         .onAppear {
             editingRecord = record
         }
-        .toolbar {
-            ToolbarItem(placement: .confirmationAction) {
-                Button("Done") {
-                    isPresentingEditRecordsSheet = false
-                }
-            }
-        }
+        
     }
 }
 

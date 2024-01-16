@@ -118,6 +118,7 @@ struct WorkoutView: View {
                     )
                     Button{
                         withAnimation {
+                            // Make sure there are no duplicates in the same day
                             if !workout.records.isEmpty {
                                 if Calendar.current.isDate(workout.records.last?.date ?? Date.distantPast, inSameDayAs: Date.now) {
                                     workout.records.removeLast()

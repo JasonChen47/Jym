@@ -21,6 +21,7 @@ struct NewWorkoutDaySheet: View {
                 }
                 Section(header: Text("Emoji Icon").foregroundColor(.white)) {
                     TextField("💪", text: $newWorkoutDay.emoji)
+                        .grayscale(1)
                 }
                 Section(header: Text("Workouts").foregroundColor(.white)) {
                     ForEach(newWorkoutDay.workouts) { workout in

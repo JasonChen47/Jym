@@ -44,8 +44,20 @@ struct WorkoutDay: Identifiable, Codable {
 //}
 
 extension WorkoutDay {
+    static let records3: [Record] = [
+        Record(date: Date.now, weight: 80, reps: 10, sets: 4),
+        Record(date: Date.now.addingTimeInterval(-6 * 24 * 60 * 60), weight: 80, reps: 10, sets: 4),
+        Record(date: Date.now.addingTimeInterval(-10 * 24 * 60 * 60), weight: 80, reps: 10, sets: 4),
+        Record(date: Date.now.addingTimeInterval(-20 * 24 * 60 * 60), weight: 80, reps: 10, sets: 4),
+        Record(date: Date.now.addingTimeInterval(-30 * 24 * 60 * 60), weight: 80, reps: 10, sets: 4),
+    ]
+    static let records2: [Record] = [
+        Record(date: Date.now, weight: 80, reps: 10, sets: 4),
+        Record(date: Date.now.addingTimeInterval(-6 * 24 * 60 * 60), weight: 80, reps: 10, sets: 4),
+        Record(date: Date.now.addingTimeInterval(-14 * 24 * 60 * 60), weight: 80, reps: 10, sets: 4),
+    ]
     static let records: [Record] = [
-        Record(date: Date("2023-06-01"), weight: 80, reps: 10, sets: 4),
+        Record(date: Date("2023-06-02"), weight: 80, reps: 10, sets: 4),
         Record(date: Date("2023-06-02"), weight: 85, reps: 10, sets: 4),
         Record(date: Date("2023-06-03"), weight: 80, reps: 10, sets: 4),
         Record(date: Date("2023-06-04"), weight: 85, reps: 10, sets: 4),
@@ -90,12 +102,12 @@ extension WorkoutDay {
             Workout(name: "Lat Pull Downs", weight: 120, reps: 10, sets: 4, records: records)
         ]),
         WorkoutDay(name: "Shoulders", emoji: "🤷‍♂️", streak: 7, lastWorkoutDay: Date.now, workouts: [
-            Workout(name: "Dumbbell Shoulder Press", weight: 45, reps: 10, sets: 4, records: records),
+            Workout(name: "Dumbbell Shoulder Press", weight: 45, reps: 10, sets: 4, records: records2),
             Workout(name: "Lateral Raises", weight: 20, reps: 10, sets: 4, records: records),
             Workout(name: "Bent Over Dumbbell Flies", weight: 20, reps: 10, sets: 4, records: records)
         ]),
         WorkoutDay(name: "Legs", emoji: "🦵", streak: 5, lastWorkoutDay: Date("2023-07-03"), workouts: [
-            Workout(name: "Leg Press", weight: 205, reps: 10, sets: 4, records: records),
+            Workout(name: "Leg Press", weight: 205, reps: 10, sets: 4, records: records3),
             Workout(name: "Leg Curls", weight: 75, reps: 10, sets: 4, records: records),
             Workout(name: "Leg Extensions", weight: 75, reps: 10, sets: 4, records: records),
             Workout(name: "Calf Raises", weight: 105, reps: 10, sets: 4, records: records)
