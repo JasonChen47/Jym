@@ -32,7 +32,7 @@ struct WorkoutTabView: View {
                 self.tabSelection = $0
             }
         )}
-        TabView(selection: handler) {
+        TabView() {
             WorkoutDaysView(workoutDays: $workoutDays)
                 .tabItem {
                     Label("Workouts", systemImage: "dumbbell")
@@ -75,20 +75,6 @@ struct WorkoutTabView: View {
                 .toolbarBackground(Color("royalBlue"), for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
                 .tag(3)
-            TestView3(workoutDays: $workoutDays)
-//            TestView4(workoutDays: $workoutDays, path: .constant(NavigationPath()))
-                .tabItem {
-                    Label("Test", systemImage: "testtube.2")
-                }
-                .onChange(of: tappedTwice, perform: { tappedTwice in         guard tappedTwice else { return }
-                    if tabSelection == 4 {
-                        settingsPath = emptyPath
-                        self.tappedTwice = false
-                    }
-                })
-                .toolbarBackground(Color("royalBlue"), for: .tabBar)
-                .toolbarBackground(.visible, for: .tabBar)
-                .tag(4)
         }
         .onChange(of: scenePhase) { phase in
             if phase == .inactive { saveAction() }

@@ -18,12 +18,6 @@ struct EditRecordsSheet: View {
             formatter.setLocalizedDateFormatFromTemplate("M/dd/yy")
             return formatter
         }()
-        var sortedRecords: [Record] {
-            let sorted = records.sorted {
-                $0.date > $1.date
-            }
-            return sorted
-        }
         List {
             Section(header: Text("Workout Records").foregroundColor(.white)) {
                 HStack {
@@ -38,7 +32,7 @@ struct EditRecordsSheet: View {
                     Spacer()
                 }.bold()
                 ForEach($records) { $record in
-                    NavigationLink(destination: EditRecordSheet(record: $record, isPresentingEditRecordsSheet: $isPresentingEditRecordsSheet)
+                    NavigationLink(destination: EditRecordSheet(record: $record, records: $records, isPresentingEditRecordsSheet: $isPresentingEditRecordsSheet)
                         .toolbar {
                         ToolbarItem(placement: .confirmationAction) {
                             Button("Done") {
@@ -72,7 +66,10 @@ struct EditRecordsSheet: View {
         .background(Color("royalBlue"))
         
         .onAppear {
-            records = sortedRecords
+//            records = sortedRecords
+            records.sort {
+                $0.date > $1.date
+            }
         }
         
     }

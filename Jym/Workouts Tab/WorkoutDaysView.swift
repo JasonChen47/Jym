@@ -10,13 +10,14 @@ import SwiftUI
 
 struct WorkoutDaysView: View {
 
+    @Binding var workoutDays: [WorkoutDay]
     
     @State private var isPresentingNewWorkoutDayView = false
     @Environment(\.colorScheme) var colorScheme
     @State var refresh: Bool = false
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
-    @Binding var workoutDays: [WorkoutDay]
+    
     @State private var mainWorkoutDay = [WorkoutDay.emptyWorkoutDay]
     @State private var searchText = ""
     @State private var title = "Workout Days"

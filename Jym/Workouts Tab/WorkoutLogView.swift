@@ -11,7 +11,6 @@ struct WorkoutLogView: View {
     
     @Binding var workout: Workout
     
-    @State private var records: [Record] = []
     @State private var isPresentingEditRecordsSheet = false
     @State private var isPresentingEditRecordSheet = false
     @State private var editingRecord = Record.emptyRecord
@@ -50,11 +49,6 @@ struct WorkoutLogView: View {
                         }
                     }
                 }
-//                .listRowSeparatorTint(.yellow)
-//                .foregroundColor(Color("angelYellow"))
-//                .listRowBackground(
-//                    Color("royalBlueLight")
-//                )
             }
 
             .listRowSeparatorTint(.yellow)
@@ -91,13 +85,18 @@ struct WorkoutLogView: View {
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
                             Button("Dismiss") {
+                                workout.records.sort {
+                                    $0.date < $1.date
+                                }
                                 isPresentingEditRecordsSheet = false
                             }
                         }
                         ToolbarItem(placement: .confirmationAction) {
                             Button("Done") {
+                                workout.records.sort {
+                                    $0.date < $1.date
+                                }
                                 isPresentingEditRecordsSheet = false
-                                records = workout.records
                             }
                         }
                     }
@@ -106,7 +105,7 @@ struct WorkoutLogView: View {
         // Adding one record
         .sheet(isPresented: $isPresentingEditRecordSheet) {
             NavigationStack {
-                EditRecordSheet(record: $editingRecord, isPresentingEditRecordsSheet: $isPresentingEditRecordSheet)
+                EditRecordSheet(record: $editingRecord, records: $workout.records, isPresentingEditRecordsSheet: $isPresentingEditRecordSheet)
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
                             Button("Dismiss") {
@@ -116,26 +115,12 @@ struct WorkoutLogView: View {
                         ToolbarItem(placement: .confirmationAction) {
                             Button("Done") {
                                 isPresentingEditRecordSheet = false
-                                
-                                // Make sure there are no duplicates in the same day
-                                workout.records.removeAll {
-                                    Calendar.current.isDate($0.date, inSameDayAs: editingRecord.date)
-                                }
-                                records.removeAll {
-                                    Calendar.current.isDate($0.date, inSameDayAs: editingRecord.date)
-                                }
-                                // Find out the place to insert the
-                                // Append to both the binding and the displayed records
-                                
-                                workout.records.append(editingRecord)
-                                records.insert(editingRecord, at: 0)
                             }
                         }
                     }
             }
         }
         .onAppear {
-            records = sortedRecords
             workout.records.sort {
                 $0.date < $1.date
             }

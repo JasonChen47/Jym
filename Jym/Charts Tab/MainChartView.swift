@@ -59,7 +59,6 @@ struct MainChartView: View {
                 return false
             }
         }
-        
         NavigationStack {
             List {
 //                VStack {
@@ -74,7 +73,9 @@ struct MainChartView: View {
 //                .listRowBackground(
 //                    Color("royalBlue")
 //                )
-                Section(header: Text("Activity Report")) {
+                Section(header: Text("Activity Report"), footer: Text("Total number of sets done each day")
+                    
+                    .foregroundColor(.gray)) {
                     // Show 30 values from the most recent date to 30 days before the most recent date
                     
                     Chart {
@@ -125,14 +126,10 @@ struct MainChartView: View {
                     .background(
                         Color("royalBlueLight")
                     )
-                } 
-//            footer: {
-//                    Text("Total number of sets done each day")
-//                        .padding([.leading, .trailing])
-//                        .foregroundColor(.gray)
-//                }
+                }
+            
                 .headerProminence(.increased)
-                Section(header: Text("See how you're improving")) {
+                Section(header: Text("Weight Graphs")) {
                     ForEach($workoutDays) { $workoutDay in
                         NavigationLink(destination: WorkoutDayChartView(workoutDay: $workoutDay)) {
                             CardView(workoutDay: $workoutDay)

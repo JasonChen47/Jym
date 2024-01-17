@@ -22,7 +22,15 @@ struct WorkoutDayChartView: View {
     var body: some View {
         List {
             ForEach($workoutDay.workouts) { $workout in
-                Section(header: Text(workout.name)) {
+                Section(header: HStack {
+                    Text(workout.name)
+                    Spacer()
+                    NavigationLink(destination: WorkoutLogView(workout: $workout)) {
+                        Text("Show Records")
+                            .font(Font.subheadline)
+                            .foregroundColor(Color("angelYellow"))
+                    }
+                }) {
                     WorkoutChartView(workout: $workout)
 //                    WorkoutChartView(workouts: .constant(WorkoutDay.sampleData[0].workouts))
                         .listRowInsets(EdgeInsets())
@@ -35,6 +43,7 @@ struct WorkoutDayChartView: View {
                             Color("royalBlueLight")
                         )
                 }
+                .headerProminence(.increased)
 //                .listRowInsets(.init(top: 10,
 //                     leading: 0,
 //                     bottom: 0,

@@ -10,6 +10,7 @@ import SwiftUI
 struct EditRecordSheet: View {
     
     @Binding var record: Record
+    @Binding var records: [Record]
     @Binding var isPresentingEditRecordsSheet: Bool
     
     @State private var editingRecord = Record.emptyRecord
@@ -86,7 +87,14 @@ struct EditRecordSheet: View {
                     Button{
                         withAnimation {
                             record = editingRecord
-                            print(record)
+                            // Make sure there are no duplicates in the same day
+                            records.removeAll {
+                                Calendar.current.isDate($0.date, inSameDayAs: editingRecord.date)
+                            }
+                            // Find out the place to insert the
+                            // Append to both the binding and the displayed records
+                            
+                            records.append(record)
                         }
                     } label: {
                         HStack {
@@ -121,7 +129,7 @@ struct EditRecordSheet: View {
 
 #Preview {
     NavigationStack {
-        EditRecordSheet(record: .constant(WorkoutDay.sampleData[0].workouts[0].records[0]), isPresentingEditRecordsSheet: .constant(true))
+        EditRecordSheet(record: .constant(WorkoutDay.sampleData[0].workouts[0].records[0]), records: .constant(WorkoutDay.records), isPresentingEditRecordsSheet: .constant(true))
     }
     
 }

@@ -39,6 +39,9 @@ struct WorkoutChartView: View {
                 BarMark(x: .value("Date", record.date, unit: .day), y: .value("Count", record.weight))
             }
         }
+        .chartYAxisLabel {
+            Text("hi")
+        }
         .chartXScale(domain: [mostRecentRecord.date.addingTimeInterval(-30 * 24 * 60 * 60), mostRecentRecord.date.addingTimeInterval(2 * 24 * 60 * 60)])
         .chartXAxis {
             AxisMarks(values: .stride(by: .weekOfYear)) { value in
