@@ -9,9 +9,9 @@ import SwiftUI
 
 struct AboutView: View {
     
-    init() {
-        Utils.navigationBarConfig()
-    }
+//    init() {
+//        Utils.navigationBarConfig()
+//    }
     
     var body: some View {
         List {

@@ -9,9 +9,11 @@ import SwiftUI
 
 struct NewWorkoutDaySheet: View {
     @State private var newWorkoutDay = WorkoutDay.emptyWorkoutDay
+    @State private var newWorkoutName = ""
+    
     @Binding var workoutDays: [WorkoutDay]
     @Binding var isPresentingNewWorkoutDayView: Bool
-    @State private var newWorkoutName = ""
+    
     
     var body: some View {
         NavigationStack {
@@ -20,8 +22,7 @@ struct NewWorkoutDaySheet: View {
                     TextField("Title", text: $newWorkoutDay.name)
                 }
                 Section(header: Text("Emoji Icon").foregroundColor(.white)) {
-                    TextField("💪", text: $newWorkoutDay.emoji)
-                        .grayscale(1)
+                    TextField("Emoji", text: $newWorkoutDay.emoji)
                 }
                 Section(header: Text("Workouts").foregroundColor(.white)) {
                     ForEach(newWorkoutDay.workouts) { workout in

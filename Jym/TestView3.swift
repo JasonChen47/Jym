@@ -13,6 +13,7 @@ struct TestView3: View {
 //    @State var mainWorkoutDay = WorkoutDay.emptyWorkoutDay
     @State var mainWorkoutDay = [WorkoutDay.emptyWorkoutDay]
     @State var stateWorkoutDays = WorkoutDay.sampleData
+    @State private var isPresentingNewWorkoutDayView = false
     
     var body: some View {
         NavigationStack {
@@ -30,6 +31,8 @@ struct TestView3: View {
                             Text(workoutDay.name)
                         }
                     }
+                    .onDelete { workoutDays.remove(atOffsets: $0) }
+                    
                 }
                 
                 Section {
@@ -38,6 +41,7 @@ struct TestView3: View {
                             Text(workoutDay.name)
                         }
                     }
+                    .onDelete { workoutDays.remove(atOffsets: $0) }
                 }
                 .listRowSeparatorTint(.yellow)
                 .foregroundColor(Color("gold"))
@@ -46,7 +50,23 @@ struct TestView3: View {
                 )
             }
             .navigationTitle("Workout Days")
-
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                        .foregroundColor(Color.yellow)
+                }
+                ToolbarItem {
+                    Button {
+                        isPresentingNewWorkoutDayView = true
+                    } label: {
+                        Label("Add Item", systemImage: "plus")
+                            .foregroundColor(Color.yellow)
+                    }
+                }
+            }
+            .sheet(isPresented: $isPresentingNewWorkoutDayView) {
+                TestView2(workouts: $workoutDays[0].workouts)
+            }
         }
     }
 }

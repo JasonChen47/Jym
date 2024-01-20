@@ -6,46 +6,41 @@
 //
 
 import SwiftUI
-class SharedData: ObservableObject {
-    @Published var presented = true
-}
+//class SharedData: ObservableObject {
+//    @Published var presented = true
+//}
 
 struct WorkoutTabView: View {
+    
     @Environment(\.scenePhase) private var scenePhase
+    
+    @Binding var workoutDays: [WorkoutDay]
+    
     @State var workoutsPath = NavigationPath()
     @State var chartsPath = NavigationPath()
     @State var settingsPath = NavigationPath()
     @State var emptyPath = NavigationPath()
-    @Binding var workoutDays: [WorkoutDay]
     @State private var tabSelection = 1
     @State private var tappedTwice: Bool = false
-    @StateObject var sharedData = SharedData()
+    
+//    @StateObject var sharedData = SharedData()
     let saveAction: ()->Void
     var body: some View {
-        var handler: Binding<Int> { Binding(
-            get: { self.tabSelection },
-            set: {
-                if $0 == self.tabSelection {
-                    // Lands here if user tapped more than once
-                    tappedTwice = true
-                }
-                self.tabSelection = $0
-            }
-        )}
+        
         TabView() {
             WorkoutDaysView(workoutDays: $workoutDays)
                 .tabItem {
                     Label("Workouts", systemImage: "dumbbell")
                 }
-                .onChange(of: tappedTwice, perform: { tappedTwice in         guard tappedTwice else { return }
-                    if tabSelection == 1 {
-                        workoutsPath = emptyPath
-                        self.tappedTwice = false
-                    }
-                })
+//                .onChange(of: tappedTwice, perform: { tappedTwice in         guard tappedTwice else { return }
+//                    if tabSelection == 1 {
+//                        workoutsPath = emptyPath
+//                        self.tappedTwice = false
+//                    }
+//                })
                 .toolbarBackground(Color("royalBlue"), for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
-            .tag(1)
+//            .tag(1)
             
                 
             MainChartView(workoutDays: $workoutDays)
@@ -75,6 +70,21 @@ struct WorkoutTabView: View {
                 .toolbarBackground(Color("royalBlue"), for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
                 .tag(3)
+            TestView3(workoutDays: $workoutDays)
+//            TestView4(workoutDays: $workoutDays, path: .constant(NavigationPath()))
+                .tabItem{
+                    Label("Test", systemImage: "testtube.2")
+                }
+                .onChange(of: tappedTwice, perform: { tappedTwice in     guard tappedTwice
+                    else { return }
+                    if tabSelection == 4 {
+                        settingsPath = emptyPath
+                        self.tappedTwice = false
+                    }
+                })
+                .toolbarBackground(Color("royalBlue"), for: .tabBar)
+                .toolbarBackground(.visible, for: .tabBar)
+                .tag(4)
         }
         .onChange(of: scenePhase) { phase in
             if phase == .inactive { saveAction() }

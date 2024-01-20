@@ -13,6 +13,11 @@
 		F62685432B4B550300CF661E /* TestTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62685422B4B550200CF661E /* TestTabView.swift */; };
 		F6292C1E2A0B1C8F0050C7E4 /* WorkoutDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6292C1D2A0B1C8F0050C7E4 /* WorkoutDayView.swift */; };
 		F6292C212A0B1D020050C7E4 /* WorkoutTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6292C202A0B1D020050C7E4 /* WorkoutTabView.swift */; };
+		F62FEDF92B5C77AA00E24756 /* TestView7.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62FEDF82B5C77AA00E24756 /* TestView7.swift */; };
+		F62FEDFB2B5C7E2800E24756 /* DailyScrum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62FEDFA2B5C7E2800E24756 /* DailyScrum.swift */; };
+		F62FEDFD2B5C7EBE00E24756 /* Attendee.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62FEDFC2B5C7EBE00E24756 /* Attendee.swift */; };
+		F62FEDFF2B5C822A00E24756 /* ScrumsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62FEDFE2B5C822A00E24756 /* ScrumsView.swift */; };
+		F62FEE052B5C85C400E24756 /* NothingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62FEE042B5C85C400E24756 /* NothingView.swift */; };
 		F634A1DD2A1ED4C200742182 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634A1DC2A1ED4C100742182 /* CardView.swift */; };
 		F634A1DF2A20293500742182 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634A1DE2A20293400742182 /* MainChartView.swift */; };
 		F634A1E12A202C5700742182 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634A1E02A202C5700742182 /* Record.swift */; };
@@ -29,6 +34,7 @@
 		F688663B2A58487F00590FCC /* WorkoutLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688663A2A58487E00590FCC /* WorkoutLogView.swift */; };
 		F690991C2A9AB4BC00D7517A /* NewWorkoutDaySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F690991B2A9AB4BC00D7517A /* NewWorkoutDaySheet.swift */; };
 		F691F24D2B45289900E5D29F /* NewWorkoutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F691F24C2B45289800E5D29F /* NewWorkoutSheet.swift */; };
+		F6B329E62B5A092F001249F8 /* TestView6.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B329E52B5A092E001249F8 /* TestView6.swift */; };
 		F6B9CA0E2B4A7E1000E7B534 /* TestView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B9CA0D2B4A7E1000E7B534 /* TestView2.swift */; };
 		F6B9CA102B4AC08100E7B534 /* TestView3.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B9CA0F2B4AC08100E7B534 /* TestView3.swift */; };
 		F6B9CA122B4AC3D300E7B534 /* StreaksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B9CA112B4AC3D300E7B534 /* StreaksView.swift */; };
@@ -74,6 +80,11 @@
 		F62685422B4B550200CF661E /* TestTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTabView.swift; sourceTree = "<group>"; };
 		F6292C1D2A0B1C8F0050C7E4 /* WorkoutDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDayView.swift; sourceTree = "<group>"; };
 		F6292C202A0B1D020050C7E4 /* WorkoutTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTabView.swift; sourceTree = "<group>"; };
+		F62FEDF82B5C77AA00E24756 /* TestView7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView7.swift; sourceTree = "<group>"; };
+		F62FEDFA2B5C7E2800E24756 /* DailyScrum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyScrum.swift; sourceTree = "<group>"; };
+		F62FEDFC2B5C7EBE00E24756 /* Attendee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attendee.swift; sourceTree = "<group>"; };
+		F62FEDFE2B5C822A00E24756 /* ScrumsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrumsView.swift; sourceTree = "<group>"; };
+		F62FEE042B5C85C400E24756 /* NothingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NothingView.swift; sourceTree = "<group>"; };
 		F634A1DC2A1ED4C100742182 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F634A1DE2A20293400742182 /* MainChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChartView.swift; sourceTree = "<group>"; };
 		F634A1E02A202C5700742182 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
@@ -90,6 +101,7 @@
 		F688663A2A58487E00590FCC /* WorkoutLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutLogView.swift; sourceTree = "<group>"; };
 		F690991B2A9AB4BC00D7517A /* NewWorkoutDaySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutDaySheet.swift; sourceTree = "<group>"; };
 		F691F24C2B45289800E5D29F /* NewWorkoutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutSheet.swift; sourceTree = "<group>"; };
+		F6B329E52B5A092E001249F8 /* TestView6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView6.swift; sourceTree = "<group>"; };
 		F6B9CA0D2B4A7E1000E7B534 /* TestView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView2.swift; sourceTree = "<group>"; };
 		F6B9CA0F2B4AC08100E7B534 /* TestView3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView3.swift; sourceTree = "<group>"; };
 		F6B9CA112B4AC3D300E7B534 /* StreaksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreaksView.swift; sourceTree = "<group>"; };
@@ -147,6 +159,8 @@
 				F6FED6622A0486BD001F3B8C /* Workout.swift */,
 				F634A1E02A202C5700742182 /* Record.swift */,
 				F650F0B82A39771900F61A85 /* SetRecord.swift */,
+				F62FEDFA2B5C7E2800E24756 /* DailyScrum.swift */,
+				F62FEDFC2B5C7EBE00E24756 /* Attendee.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -234,7 +248,11 @@
 				F6B9CA0F2B4AC08100E7B534 /* TestView3.swift */,
 				F6B9CA132B4ACE2E00E7B534 /* TestView4.swift */,
 				F62685402B4B525A00CF661E /* TestView5.swift */,
+				F6B329E52B5A092E001249F8 /* TestView6.swift */,
 				F62685422B4B550200CF661E /* TestTabView.swift */,
+				F62FEDF82B5C77AA00E24756 /* TestView7.swift */,
+				F62FEE042B5C85C400E24756 /* NothingView.swift */,
+				F62FEDFE2B5C822A00E24756 /* ScrumsView.swift */,
 				F6292C202A0B1D020050C7E4 /* WorkoutTabView.swift */,
 				F6CB87D72AA01C5500E4CF6E /* DataStore.swift */,
 				F688663C2A58499D00590FCC /* Workouts Tab */,
@@ -411,13 +429,18 @@
 				F6FED65F2A048427001F3B8C /* WorkoutDaysView.swift in Sources */,
 				F6E729732A3DF36500C8C09D /* Date.swift in Sources */,
 				F6B9CA102B4AC08100E7B534 /* TestView3.swift in Sources */,
+				F62FEDFF2B5C822A00E24756 /* ScrumsView.swift in Sources */,
+				F6B329E62B5A092F001249F8 /* TestView6.swift in Sources */,
 				F64D36022A60F7A700C872E7 /* TestView.swift in Sources */,
 				F64D36002A60438500C872E7 /* Color.swift in Sources */,
 				F60ED9732B4FB6990004171E /* EditRecordsSheet.swift in Sources */,
 				F6FED63A2A04801C001F3B8C /* Jym.xcdatamodeld in Sources */,
+				F62FEE052B5C85C400E24756 /* NothingView.swift in Sources */,
 				F6B9CA122B4AC3D300E7B534 /* StreaksView.swift in Sources */,
+				F62FEDFD2B5C7EBE00E24756 /* Attendee.swift in Sources */,
 				F68866342A54F16A00590FCC /* WorkoutView.swift in Sources */,
 				F68866392A57C28200590FCC /* WorkoutDayChartView.swift in Sources */,
+				F62FEDF92B5C77AA00E24756 /* TestView7.swift in Sources */,
 				F688663B2A58487F00590FCC /* WorkoutLogView.swift in Sources */,
 				F634A1E12A202C5700742182 /* Record.swift in Sources */,
 				F638282D2A41300E002209A6 /* SettingsView.swift in Sources */,
@@ -442,6 +465,7 @@
 				F6292C212A0B1D020050C7E4 /* WorkoutTabView.swift in Sources */,
 				F6B9DB732A5A176C007F7F11 /* Binding.swift in Sources */,
 				F690991C2A9AB4BC00D7517A /* NewWorkoutDaySheet.swift in Sources */,
+				F62FEDFB2B5C7E2800E24756 /* DailyScrum.swift in Sources */,
 				F60ED9712B4E25940004171E /* EditRecordSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

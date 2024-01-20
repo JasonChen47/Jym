@@ -16,6 +16,9 @@ struct JymApp: App {
     var body: some Scene {
         WindowGroup {
             WorkoutTabView(workoutDays: $store.storedWorkoutDays) {
+            
+//            TestTabView(workoutDays: $store.storedWorkoutDays) {
+            
                 Task {
                     do {
                         try await store.save(storedWorkoutDays: store.storedWorkoutDays)

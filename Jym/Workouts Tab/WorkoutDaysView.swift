@@ -13,14 +13,12 @@ struct WorkoutDaysView: View {
     @Binding var workoutDays: [WorkoutDay]
     
     @State private var isPresentingNewWorkoutDayView = false
-    @Environment(\.colorScheme) var colorScheme
-    @State var refresh: Bool = false
-    let width = UIScreen.main.bounds.size.width
-    let height = UIScreen.main.bounds.size.height
-    
     @State private var mainWorkoutDay = [WorkoutDay.emptyWorkoutDay]
     @State private var searchText = ""
     @State private var title = "Workout Days"
+
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
     let cornerRadius: CGFloat = 10
     let subtitleSize: CGFloat = 20
     let outlineSize: CGFloat = 1
@@ -55,7 +53,6 @@ struct WorkoutDaysView: View {
                             CardView(workoutDay: $workoutDay)
                         }
                     }
-                    
                     .listRowSeparatorTint(.yellow)
                     .foregroundColor(Color("angelYellow"))
                     .listRowBackground(
@@ -107,10 +104,11 @@ struct WorkoutDaysView: View {
             .sheet(isPresented: $isPresentingNewWorkoutDayView) {
                 NewWorkoutDaySheet(workoutDays: $workoutDays, isPresentingNewWorkoutDayView: $isPresentingNewWorkoutDayView)
             }
+            .onAppear {
+                mainWorkoutDay[0] = oldestWorkoutDay
+            }
         }
-        .onAppear {
-            mainWorkoutDay[0] = oldestWorkoutDay
-        }
+        
     }
     
 }

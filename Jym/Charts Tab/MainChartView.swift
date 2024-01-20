@@ -145,24 +145,9 @@ struct MainChartView: View {
                 
             }
             .navigationTitle("Charts")
-//            .navigationDestination(for: Binding<WorkoutDay>.self) { workoutDay in
-//                WorkoutDayChartView(workoutDay: workoutDay)
-//            }
             .foregroundColor(.white)
             .scrollContentBackground(.hidden)
             .scrollIndicators(.hidden)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button{
-                        print("hi")
-                    } label: {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
             .background(Color("royalBlue"))
             .onAppear {
                 
