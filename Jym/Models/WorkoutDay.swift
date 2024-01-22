@@ -57,6 +57,8 @@ extension WorkoutDay {
         Record(date: Date.now.addingTimeInterval(-14 * 24 * 60 * 60), weight: 80, reps: 10, sets: 4),
     ]
     static let records: [Record] = [
+        Record(date: Date("2023-01-08"), weight: 80, reps: 10, sets: 4),
+        Record(date: Date("2023-02-08"), weight: 80, reps: 10, sets: 4),
         Record(date: Date("2023-06-02"), weight: 80, reps: 10, sets: 4),
         Record(date: Date("2023-06-02"), weight: 85, reps: 10, sets: 4),
         Record(date: Date("2023-06-03"), weight: 80, reps: 10, sets: 4),
@@ -92,7 +94,7 @@ extension WorkoutDay {
         Record(date: Date("2023-07-03"), weight: 125, reps: 10, sets: 4),
         Record(date: Date("2023-07-04"), weight: 125, reps: 10, sets: 4),
         Record(date: Date("2023-07-05"), weight: 130, reps: 10, sets: 4),
-        Record(date: Date("2023-07-06"), weight: 130, reps: 10, sets: 4)
+        Record(date: Date("2024-01-05"), weight: 130, reps: 10, sets: 4)
     ]
     static let sampleData: [WorkoutDay] =
     [

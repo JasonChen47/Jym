@@ -70,6 +70,7 @@ struct CardView: View {
                 .font(.system(size: smallFont))
             }
         }
+        
     }
 }
 
@@ -86,10 +87,14 @@ struct CardView_Previews: PreviewProvider {
                 .foregroundColor(Color("gold"))
                 .listRowBackground(
                     Color("royalBlueLight")
+            
                 )
             }
             .scrollContentBackground(.hidden)
-            .background(Color("royalBlue"))
+            .background(
+                Color("royalBlue")
+            )
+            
         }
         
     }

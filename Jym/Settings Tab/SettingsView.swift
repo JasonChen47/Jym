@@ -35,43 +35,43 @@ struct SettingsView: View {
                     .foregroundColor(Color("angelYellow"))
                     .listRowBackground(Color("royalBlueLight"))
                 }
-                Section {
-                    HStack {
-                        Text("Weight Units")
-                        Spacer()
-                        Picker("Weight Units", selection: $selectedWeightUnit) {
-                            ForEach(weightUnit.allCases) { unit in
-                                Text(unit.rawValue)
-                            }
-                        }
-                        .pickerStyle(.segmented)
-                        .frame(width: width/3)
-                    }
-                    .listRowSeparatorTint(.white)
-                    .foregroundColor(Color("angelYellow"))
-                    .listRowBackground(Color("royalBlueLight"))
-                }
-                Section(header: Text("Upload or Download Data")) {
-                    Button{
-                        print("hi")
-                    } label: {
-                        HStack {
-                            Image(systemName: "square.and.arrow.up")
-                            Text("Upload Data")
-                        }
-                    }
-                    Button{
-                        print("hi")
-                    } label: {
-                        HStack {
-                            Image(systemName: "square.and.arrow.down")
-                            Text("Download Data")
-                        }
-                    }
-                }
-                .listRowSeparatorTint(.white)
-                .foregroundColor(Color("angelYellow"))
-                .listRowBackground(Color("royalBlueLight"))
+//                Section {
+//                    HStack {
+//                        Text("Weight Units")
+//                        Spacer()
+//                        Picker("Weight Units", selection: $selectedWeightUnit) {
+//                            ForEach(weightUnit.allCases) { unit in
+//                                Text(unit.rawValue)
+//                            }
+//                        }
+//                        .pickerStyle(.segmented)
+//                        .frame(width: width/3)
+//                    }
+//                    .listRowSeparatorTint(.white)
+//                    .foregroundColor(Color("angelYellow"))
+//                    .listRowBackground(Color("royalBlueLight"))
+//                }
+//                Section(header: Text("Upload or Download Data")) {
+//                    Button{
+//                        print("hi")
+//                    } label: {
+//                        HStack {
+//                            Image(systemName: "square.and.arrow.up")
+//                            Text("Upload Data")
+//                        }
+//                    }
+//                    Button{
+//                        print("hi")
+//                    } label: {
+//                        HStack {
+//                            Image(systemName: "square.and.arrow.down")
+//                            Text("Download Data")
+//                        }
+//                    }
+//                }
+//                .listRowSeparatorTint(.white)
+//                .foregroundColor(Color("angelYellow"))
+//                .listRowBackground(Color("royalBlueLight"))
             }
             .navigationTitle("Settings")
             .navigationDestination(for: Int.self) { int in

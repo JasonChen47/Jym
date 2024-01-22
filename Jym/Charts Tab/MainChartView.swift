@@ -10,6 +10,11 @@ import Charts
 
 struct MainChartView: View {
     
+    init(workoutDays: Binding<[WorkoutDay]>) {
+        Utils.navigationBarConfig()
+        self._workoutDays = workoutDays
+    }
+    
     @Binding var workoutDays: [WorkoutDay]
     
     let width = UIScreen.main.bounds.size.width

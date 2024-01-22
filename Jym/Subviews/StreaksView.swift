@@ -81,12 +81,10 @@ struct StreaksView: View {
         return Array(highestStreaks)
     }
     
-
-    
-    
-    
-    
     var body: some View {
+        let lineWidth = width/42
+        let circleBottomPadding: CGFloat = 7
+        
         let firstStreak = streakList[0].0
         let secondStreak = streakList[1].0
         let thirdStreak = streakList[2].0
@@ -111,21 +109,22 @@ struct StreaksView: View {
                 VStack {
                     ZStack {
                         Circle()
-                            .stroke(Color.red, lineWidth: 10)
+                            .stroke(Color.red, lineWidth: lineWidth)
                             .frame(width: width/3)
                             .opacity(0.3)
                         Circle()
                             .trim(from: 0, to: filteredStreaks[0]/10)
-                            .stroke(Color.red, lineWidth: 10)
+                            .stroke(Color.red, lineWidth: lineWidth)
                             .frame(width: width/3)
                         
                         Circle()
-                            .stroke(Color("angelYellow"), lineWidth: 10)
+                            .stroke(Color("angelYellow"), lineWidth: lineWidth)
                             .frame(width: width/4)
                         Circle()
-                            .stroke(Color("gold"), lineWidth: 10)
+                            .stroke(Color("gold"), lineWidth: lineWidth)
                             .frame(width: width/6)
                     }
+                    .padding(.bottom, circleBottomPadding)
                     Text(firstStreak.name)
                 }
                 VStack {
@@ -133,14 +132,17 @@ struct StreaksView: View {
                     VStack {
                         ZStack {
                             Circle()
-                                .stroke(Color.red, lineWidth: 10)
-                                .aspectRatio(contentMode: .fit)
+                                .stroke(Color.red, lineWidth: lineWidth)
+//                                .aspectRatio(contentMode: .fit)
+                                .frame(width: width/13)
                                 .opacity(0.3)
                             Circle()
                                 .trim(from: 0, to: filteredStreaks[3]/10)
-                                .stroke(Color.red, lineWidth: 10)
-                                .aspectRatio(contentMode: .fit)
+                                .stroke(Color.red, lineWidth: lineWidth)
+                                .frame(width: width/13)
+//                                .aspectRatio(contentMode: .fit)
                         }
+                        .padding(.bottom, circleBottomPadding)
                         Text(fourthStreak.name)
                             .fixedSize()
                     }
@@ -148,17 +150,18 @@ struct StreaksView: View {
                     // 3rd highest streak
                     ZStack {
                         Circle()
-                            .stroke(Color.red, lineWidth: 10)
+                            .stroke(Color.red, lineWidth: lineWidth)
                             .frame(width: width/7)
                             .opacity(0.3)
                         Circle()
                             .trim(from: 0, to: filteredStreaks[2]/10)
-                            .stroke(Color.red, lineWidth: 10)
+                            .stroke(Color.red, lineWidth: lineWidth)
                             .frame(width: width/7)
                         Circle()
-                            .stroke(Color("angelYellow"), lineWidth: 10)
+                            .stroke(Color("angelYellow"), lineWidth: lineWidth)
                             .frame(width: width/15)
                     }
+                    .padding(.bottom, circleBottomPadding)
                     Text(thirdStreak.name)
                 }
                 .padding([.leading, .trailing])
@@ -166,22 +169,25 @@ struct StreaksView: View {
                 VStack {
                     ZStack {
                         Circle()
-                            .stroke(Color.red, lineWidth: 10)
+                            .stroke(Color.red, lineWidth: lineWidth)
                             .frame(width: width/5)
                             .opacity(0.3)
                         Circle()
                             .trim(from: 0, to: filteredStreaks[1]/10)
-                            .stroke(Color.red, lineWidth: 10)
+                            .stroke(Color.red, lineWidth: lineWidth)
                             .frame(width: width/5)
                         Circle()
-                            .stroke(Color("angelYellow"), lineWidth: 10)
+                            .stroke(Color("angelYellow"), lineWidth: lineWidth)
                             .frame(width: width/8)
                     }
+                    .padding(.bottom, circleBottomPadding)
                     Text(secondStreak.name)
                     Spacer()
                 }
             }
+//            .padding()
             .padding([.leading, .trailing])
+            
         }
         .onAppear {
             // Go through all the WorkoutDays and if the lastWorkoutDay older than 2 weeks ago, set the streaks to 0.

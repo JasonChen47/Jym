@@ -11,6 +11,7 @@ import SwiftUI
 struct WorkoutDaysView: View {
 
     @Binding var workoutDays: [WorkoutDay]
+    @Binding var path: NavigationPath
     
     @State private var isPresentingNewWorkoutDayView = false
     @State private var mainWorkoutDay = [WorkoutDay.emptyWorkoutDay]
@@ -34,9 +35,22 @@ struct WorkoutDaysView: View {
         NavigationStack {
             List {
                 Section {
-                    StreaksView(workoutDays: $workoutDays)
-                } footer: {
-                    Text("The outermost rings represent streaks for each workout day. Ten weeks in a row yields a full circle. The four workouts with the longest streaks are shown.")
+                    VStack {
+                        StreaksView(workoutDays: $workoutDays)
+//                        Image("greek lifting")
+//                            .renderingMode(.template)
+//                            .resizable()
+//                            .scaledToFit()
+//                            .foregroundColor(.orange)
+//                            .background(Color("royalBlue"))
+//                            .listRowBackground(
+//                                Color("royalBlue")
+//                            )
+                    }
+                    
+                } 
+            footer: {
+                    Text("Rings fill based on the the number of concurrent weeks workout days are performed")
                         .padding([.leading, .trailing])
                         .foregroundColor(.gray)
                 }
@@ -46,7 +60,8 @@ struct WorkoutDaysView: View {
                 .listRowBackground(
                     Color("royalBlue")
                 )
-                Section(header: Text("Recommended Next Workout")) {
+                
+                Section(header: Text("Next Workout Day")) {
                     ForEach($mainWorkoutDay) { $workoutDay in
                         NavigationLink(destination: WorkoutDayView(workoutDay: $workoutDay))
                         {
@@ -66,9 +81,10 @@ struct WorkoutDaysView: View {
                     )
                 }
                 .headerProminence(.increased)
-                Section(header: Text("Browse Workouts")) {
+                Section(header: Text("Browse Workout Days")) {
                     ForEach($workoutDays) { $workoutDay in
                         NavigationLink(destination: WorkoutDayView(workoutDay: $workoutDay))
+//                        NavigationLink(value: workoutDay.id)
                         {
                             CardView(workoutDay: $workoutDay)
                         }
@@ -76,11 +92,31 @@ struct WorkoutDaysView: View {
                         .foregroundColor(Color("gold"))
                         .listRowBackground(
                             Color("royalBlueLight")
+//                            .thinMaterial
                         )
                     }
                     .onDelete { workoutDays.remove(atOffsets: $0) }
+//                    .navigationDestination(for: Binding<WorkoutDay>.self) { workoutDay in
+//                                    WorkoutDayView(workoutDay: workoutDay)
+//                                }
+
                 }
                 .headerProminence(.increased)
+//                Image("greek fight")
+//                    .renderingMode(.template)
+//                    .resizable()
+//                    .scaledToFit()
+//                    .foregroundColor(
+////                        Color("royalBlueLight")
+//                        .orange
+//                    )
+////                    .brightness(0.2)
+//                    .opacity(0.7)
+//                    .background(Color("royalBlue"))
+//                    
+//                    .listRowBackground(
+//                        Color("royalBlue")
+//                    )
             }
             .navigationTitle("Workout Days")
             .foregroundColor(.white)
@@ -116,7 +152,7 @@ struct WorkoutDaysView: View {
 struct AllWorkoutsView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            WorkoutDaysView(workoutDays: .constant(WorkoutDay.sampleData))
+            WorkoutDaysView(workoutDays: .constant(WorkoutDay.sampleData), path: .constant(NavigationPath()))
         }
         
         
