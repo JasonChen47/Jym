@@ -9,7 +9,7 @@ import Foundation
 
 // Struct for workout record
 struct Record: Identifiable, Equatable, Codable {
-    let id: UUID
+    var id: UUID
     var date: Date
     var weight: Double
     var reps: Double

@@ -114,6 +114,11 @@ struct WorkoutLogView: View {
                         }
                         ToolbarItem(placement: .confirmationAction) {
                             Button("Done") {
+                                // Append to the list of records
+                                workout.records.append(editingRecord)
+                                workout.records.sort {
+                                    $0.date < $1.date
+                                }
                                 isPresentingEditRecordSheet = false
                             }
                         }

@@ -14,6 +14,7 @@ struct EditRecordSheet: View {
     @Binding var isPresentingEditRecordsSheet: Bool
     
     @State private var editingRecord = Record.emptyRecord
+    @State private var displayRecord = Record.emptyRecord
     
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
@@ -37,10 +38,10 @@ struct EditRecordSheet: View {
                     Divider()
                         .overlay(.yellow)
                     GridRow {
-                        Text(df.string(from: record.date))
-                        Text(String(record.weight))
-                        Text(String(record.reps))
-                        Text(String(record.sets))
+                        Text(df.string(from: displayRecord.date))
+                        Text(String(displayRecord.weight))
+                        Text(String(displayRecord.reps))
+                        Text(String(displayRecord.sets))
                     }
                 }
             }
@@ -86,15 +87,14 @@ struct EditRecordSheet: View {
                     )
                     Button{
                         withAnimation {
-                            record = editingRecord
-                            // Make sure there are no duplicates in the same day
+                            // Remove all other records in the same day other than the one with the UUID of the record that was just added
                             records.removeAll {
-                                Calendar.current.isDate($0.date, inSameDayAs: editingRecord.date)
+                                Calendar.current.isDate($0.date, inSameDayAs: editingRecord.date) && $0.id != record.id
                             }
-                            // Find out the place to insert the
-                            // Append to both the binding and the displayed records
-                            
-                            records.append(record)
+                            // Set the record equal to what has been edited with a new UUID
+                            record = Record(date: editingRecord.date, weight: editingRecord.weight, reps: editingRecord.reps, sets: editingRecord.sets)
+                            // Update the display record to show what the record has been changed to
+                            displayRecord = editingRecord
                         }
                     } label: {
                         HStack {
@@ -122,6 +122,7 @@ struct EditRecordSheet: View {
         .background(Color("royalBlue"))
         .onAppear {
             editingRecord = record
+            displayRecord = record
         }
         
     }
