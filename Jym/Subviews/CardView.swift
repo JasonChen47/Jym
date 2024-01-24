@@ -70,7 +70,6 @@ struct CardView: View {
                 .font(.system(size: smallFont))
             }
         }
-        
     }
 }
 

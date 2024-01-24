@@ -54,6 +54,7 @@ struct EditRecordSheet: View {
                 DatePicker(
                         "Workout Date",
                         selection: $editingRecord.date,
+                        in: ...Date(),
                         displayedComponents: [.date]
                     )
             }

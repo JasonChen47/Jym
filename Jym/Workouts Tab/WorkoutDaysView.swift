@@ -14,9 +14,23 @@ struct WorkoutDaysView: View {
     @Binding var path: NavigationPath
     
     @State private var isPresentingNewWorkoutDayView = false
-    @State private var mainWorkoutDay = [WorkoutDay.emptyWorkoutDay]
+    @State private var emptyWorkoutDay = WorkoutDay.emptyWorkoutDay
+    
     @State private var searchText = ""
     @State private var title = "Workout Days"
+//    @State var mainWorkoutDay: [WorkoutDay] = [WorkoutDay.emptyWorkoutDay]
+    @State private var mainWorkoutDay = [WorkoutDay.emptyWorkoutDay]
+    var extraWorkoutDay: Binding<WorkoutDay> {
+        Binding(get: {
+            let oldest = self.workoutDays.max {
+                $0.lastWorkoutDay > $1.lastWorkoutDay
+            } ?? WorkoutDay.emptyWorkoutDay
+            return oldest
+        }, set: { newWorkoutDay in
+            
+        }
+        )
+    }
 
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
@@ -31,7 +45,9 @@ struct WorkoutDaysView: View {
         return oldest
     }
     
+    
     var body: some View {
+        
         NavigationStack {
             List {
                 Section {
@@ -62,23 +78,65 @@ struct WorkoutDaysView: View {
                 )
                 
                 Section(header: Text("Next Workout Day")) {
-                    ForEach($mainWorkoutDay) { $workoutDay in
-                        NavigationLink(destination: WorkoutDayView(workoutDay: $workoutDay))
+//                    ForEach($mainWorkoutDay) { $workoutDay in
+//                        NavigationLink(destination: WorkoutDayView(workoutDay: $workoutDay))
+//                        {
+//                            CardView(workoutDay: extraWorkoutDay)
+////                            CardView(workoutDay: $workoutDay)
+//                        }
+//                    }
+                    if let indexOfLongestAgoWorkoutDay = workoutDays.indices.max(by: {
+                        workoutDays[$0].lastWorkoutDay > workoutDays[$1].lastWorkoutDay
+                    }) {
+                        let longestAgoWorkoutDay = $workoutDays[indexOfLongestAgoWorkoutDay]
+                        NavigationLink(destination: WorkoutDayView(workoutDay: longestAgoWorkoutDay))
                         {
-                            CardView(workoutDay: $workoutDay)
+                            CardView(workoutDay: longestAgoWorkoutDay)
                         }
+                        .listRowSeparatorTint(.yellow)
+                        .foregroundColor(Color("angelYellow"))
+                        .listRowBackground(
+                            Color("royalBlueLight")
+                        )
+                        .listRowInsets(EdgeInsets())
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10, style: .circular)
+                                .stroke(Color("angelYellow"), lineWidth: 2)
+                        )
                     }
-                    .listRowSeparatorTint(.yellow)
-                    .foregroundColor(Color("angelYellow"))
-                    .listRowBackground(
-                        Color("royalBlueLight")
-                    )
-                    .listRowInsets(EdgeInsets())
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10, style: .circular)
-                            .stroke(Color("angelYellow"), lineWidth: 2)
-                    )
+                    else {
+                        NavigationLink(destination: WorkoutDayView(workoutDay: $emptyWorkoutDay))
+                        {
+                            CardView(workoutDay: $emptyWorkoutDay)
+                        }
+                        .listRowSeparatorTint(.yellow)
+                        .foregroundColor(Color("angelYellow"))
+                        .listRowBackground(
+                            Color("royalBlueLight")
+                        )
+                        .listRowInsets(EdgeInsets())
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10, style: .circular)
+                                .stroke(Color("angelYellow"), lineWidth: 2)
+                        )
+                    }
+//                    NavigationLink(destination: WorkoutDayView(workoutDay: extraWorkoutDay))
+//                    {
+//                        CardView(workoutDay: extraWorkoutDay)
+//                    }
+//                    .listRowSeparatorTint(.yellow)
+//                    .foregroundColor(Color("angelYellow"))
+//                    .listRowBackground(
+//                        Color("royalBlueLight")
+//                    )
+//                    .listRowInsets(EdgeInsets())
+//                    .padding()
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 10, style: .circular)
+//                            .stroke(Color("angelYellow"), lineWidth: 2)
+//                    )
                 }
                 .headerProminence(.increased)
                 Section(header: Text("Browse Workout Days")) {

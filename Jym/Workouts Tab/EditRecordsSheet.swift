@@ -36,6 +36,9 @@ struct EditRecordsSheet: View {
                         .toolbar {
                         ToolbarItem(placement: .confirmationAction) {
                             Button("Done") {
+                                records.sort {
+                                    $0.date < $1.date
+                                }
                                 isPresentingEditRecordsSheet = false
                             }
                         }
