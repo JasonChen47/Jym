@@ -9,12 +9,20 @@ import SwiftUI
 
 
 struct WorkoutDaysView: View {
+    
+    init(workoutDays: Binding<[WorkoutDay]>, path: Binding<NavigationPath>) {
+        Utils.navigationBarConfig()
+        self._workoutDays = workoutDays
+        self._path = path
+        self.firstTimeShown = true
+    }
 
     @Binding var workoutDays: [WorkoutDay]
     @Binding var path: NavigationPath
     
     @State private var isPresentingNewWorkoutDayView = false
     @State private var emptyWorkoutDay = WorkoutDay.emptyWorkoutDay
+    @State private var firstTimeShown: Bool = true
     
     @State private var searchText = ""
     @State private var title = "Workout Days"
@@ -45,8 +53,12 @@ struct WorkoutDaysView: View {
         return oldest
     }
     
+    @State var indexOfLongestAgoWorkoutDay = -1
+    @State var onAppearTriggered = false
     
     var body: some View {
+        
+        
         
         NavigationStack {
             List {
@@ -81,17 +93,123 @@ struct WorkoutDaysView: View {
 //                    ForEach($mainWorkoutDay) { $workoutDay in
 //                        NavigationLink(destination: WorkoutDayView(workoutDay: $workoutDay))
 //                        {
-//                            CardView(workoutDay: extraWorkoutDay)
-////                            CardView(workoutDay: $workoutDay)
+////                            CardView(workoutDay: extraWorkoutDay)
+//                            CardView(workoutDay: $workoutDay)
 //                        }
 //                    }
-                    if let indexOfLongestAgoWorkoutDay = workoutDays.indices.max(by: {
-                        workoutDays[$0].lastWorkoutDay > workoutDays[$1].lastWorkoutDay
-                    }) {
-                        let longestAgoWorkoutDay = $workoutDays[indexOfLongestAgoWorkoutDay]
-                        NavigationLink(destination: WorkoutDayView(workoutDay: longestAgoWorkoutDay))
+//                    .listRowSeparatorTint(.yellow)
+//                    .foregroundColor(Color("angelYellow"))
+//                    .listRowBackground(
+//                        Color("royalBlueLight")
+//                    )
+//                    .listRowInsets(EdgeInsets())
+//                    .padding()
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 10, style: .circular)
+//                            .stroke(Color("angelYellow"), lineWidth: 2)
+//                    )
+                    
+//                    if let indexOfLongestAgoWorkoutDay = workoutDays.indices.max(by: {
+//                        workoutDays[$0].lastWorkoutDay > workoutDays[$1].lastWorkoutDay
+//                    }) {
+////                        let longestAgoWorkoutDay = $workoutDays[indexOfLongestAgoWorkoutDay]
+//                        NavigationLink(destination: WorkoutDayView(workoutDay: $workoutDays[indexOfLongestAgoWorkoutDay]))
+//                        {
+//                            CardView(workoutDay: $workoutDays[indexOfLongestAgoWorkoutDay])
+//                        }
+//                        .listRowSeparatorTint(.yellow)
+//                        .foregroundColor(Color("angelYellow"))
+//                        .listRowBackground(
+//                            Color("royalBlueLight")
+//                        )
+//                        .listRowInsets(EdgeInsets())
+//                        .padding()
+//                        .overlay(
+//                            RoundedRectangle(cornerRadius: 10, style: .circular)
+//                                .stroke(Color("angelYellow"), lineWidth: 2)
+//                        )
+//                    }
+//                    else {
+//                        NavigationLink(destination: WorkoutDayView(workoutDay: $emptyWorkoutDay))
+//                        {
+//                            CardView(workoutDay: $emptyWorkoutDay)
+//                        }
+//                        .listRowSeparatorTint(.yellow)
+//                        .foregroundColor(Color("angelYellow"))
+//                        .listRowBackground(
+//                            Color("royalBlueLight")
+//                        )
+//                        .listRowInsets(EdgeInsets())
+//                        .padding()
+//                        .overlay(
+//                            RoundedRectangle(cornerRadius: 10, style: .circular)
+//                                .stroke(Color("angelYellow"), lineWidth: 2)
+//                        )
+//                    }
+//                    NavigationLink(destination: WorkoutDayView(workoutDay: extraWorkoutDay))
+//                    {
+//                        CardView(workoutDay: extraWorkoutDay)
+//                    }
+//                    .listRowSeparatorTint(.yellow)
+//                    .foregroundColor(Color("angelYellow"))
+//                    .listRowBackground(
+//                        Color("royalBlueLight")
+//                    )
+//                    .listRowInsets(EdgeInsets())
+//                    .padding()
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 10, style: .circular)
+//                            .stroke(Color("angelYellow"), lineWidth: 2)
+//                    )
+                    
+                    // THIRD ATTEMPT
+                    // The first time, use the if let
+                    // All other times, don't use the if let because it causes reassignment during the run
+                    if firstTimeShown == true {
+                        if let indexOfLongestAgoWorkoutDay = workoutDays.indices.max(by: {
+                            workoutDays[$0].lastWorkoutDay > workoutDays[$1].lastWorkoutDay
+                        }) {
+    //                        let longestAgoWorkoutDay = $workoutDays[indexOfLongestAgoWorkoutDay]
+                            NavigationLink(destination: WorkoutDayView(workoutDay: $workoutDays[indexOfLongestAgoWorkoutDay]))
+                            {
+                                CardView(workoutDay: $workoutDays[indexOfLongestAgoWorkoutDay])
+                            }
+                            .listRowSeparatorTint(.yellow)
+                            .foregroundColor(Color("angelYellow"))
+                            .listRowBackground(
+                                Color("royalBlueLight")
+                            )
+                            .listRowInsets(EdgeInsets())
+                            .padding()
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10, style: .circular)
+                                    .stroke(Color("angelYellow"), lineWidth: 2)
+                            )
+                        }
+                        else {
+                            NavigationLink(destination: WorkoutDayView(workoutDay: $emptyWorkoutDay))
+                            {
+                                CardView(workoutDay: $emptyWorkoutDay)
+                            }
+                            .listRowSeparatorTint(.yellow)
+                            .foregroundColor(Color("angelYellow"))
+                            .listRowBackground(
+                                Color("royalBlueLight")
+                            )
+                            .listRowInsets(EdgeInsets())
+                            .padding()
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10, style: .circular)
+                                    .stroke(Color("angelYellow"), lineWidth: 2)
+                            )
+                        }
+                    }
+                    
+                    else if indexOfLongestAgoWorkoutDay != -1 {
+//                      let longestAgoWorkoutDay = $workoutDays[indexOfLongestAgoWorkoutDay]
+                        NavigationLink(destination: WorkoutDayView(workoutDay: $workoutDays[indexOfLongestAgoWorkoutDay]))
                         {
-                            CardView(workoutDay: longestAgoWorkoutDay)
+                            CardView(workoutDay: $workoutDays[indexOfLongestAgoWorkoutDay])
                         }
                         .listRowSeparatorTint(.yellow)
                         .foregroundColor(Color("angelYellow"))
@@ -105,6 +223,7 @@ struct WorkoutDaysView: View {
                                 .stroke(Color("angelYellow"), lineWidth: 2)
                         )
                     }
+                    
                     else {
                         NavigationLink(destination: WorkoutDayView(workoutDay: $emptyWorkoutDay))
                         {
@@ -122,21 +241,7 @@ struct WorkoutDaysView: View {
                                 .stroke(Color("angelYellow"), lineWidth: 2)
                         )
                     }
-//                    NavigationLink(destination: WorkoutDayView(workoutDay: extraWorkoutDay))
-//                    {
-//                        CardView(workoutDay: extraWorkoutDay)
-//                    }
-//                    .listRowSeparatorTint(.yellow)
-//                    .foregroundColor(Color("angelYellow"))
-//                    .listRowBackground(
-//                        Color("royalBlueLight")
-//                    )
-//                    .listRowInsets(EdgeInsets())
-//                    .padding()
-//                    .overlay(
-//                        RoundedRectangle(cornerRadius: 10, style: .circular)
-//                            .stroke(Color("angelYellow"), lineWidth: 2)
-//                    )
+                    
                 }
                 .headerProminence(.increased)
                 Section(header: Text("Browse Workout Days")) {
@@ -200,6 +305,22 @@ struct WorkoutDaysView: View {
             }
             .onAppear {
                 mainWorkoutDay[0] = oldestWorkoutDay
+                
+                if !workoutDays.isEmpty {
+                    indexOfLongestAgoWorkoutDay = workoutDays.indices.max(by: {
+                        workoutDays[$0].lastWorkoutDay > workoutDays[$1].lastWorkoutDay
+                    }) ?? -1
+                }
+                onAppearTriggered = true
+                
+//                if let indexOfLongestAgoWorkoutDay = workoutDays.indices.max(by: {
+//                    workoutDays[$0].lastWorkoutDay > workoutDays[$1].lastWorkoutDay
+//                }) {
+//                    print("hi")
+//                }
+            }
+            .onDisappear {
+                firstTimeShown = false
             }
         }
         
