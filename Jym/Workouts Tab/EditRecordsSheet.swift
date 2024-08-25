@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EditRecordsSheet: View {
     
+    @Binding var workoutDay: WorkoutDay
     @Binding var records: [Record]
     @Binding var isPresentingEditRecordsSheet: Bool
     
@@ -32,7 +33,7 @@ struct EditRecordsSheet: View {
                     Spacer()
                 }.bold()
                 ForEach($records) { $record in
-                    NavigationLink(destination: EditRecordSheet(record: $record, records: $records, isPresentingEditRecordsSheet: $isPresentingEditRecordsSheet)
+                    NavigationLink(destination: EditRecordSheet(workoutDay: $workoutDay, record: $record, records: $records, isPresentingEditRecordsSheet: $isPresentingEditRecordsSheet)
                         .toolbar {
                         ToolbarItem(placement: .confirmationAction) {
                             Button("Done") {
@@ -57,7 +58,15 @@ struct EditRecordsSheet: View {
                         }
                     }
                 }
-                .onDelete{records.remove(atOffsets: $0)}
+                .onDelete{
+                    records.remove(atOffsets: $0)
+                    let allRecords = workoutDay.workouts.flatMap({ workout in
+                        workout.records
+                    })
+                    workoutDay.lastWorkoutDay = allRecords.max(by: { recordOne,recordTwo  in
+                        recordOne.date < recordTwo.date
+                    })?.date ?? Date.distantPast
+                }
             }
             .listRowSeparatorTint(.yellow)
             .foregroundColor(Color("angelYellow"))
@@ -80,6 +89,6 @@ struct EditRecordsSheet: View {
 
 #Preview {
     NavigationStack {
-        EditRecordsSheet(records: .constant(WorkoutDay.records), isPresentingEditRecordsSheet: .constant(true))
+        EditRecordsSheet(workoutDay: .constant(WorkoutDay.sampleData[0]), records: .constant(WorkoutDay.records), isPresentingEditRecordsSheet: .constant(true))
     }
 }

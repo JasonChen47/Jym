@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EditRecordSheet: View {
     
+    @Binding var workoutDay: WorkoutDay
     @Binding var record: Record
     @Binding var records: [Record]
     @Binding var isPresentingEditRecordsSheet: Bool
@@ -96,6 +97,15 @@ struct EditRecordSheet: View {
                             record = Record(date: editingRecord.date, weight: editingRecord.weight, reps: editingRecord.reps, sets: editingRecord.sets)
                             // Update the display record to show what the record has been changed to
                             displayRecord = editingRecord
+                            workoutDay.lastWorkoutDay = editingRecord.date
+//                            let allRecords = workoutDay.workouts.flatMap({
+//                                $0.records
+//                            })
+//                            print(allRecords)
+//                            workoutDay.lastWorkoutDay = allRecords.max(by: {
+//                                $0.date < $1.date
+//                            })?.date ?? Date.distantPast
+//                            print(workoutDay.lastWorkoutDay)
                         }
                     } label: {
                         HStack {
@@ -131,7 +141,7 @@ struct EditRecordSheet: View {
 
 #Preview {
     NavigationStack {
-        EditRecordSheet(record: .constant(WorkoutDay.sampleData[0].workouts[0].records[0]), records: .constant(WorkoutDay.records), isPresentingEditRecordsSheet: .constant(true))
+        EditRecordSheet(workoutDay: .constant(WorkoutDay.emptyWorkoutDay), record: .constant(WorkoutDay.sampleData[0].workouts[0].records[0]), records: .constant(WorkoutDay.records), isPresentingEditRecordsSheet: .constant(true))
     }
     
 }

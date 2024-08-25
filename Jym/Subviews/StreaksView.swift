@@ -101,6 +101,8 @@ struct StreaksView: View {
                 Text(Date.now, style: .date)
                     .font(Font.subheadline)
                     .foregroundColor(Color.gray)
+                    .padding(0)
+//                    .frame(maxWidth: .infinity, alignment: .trailing)
                 Spacer()
             }
             // Circles

@@ -65,6 +65,8 @@ struct WorkoutDaysView: View {
                 Section {
                     VStack {
                         StreaksView(workoutDays: $workoutDays)
+                            .frame(maxWidth: width)
+//                            .listRowInsets(EdgeInsets())
 //                        Image("greek lifting")
 //                            .renderingMode(.template)
 //                            .resizable()
@@ -82,9 +84,9 @@ struct WorkoutDaysView: View {
                         .padding([.leading, .trailing])
                         .foregroundColor(.gray)
                 }
-                .padding([.bottom])
+//                .padding([.bottom])
                 .font(.system(size: 12))
-                .listRowInsets(EdgeInsets())
+//                .listRowInsets(EdgeInsets())
                 .listRowBackground(
                     Color("royalBlue")
                 )
@@ -205,7 +207,7 @@ struct WorkoutDaysView: View {
                         }
                     }
                     
-                    else if indexOfLongestAgoWorkoutDay != -1 {
+                    else if indexOfLongestAgoWorkoutDay != -1 && workoutDays.count > 0 {
 //                      let longestAgoWorkoutDay = $workoutDays[indexOfLongestAgoWorkoutDay]
                         NavigationLink(destination: WorkoutDayView(workoutDay: $workoutDays[indexOfLongestAgoWorkoutDay]))
                         {

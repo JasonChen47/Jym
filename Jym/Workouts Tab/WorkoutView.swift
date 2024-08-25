@@ -43,7 +43,7 @@ struct WorkoutView: View {
             Section(header: HStack {
                 Text("Workout Log")
                 Spacer()
-                NavigationLink(destination: WorkoutLogView(workout: $workout)) {
+                NavigationLink(destination: WorkoutLogView(workoutDay: $workoutDay, workout: $workout)) {
                     Text("Show More")
                         .font(Font.subheadline)
                         .foregroundColor(Color("angelYellow"))

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WorkoutLogView: View {
     
+    @Binding var workoutDay: WorkoutDay
     @Binding var workout: Workout
     
     @State private var isPresentingEditRecordsSheet = false
@@ -81,7 +82,7 @@ struct WorkoutLogView: View {
         // Editing all records
         .sheet(isPresented: $isPresentingEditRecordsSheet) {
             NavigationStack {
-                EditRecordsSheet(records: $workout.records, isPresentingEditRecordsSheet: $isPresentingEditRecordsSheet)
+                EditRecordsSheet(workoutDay: $workoutDay, records: $workout.records, isPresentingEditRecordsSheet: $isPresentingEditRecordsSheet)
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
                             Button("Dismiss") {
@@ -105,7 +106,7 @@ struct WorkoutLogView: View {
         // Adding one record
         .sheet(isPresented: $isPresentingEditRecordSheet) {
             NavigationStack {
-                EditRecordSheet(record: $editingRecord, records: $workout.records, isPresentingEditRecordsSheet: $isPresentingEditRecordSheet)
+                EditRecordSheet(workoutDay: $workoutDay, record: $editingRecord, records: $workout.records, isPresentingEditRecordsSheet: $isPresentingEditRecordSheet)
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
                             Button("Dismiss") {
@@ -140,7 +141,7 @@ struct WorkoutLogView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationStack {
-                WorkoutLogView(workout: .constant(WorkoutDay.sampleData[0].workouts[0]))
+                WorkoutLogView(workoutDay: .constant(WorkoutDay.sampleData[0]), workout: .constant(WorkoutDay.sampleData[0].workouts[0]))
             }
         }
     }

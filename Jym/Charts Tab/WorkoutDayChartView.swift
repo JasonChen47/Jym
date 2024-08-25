@@ -25,7 +25,7 @@ struct WorkoutDayChartView: View {
                 Section(header: HStack {
                     Text(workout.name)
                     Spacer()
-                    NavigationLink(destination: WorkoutLogView(workout: $workout)) {
+                    NavigationLink(destination: WorkoutLogView(workoutDay: $workoutDay, workout: $workout)) {
                         Text("Show Records")
                             .font(Font.subheadline)
                             .foregroundColor(Color("angelYellow"))

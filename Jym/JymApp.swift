@@ -15,8 +15,10 @@ struct JymApp: App {
 
     var body: some Scene {
         WindowGroup {
+            // REGULAR ONE
             WorkoutTabView(workoutDays: $store.storedWorkoutDays) {
-            
+            // FOR DOING SCREENSHOTS WITH SAMPLE DATA
+//            WorkoutTabView(workoutDays: $workoutDays) {
 //            TestTabView(workoutDays: $store.storedWorkoutDays) {
             
                 Task {
@@ -34,6 +36,7 @@ struct JymApp: App {
                     fatalError(error.localizedDescription)
                 }
             }
+            .preferredColorScheme(.light)
         }
     }
 }
